@@ -8,7 +8,7 @@ fake = Faker()
 def seed_users():
   users = []
 
-  usernames = ["DemoUser", "StudioGhibli", "HelloFascination", "LofiLia", "EmoNite"]
+  usernames = ["DemoUser", "StudioGhibli", "HelloFascination", "LofiLia", "EmoNite", "Soulection", ""]
 
   emails = ["demouser@appacademy.io", "studioghibli@appacademy.io", "hellofasc@appacademy.io", "lofilia@appacademy.io", "emonite@appacademy.io"]
 
@@ -18,8 +18,8 @@ def seed_users():
     user = User(
     username = usernames[i],
     password = "password",
-    first_name = 'demo',
-    last_name = 'user',
+    first_name = fake.first_name(),
+    last_name = fake.last_name(),
     email = emails[i],
     created_at = random_date_time,
     updated_at = random_date_time
