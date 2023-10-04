@@ -6,19 +6,29 @@ fake = Faker()
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
+  users = []
+
+  usernames = ["DemoUser", "StudioGhibli", "HelloFascination", "LofiLia", "EmoNite"]
+
+  emails = ["demouser@appacademy.io", "studioghibli@appacademy.io", "hellofasc@appacademy.io", "lofilia@appacademy.io", "emonite@appacademy.io"]
+
+  for i in range(20):
     random_date_time = fake.date_time_between(start_date='-1y', end_date='now')
 
-    demo = User(
-        username='Demo', email='demo@aa.io', password='password', first_name='Demo', last_name='User', created_at=random_date_time, updated_at=random_date_time)
-    marnie = User(
-        username='marnie', email='marnie@aa.io', password='password', first_name='Marnie', last_name='Dee', created_at=random_date_time, updated_at=random_date_time)
-    bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password', first_name='Bobbie', last_name='Bee', created_at=random_date_time, updated_at=random_date_time)
+    user = User(
+    username = usernames[i],
+    password = "password",
+    first_name = fake.first_name(),
+    last_name = fake.last_name(),
+    email = emails[i],
+    created_at = random_date_time,
+    updated_at = random_date_time
+    )
+    users.append(user)
 
-    db.session.add(demo)
-    db.session.add(marnie)
-    db.session.add(bobbie)
-    db.session.commit()
+  db.session.add_all(users)
+  db.session.commit()
+  return users
 
 
 # Uses a raw SQL query to TRUNCATE or DELETE the users table. SQLAlchemy doesn't
