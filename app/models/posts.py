@@ -18,7 +18,6 @@ class Post(db.model):
   user = db.relationship("User", back_populates="posts")
   song = db.relationship("Song", back_populates="posts")
   photo = db.relationship("Photo", back_populates="posts")
-
   comments = db.relationship("Comment", back_populates="post")
 
   def to_dict(self):

@@ -3,7 +3,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from datetime import datetime
 
-
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
@@ -37,5 +36,9 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'first_name': self.first_name,
+            'last_name': self.last_name,
+            'createdAt': self.created_at,
+            'updatedAt': self.updated_at
         }
