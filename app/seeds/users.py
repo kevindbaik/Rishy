@@ -18,8 +18,8 @@ def seed_users():
     user = User(
     username = usernames[i],
     password = "password",
-    first_name = fake.first_name(),
-    last_name = fake.last_name(),
+    first_name = 'demo',
+    last_name = 'user',
     email = emails[i],
     created_at = random_date_time,
     updated_at = random_date_time
