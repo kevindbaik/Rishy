@@ -1,0 +1,51 @@
+#onepost-image {
+  width: 580px;
+  height: 500px;
+  object-fit: cover;
+}
+
+.rhap_button-clear.rhap_skip-button {
+  display: none;
+}
+
+.onepost-container {
+  position: relative;
+  margin-top: 90px;
+}
+
+.onepost-mediacontainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 20px;
+  width: 600px;
+  margin: auto;
+}
+
+.onespot-songinfo {
+  margin: 0;
+}
+
+.onepost-detailscontainer {
+  margin: auto;
+  width: 600px;
+}
+
+.onespot-previous {
+  position: absolute;
+  font-size: 30px;
+  top: 40%;
+  left: -60px;
+}
+
+.onespot-next {
+  position: absolute;
+  font-size: 30px;
+  top: 40%;
+  right: -60px;
+}
+
+.onespot-next:hover, .onespot-previous:hover {
+  cursor: pointer;
+}
