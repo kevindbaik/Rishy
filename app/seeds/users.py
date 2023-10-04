@@ -12,7 +12,7 @@ def seed_users():
 
   emails = ["demouser@appacademy.io", "studioghibli@appacademy.io", "hellofasc@appacademy.io", "lofilia@appacademy.io", "emonite@appacademy.io"]
 
-  for i in range(4):
+  for i in range(5):
     random_date_time = fake.date_time_between(start_date='-1y', end_date='now')
 
     user = User(
