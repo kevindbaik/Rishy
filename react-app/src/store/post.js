@@ -77,6 +77,22 @@ export const fetchCreatePost = FormData => async(dispatch) => {
   }
 };
 
+export const fetchUpdatePost = (FormData, postId) => async(dispatch) => {
+  const response = await fetch(`/api/posts/${postId}`, {
+    method: 'PUT',
+    body: FormData
+  });
+
+  console.log(response)
+  if(response.ok) {
+    const data = await response.json();
+    return data;
+  } else {
+    const errors = await response.json();
+    return errors;
+  }
+}
+
 const initialState = { allPosts: {}, onePost: {}};
 const postReducer = (state = initialState, action) => {
   let newState;

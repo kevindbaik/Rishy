@@ -1,5 +1,24 @@
+#allpost-container {
+  position: relative;
+}
+
 .allpost-image {
   width: 220px;
   height: 220px;
   object-fit: cover;
+}
+
+.user-managepost-buttons {
+  position: absolute;
+  display: none;
+  top: 5%;
+  left: 60%;
+}
+
+.user-managepost-buttons button {
+  margin-left: 6px;
+}
+
+#allpost-container:hover .user-managepost-buttons {
+  display: block
 }

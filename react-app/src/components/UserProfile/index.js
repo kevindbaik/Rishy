@@ -20,7 +20,7 @@ function UserProfile() {
     <div>
       <div id='userprofile-post-container'>
         {Object.values(userPosts).map((post) => (
-          <Post post={post }/>
+          <Post post={post}/>
         ))}
       </div>
     </div>

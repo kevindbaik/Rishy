@@ -3,7 +3,7 @@ from flask_login import login_required, current_user
 from ..api.auth_routes import validation_errors_to_error_messages
 from app.api.AWS_helpers import upload_file_to_s3, remove_file_from_s3, get_unique_filename
 from ..models import db, Post, Song, Photo
-from ..forms import PostForm
+from ..forms import PostForm, UpdatePostForm
 
 post_routes = Blueprint("posts", __name__)
 
@@ -77,3 +77,46 @@ def create_post():
     db.session.commit()
 
     return new_post.to_dict(), 201
+
+  return {"errors": form.errors}, 400
+
+@post_routes.route("/<int:postId>", methods=["PUT"])
+@login_required
+def update_post(postId):
+    form = UpdatePostForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    updated_post = Post.query.get(postId)
+    if not updated_post:
+        return {"errors": "Post not found"}, 404
+
+    if updated_post.user_id != current_user.id:
+        return {"errors": "Unauthorized"}, 403
+
+    if form.validate_on_submit():
+        if form.song.data:
+            song = form.data['song']
+            song.filename = get_unique_filename(song.filename)
+            song_upload = upload_file_to_s3(song, "Songs")
+            if "errors" in song_upload:
+                return {"errors": song_upload["errors"]}, 400
+            song_url = song_upload["url"]
+            updated_post.song.song_url = song_url
+
+        if form.photo.data:
+            photo = form.data['photo']
+            photo.filename = get_unique_filename(photo.filename)
+            photo_upload = upload_file_to_s3(photo, "Photos")
+            if "errors" in photo_upload:
+                return {"errors": photo_upload["errors"]}, 400
+            photo_url = photo_upload["url"]
+            updated_post.photo.photo_url = photo_url
+
+        updated_post.caption = form.data['caption']
+        updated_post.song.title = form.data['title']
+        updated_post.song.artist = form.data['artist']
+        db.session.commit()
+
+        return updated_post.to_dict(), 200
+
+    return {"errors": form.errors}, 400
