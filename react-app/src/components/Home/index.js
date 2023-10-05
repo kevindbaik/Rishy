@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchAllPosts } from "../../store/post";
 import Post from "../Post";
 import "./Home.css"
+import OpenModalButton from "../OpenModalButton";
+import CreatePostForm from "../Post/PostForm/CreatePost";
+
 
 function Home() {
   const dispatch = useDispatch()
@@ -16,7 +19,7 @@ function Home() {
 
   return (
     <div>
-      <button>Create Post</button>
+      <OpenModalButton modalComponent={<CreatePostForm />} buttonText={"Create a Post"}/>
       <div id="home-container">
         {Object.values(posts).map((post) => (
           <Post post={post}/>

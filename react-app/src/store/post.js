@@ -1,5 +1,6 @@
 export const LOAD_ALL_POSTS = 'posts/LOAD_ALL_POSTS';
 export const LOAD_ONE_POST = 'posts/LOAD_ONE_POST';
+export const CREATE_POST = 'posts/CREATE_POST';
 
 export const loadAllPosts = (posts) => {
   return {
@@ -15,19 +16,16 @@ export const loadOnePost = (post) => {
   }
 };
 
-export const checkPostExists = postId => async(dispatch) => {
-  const response = await fetch(`/api/posts/check/${postId}`);
-  const data = await response.json();
-
-  if(response.ok) {
-    return data.exists
-  } else {
-    throw data
-  }
-}
+// export const createPost = post => {
+//   return {
+//     type: CREATE_POST,
+//     post
+//   }
+// };
 
 export const fetchAllPosts = () => async(dispatch) => {
   const response = await fetch('/api/posts');
+
   if(response.ok) {
     const data = await response.json();
     dispatch(loadAllPosts(data));
@@ -40,6 +38,7 @@ export const fetchAllPosts = () => async(dispatch) => {
 
 export const fetchOnePost = postId => async(dispatch) => {
   const response = await fetch(`/api/posts/${postId}`);
+
   if(response.ok) {
     const data = await response.json();
     console.log(data)
@@ -48,6 +47,33 @@ export const fetchOnePost = postId => async(dispatch) => {
   } else {
     const errors = await response.json();
     return errors
+  }
+};
+
+export const checkPostExists = postId => async(dispatch) => {
+  const response = await fetch(`/api/posts/check/${postId}`);
+  const data = await response.json();
+
+  if(response.ok) {
+    return data.exists
+  } else {
+    throw data
+  }
+};
+
+export const fetchCreatePost = FormData => async(dispatch) => {
+  const response = await fetch('/api/posts/new', {
+    method : ["POST"],
+    body: FormData
+  });
+
+  if(response.ok) {
+    const data = await response.json();
+    // dispatch(createPost(data));
+    return data;
+  } else {
+    const errors = await response.json();
+    return errors;
   }
 };
 
