@@ -83,6 +83,9 @@ def create_post():
 @post_routes.route("/<int:postId>", methods=["PUT"])
 @login_required
 def update_post(postId):
+    """
+    UPDATE A POST
+    """
     form = UpdatePostForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
@@ -120,3 +123,26 @@ def update_post(postId):
         return updated_post.to_dict(), 200
 
     return {"errors": form.errors}, 400
+
+@post_routes.route("/<int:postId>", methods=["DELETE"])
+@login_required
+def delete_post(postId):
+    """
+    DELETE A POST
+    """
+    post = Post.query.get(postId)
+    if not post:
+      return {"errors": "Post not found"}, 404
+    if post.user_id != current_user.id:
+      return {"errors": "Unauthorized"}, 403
+
+    song_url = post.song.song_url
+    remove_file_from_s3(song_url)
+
+    photo_url = post.photo.photo_url
+    remove_file_from_s3(photo_url)
+
+    db.session.delete(post)
+    db.session.commit()
+
+    return {'message' : 'Post successfully deleted'}

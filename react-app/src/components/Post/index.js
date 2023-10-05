@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import './Post.css';
 import OpenModalButton from "../OpenModalButton";
 import UpdatePostForm from "./PostForm/UpdatePost";
+import PostDelete from "./PostDelete";
 
 
 function Post({ post }) {
@@ -22,7 +23,7 @@ function Post({ post }) {
       {user.id === post.userId &&
       <div className="user-managepost-buttons">
         <OpenModalButton modalComponent={<UpdatePostForm post={post}/>} buttonText={"+"}/>
-        <button>-</button>
+        <OpenModalButton modalComponent={<PostDelete post={post}/>} buttonText={"-"}/>
       </div>
       }
     </div>

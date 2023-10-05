@@ -1,6 +1,7 @@
 export const LOAD_ALL_POSTS = 'posts/LOAD_ALL_POSTS';
 export const LOAD_ONE_POST = 'posts/LOAD_ONE_POST';
-export const CREATE_POST = 'posts/CREATE_POST';
+// export const CREATE_POST = 'posts/CREATE_POST';
+export const DELETE_POST = 'posts/DELETE_POST';
 
 export const loadAllPosts = (posts) => {
   return {
@@ -16,6 +17,12 @@ export const loadOnePost = (post) => {
   }
 };
 
+export const deletePost = postId => {
+  return {
+    type: DELETE_POST,
+    postId
+  }
+}
 // export const createPost = post => {
 //   return {
 //     type: CREATE_POST,
@@ -83,10 +90,23 @@ export const fetchUpdatePost = (FormData, postId) => async(dispatch) => {
     body: FormData
   });
 
-  console.log(response)
   if(response.ok) {
     const data = await response.json();
     return data;
+  } else {
+    const errors = await response.json();
+    return errors;
+  }
+};
+
+export const fetchDeletePost = (postId) => async(dispatch) => {
+  const response = await fetch(`/api/posts/${postId}`, {
+    method: 'DELETE'
+  });
+
+  if(response.ok) {
+    const data = await response.json();
+    dispatch(deletePost(postId));
   } else {
     const errors = await response.json();
     return errors;
@@ -102,6 +122,10 @@ const postReducer = (state = initialState, action) => {
       return newState
     case LOAD_ONE_POST:
       newState = { ...state, onePost : { ...action.post }}
+      return newState
+    case DELETE_POST:
+      newState = { ...state, ...state.allPosts }
+      delete newState[action.postId]
       return newState
     default:
       return state

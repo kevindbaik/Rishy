@@ -15,9 +15,37 @@ def seed_photos():
       created_at=current_date
     ),
     Photo(
-      photo_url="https://rishy-images.s3.us-west-1.amazonaws.com/Photos/(3)+mitsuha.jpg",
+      photo_url="https://rishy-images.s3.us-west-1.amazonaws.com/Photos/sunset.jpg",
       created_at=current_date
     ),
+    Photo(
+      photo_url="https://rishy-images.s3.us-west-1.amazonaws.com/Photos/tokyonight.jpg",
+      created_at=current_date
+    ),
+    Photo(
+      photo_url="https://rishy-images.s3.us-west-1.amazonaws.com/Photos/nyview.jpg",
+      created_at=current_date
+    ),
+    Photo(
+      photo_url="https://rishy-images.s3.us-west-1.amazonaws.com/Photos/la.jpg",
+      created_at=current_date
+    ),
+    Photo(
+      photo_url="https://rishy-images.s3.us-west-1.amazonaws.com/Photos/doge.jpg",
+      created_at=current_date
+    ),
+    Photo(
+      photo_url="https://rishy-images.s3.us-west-1.amazonaws.com/Photos/ponyo.jpg",
+      created_at=current_date
+    ),
+    Photo(
+      photo_url="https://rishy-images.s3.us-west-1.amazonaws.com/Photos/rainy.jpg",
+      created_at=current_date
+    ),
+    Photo(
+      photo_url="https://rishy-images.s3.us-west-1.amazonaws.com/Photos/beach.jpg",
+      created_at=current_date
+    )
   ]
 
   db.session.add_all(photos)
