@@ -5,3 +5,29 @@
 .hidden {
   display: none;
 }
+
+#nav-container {
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+}
+
+ul {
+  list-style-type: none;
+}
+
+#nav-search {
+  margin-left: 200px;
+}
+
+#nav-logo {
+  display: flex;
+  margin-top: 20px;
+}
+
+#nav-topright {
+  display: flex;
+  align-items: center;
+  column-gap: 30px;
+  margin-right: 200px;
+}

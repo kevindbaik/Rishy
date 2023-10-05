@@ -5,6 +5,7 @@ import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import { fetchOnePost, checkPostExists } from "../../../store/post";
 import './PostDetails.css';
+import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 
 function PostDetails() {
   const dispatch = useDispatch();
@@ -54,6 +55,7 @@ function PostDetails() {
         showSkipControls={false}
         onEnded={handleNextSong}
         />
+        {/* <NavLink className='onepost-returnhome' exact to='/posts'>← return home</NavLink> */}
         {hasPrevious && <i class="fa-solid fa-chevron-left onespot-previous" onClick={() => handleNavigate(-1)}></i>}
         {hasNext && <i class="fa-solid fa-chevron-right onespot-next" onClick={() => handleNavigate(1)}></i>}
       </div>

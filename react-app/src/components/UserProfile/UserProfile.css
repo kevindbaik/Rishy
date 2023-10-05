@@ -1,0 +1,11 @@
+#userprofile-post-container {
+  border: 1px solid red;
+  display: flex;
+  align-items: center;
+  column-gap: 20px;
+}
+
+#userprofile-post-container img {
+  width: 400px;
+  height: 340px;
+}

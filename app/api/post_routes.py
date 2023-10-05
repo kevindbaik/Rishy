@@ -17,10 +17,6 @@ def get_posts():
 
   for post in all_posts:
     data = post.to_dict()
-    data['songUrl'] = post.song.song_url
-    data['songTitle'] = post.song.title
-    data['songArtist'] = post.song.artist
-    data['photoUrl'] = post.photo.photo_url
     all_posts_dict[str(post.id)] = data
 
   return all_posts_dict
@@ -34,21 +30,7 @@ def get_post_details(postId):
   if not one_post:
     return {'errors' : {'Post' : 'Post not found'}}, 404
 
-  data = {
-    'id': one_post.id,
-    'userId': one_post.user_id,
-    'songId': one_post.song_id,
-    'songUrl' : one_post.song.song_url,
-    'songTitle' : one_post.song.title,
-    'songArtist' : one_post.song.artist,
-    'photoId': one_post.photo_id,
-    'photoUrl': one_post.photo.photo_url,
-    'caption': one_post.caption,
-    'creator': one_post.user.to_dict(),
-    'created_at': one_post.created_at,
-    'updated_at': one_post.updated_at
-  }
-  return data
+  return one_post.to_dict()
 
 @post_routes.route("/check/<int:postId>", methods=["GET"])
 def check_post(postId):

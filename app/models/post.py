@@ -28,5 +28,9 @@ class Post(db.Model):
             'photoId': self.photo_id,
             'caption': self.caption,
             'createdAt': self.created_at,
-            'updatedAt': self.updated_at
+            'updatedAt': self.updated_at,
+            'songUrl': self.song.song_url if self.song else None,
+            'songTitle': self.song.title if self.song else None,
+            'songArtist': self.song.artist if self.song else None,
+            'photoUrl': self.photo.photo_url if self.photo else None
         }

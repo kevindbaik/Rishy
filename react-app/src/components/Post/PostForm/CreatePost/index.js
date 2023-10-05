@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom"
 import { fetchCreatePost, fetchOnePost } from "../../../../store/post";
 import { useModal } from "../../../../context/Modal";
+import '../PostForm.css';
 
 function CreatePostForm() {
   const dispatch = useDispatch();
@@ -31,39 +32,42 @@ function CreatePostForm() {
     };
   }
   return (
-    <form onSubmit={handleFormSubmit} encType="multipart/form-data">
-      <input
-        type='text'
-        value={caption}
-        onChange={e => setCaption(e.target.value)}
-        placeholder="caption"
-      />
-      <input
-        type='text'
-        value={title}
-        onChange={e => setTitle(e.target.value)}
-        placeholder="title"
-      />
-      <input
-        type='text'
-        value={artist}
-        onChange={e => setArtist(e.target.value)}
-        placeholder="artist"
-      />
-      <input
-        type='file'
-        onChange={e => setSong(e.target.files[0])}
-        accept=".mp3"
-        required
-      />
-      <input
-        type='file'
-        onChange={e => setPhoto(e.target.files[0])}
-        accept=".png, .jpg, .jpeg, .gif"
-        required
-      />
-      <button type='submit'>Create Post</button>
-    </form>
+    <div className="postform-container">
+      <h3>Create a Post</h3>
+      <form onSubmit={handleFormSubmit} encType="multipart/form-data">
+        <input
+          type='text'
+          value={caption}
+          onChange={e => setCaption(e.target.value)}
+          placeholder="caption"
+        />
+        <input
+          type='text'
+          value={title}
+          onChange={e => setTitle(e.target.value)}
+          placeholder="title"
+        />
+        <input
+          type='text'
+          value={artist}
+          onChange={e => setArtist(e.target.value)}
+          placeholder="artist"
+        />
+        <input
+          type='file'
+          onChange={e => setSong(e.target.files[0])}
+          accept=".mp3"
+          required
+        />
+        <input
+          type='file'
+          onChange={e => setPhoto(e.target.files[0])}
+          accept=".png, .jpg, .jpeg, .gif"
+          required
+        />
+        <button type='submit'>Create Post</button>
+      </form>
+    </div>
   )
 }
 

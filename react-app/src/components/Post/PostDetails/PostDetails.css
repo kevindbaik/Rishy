@@ -49,3 +49,9 @@
 .onespot-next:hover, .onespot-previous:hover {
   cursor: pointer;
 }
+
+.onepost-returnhome {
+  position: absolute;
+  left: -150px;
+  color: black;
+}

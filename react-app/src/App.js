@@ -7,6 +7,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import Home from './components/Home'
 import PostDetails from "./components/Post/PostDetails";
+import UserProfile from "./components/UserProfile";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,6 +26,9 @@ function App() {
           </Route>
           <Route exact path='/posts'>
             <Home />
+          </Route>
+          <Route exact path='/users/:userId/posts'>
+            <UserProfile />
           </Route>
           <Route path="/login" >
             <LoginFormPage />
