@@ -17,12 +17,17 @@ ul {
 }
 
 #nav-search {
-  margin-left: 200px;
+  margin-left: 180px;
 }
 
 #nav-logo {
-  display: flex;
-  margin-top: 20px;
+  /* display: flex;
+  margin-top: 20px; */
+}
+
+.logo-rishy {
+  width: 100px;
+  height: 60px;
 }
 
 #nav-topright {
