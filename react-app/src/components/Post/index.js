@@ -7,7 +7,7 @@ import UpdatePostForm from "./PostForm/UpdatePost";
 import PostDelete from "./PostDelete";
 
 
-function Post({ post }) {
+function Post({ post, showManageButton = false }) {
   const history = useHistory();
   const user = useSelector(state => state.session.user)
 
@@ -16,11 +16,10 @@ function Post({ post }) {
     history.push(`/posts/${post.id}`)
   };
 
-  console.log(post)
   return (
     <div id='allpost-container'>
       <img className='allpost-image' src={post?.photoUrl} onClick={handleViewPostDetail}></img>
-      {user.id === post.userId &&
+      {showManageButton && user.id === post.userId &&
       <div className="user-managepost-buttons">
         <OpenModalButton modalComponent={<UpdatePostForm post={post}/>} buttonText={"+"}/>
         <OpenModalButton modalComponent={<PostDelete post={post}/>} buttonText={"-"}/>

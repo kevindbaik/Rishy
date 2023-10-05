@@ -1,7 +1,7 @@
 import React from "react"
 import { useDispatch } from 'react-redux';
 import { useModal } from "../../../context/Modal";
-import { fetchAllPosts, fetchDeletePost } from "../../../store/post";
+import { fetchDeleteUserPost } from "../../../store/user";
 
 function PostDelete({ post }) {
   const dispatch = useDispatch();
@@ -9,8 +9,8 @@ function PostDelete({ post }) {
 
   const handleDeletion = async(e) => {
     e.preventDefault();
-    await dispatch(fetchDeletePost(post.id));
-    await dispatch(fetchAllPosts())
+    await dispatch(fetchDeleteUserPost(post.id));
+    closeModal();
   };
 
   const handleCancel = e => {

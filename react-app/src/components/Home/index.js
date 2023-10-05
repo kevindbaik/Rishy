@@ -20,7 +20,7 @@ function Home() {
     <div>
       <div id="home-container">
         {Object.values(posts).map((post) => (
-          <Post post={post}/>
+          <Post post={post} showManageButton={false}/>
         ))}
       </div>
     </div>
