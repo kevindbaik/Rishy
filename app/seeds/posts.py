@@ -74,7 +74,7 @@ def seed_posts():
     user_id=3,
     song_id=9,
     photo_id=9,
-    caption="This song makes me feel like my life is a slideshow from the 80s, filled with warm moments, that someone discovered in an attic.",
+    caption="This song makes me feel like my life is a slideshow from the 80s that someone discovered in an attic.",
     created_at=current_date,
     updated_at=current_date
     ),
