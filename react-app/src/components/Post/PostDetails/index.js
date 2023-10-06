@@ -7,7 +7,8 @@ import { fetchOnePost, checkPostExists } from "../../../store/post";
 import './PostDetails.css';
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import CommentSection from "../../CommentSection";
-import { fetchLoadComments } from "../../../store/comment";
+import { fetchCreateComment, fetchLoadComments } from "../../../store/comment";
+import AddComment from "../../CommentSection/AddComment";
 
 function PostDetails() {
   const dispatch = useDispatch();
@@ -32,19 +33,23 @@ function PostDetails() {
     dispatch(checkPostExists(Number(postId) + 1))
     .then(() => setHasNext(true))
     .catch(() => setHasNext(false));
-  }, [dispatch, postId])
+  }, [dispatch, postId]);
 
   const handleNavigate = (num) => {
     const newId = Number(postId) + num;
     history.push(`/posts/${newId}`);
-  }
+  };
 
   const handleNextSong = () => {
     const nextId = Number(postId) + 1;
     dispatch(checkPostExists(nextId))
     .then(() => history.push(`/posts/${nextId}`))
     .catch(() => history.push(`/posts`));
-  }
+  };
+
+  const handleAddComment = (comment) => {
+    dispatch(fetchCreateComment(comment, postId))
+  };
 
   if(!post || !comments) return null
 
@@ -67,6 +72,9 @@ function PostDetails() {
       <div className="onepost-detailscontainer">
         <p>{post.creator?.username}</p>
         <p>{post.caption}</p>
+      </div>
+      <div className="addcomment-container">
+      <AddComment onSubmit={handleAddComment}/>
       </div>
       <CommentSection comments={comments}/>
     </div>

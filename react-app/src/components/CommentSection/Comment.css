@@ -4,9 +4,20 @@
   width: 550px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 50px;
 }
 
 .onecomment-container {
   border: 1px solid rgb(217, 217, 217);
+}
+
+.addcomment-container {
+  margin-top: 70px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 550px;
+}
+
+textarea {
+  resize: none;
+  width: 400px;
 }

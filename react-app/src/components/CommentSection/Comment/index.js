@@ -5,7 +5,8 @@ function Comment({ comment }) {
  return(
   <div className="onecomment-container">
     <p>{comment.content}</p>
-    <span>@{comment.User.username}</span>
+    <p>{comment.createdAt}</p>
+    <span>@{comment?.User?.username}</span>
 </div>
  )};
 

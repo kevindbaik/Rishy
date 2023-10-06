@@ -2,8 +2,8 @@ from flask import Blueprint, request, jsonify
 from flask_login import login_required, current_user
 from ..api.auth_routes import validation_errors_to_error_messages
 from app.api.AWS_helpers import upload_file_to_s3, remove_file_from_s3, get_unique_filename
-from ..models import db, Post, Song, Photo, Comment
-from ..forms import PostForm, UpdatePostForm
+from ..models import db, Post, Song, Photo, Comment, User
+from ..forms import PostForm, UpdatePostForm, CommentForm
 
 post_routes = Blueprint("posts", __name__)
 
@@ -154,7 +154,7 @@ def get_comments(postId):
    """
    post = Post.query.get(postId)
    if not post:
-      return {"errors": "Post not found"}, 404
+      return {"errors" : "Post not found"}, 404
 
    comments = Comment.query.filter_by(post_id=postId).all()
    comments_dict = {}
@@ -164,3 +164,32 @@ def get_comments(postId):
       comments_dict[str(comment.id)] = data
 
    return jsonify(comments_dict), 200
+
+@post_routes.route("/<int:postId>/comments", methods=["POST"])
+@login_required
+def create_comment(postId):
+  """
+  CREATE A COMMENT FOR A POST
+  """
+  user = User.query.get(current_user.id)
+  post = Post.query.get(postId)
+  if not post:
+    return {"errors" : "Post not found"}, 404
+
+  data = request.get_json()
+  data_content = data.get('comment')
+  form = CommentForm(data={'content': data_content})
+  form['csrf_token'].data = request.cookies['csrf_token']
+
+  if form.validate_on_submit():
+    new_comment = Comment(
+      post_id=postId,
+      user_id=user.id,
+      content=form.data['content']
+    )
+    db.session.add(new_comment)
+    db.session.commit()
+
+    return jsonify(new_comment.to_dict()), 201
+
+  return {"errors" : form.errors}, 400
