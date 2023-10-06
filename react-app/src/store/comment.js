@@ -34,10 +34,9 @@ export const fetchCreateComment = (comment, postId) => async(dispatch) => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({comment, postId})
   });
-  console.log(response)
+
   if(response.ok) {
     const data = await response.json();
-    dispatch(createComment(data));
     return data;
   } else {
     const errors = await response.json();
@@ -53,8 +52,6 @@ const commentReducer = (state = initialState, action) => {
       newState = { ...action.comments };
       return newState
     case CREATE_COMMENT:
-      newState = { ...state, ...action.comment };
-      return newState
     default:
       return state
   }

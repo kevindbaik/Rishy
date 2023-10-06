@@ -14,13 +14,13 @@ function PostDetails() {
   const dispatch = useDispatch();
   const history = useHistory();
   const { postId } = useParams();
+  const user = useSelector(state => state.session.user);
   const post = useSelector(state => state.posts.onePost);
   const comments = useSelector(state => state.comments);
   const [hasPrevious, setHasPrevious] = useState(true);
   const [hasNext, setHasNext] = useState(true);
 
   useEffect(() => {
-    console.log('postid', postId)
     dispatch(fetchOnePost(postId));
     dispatch(fetchLoadComments(postId))
   }, [dispatch, postId]);
@@ -47,11 +47,24 @@ function PostDetails() {
     .catch(() => history.push(`/posts`));
   };
 
-  const handleAddComment = (comment) => {
-    dispatch(fetchCreateComment(comment, postId))
+  const hasCommented = () => {
+    let hasCommented = false;
+    const userCommented = Object.values(comments).find(comment => comment.userId === user.id);
+    if(userCommented) {
+      hasCommented = true;
+    };
+    return hasCommented
+  }
+
+  const handleAddComment = async (comment) => {
+    const newComment = await dispatch(fetchCreateComment(comment, postId))
+    if(newComment) {
+      dispatch(fetchLoadComments(postId))
+    }
   };
 
-  if(!post || !comments) return null
+  if(!post || !comments || !user) return null
+  console.log('has commented', hasCommented)
 
   return(
     <div className="onepost-container">
@@ -74,9 +87,9 @@ function PostDetails() {
         <p>{post.caption}</p>
       </div>
       <div className="addcomment-container">
-      <AddComment onSubmit={handleAddComment}/>
+      {!hasCommented() && post.userId !== user.id && <AddComment onSubmit={handleAddComment}/>}
       </div>
-      <CommentSection comments={comments}/>
+      <CommentSection comments={comments} user={user}/>
     </div>
   )
 }
