@@ -3,6 +3,7 @@ from .users import seed_users, undo_users
 from .posts import seed_posts, undo_posts
 from .photos import seed_photos, undo_photos
 from .songs import seed_songs, undo_songs
+from .comments import seed_comments, undo_comments
 
 from app.models.db import db, environment, SCHEMA
 
@@ -19,6 +20,7 @@ def seed():
         # command, which will  truncate all tables prefixed with
         # the schema name (see comment in users.py undo_users function).
         # Make sure to add all your other model's undo functions below
+        undo_comments()
         undo_posts()
         undo_songs()
         undo_photos()
@@ -27,6 +29,7 @@ def seed():
     seed_photos()
     seed_songs()
     seed_posts()
+    seed_comments()
 
     # Add other seed functions here
 
@@ -38,4 +41,5 @@ def undo():
     undo_photos()
     undo_songs()
     undo_posts()
+    undo_comments()
     # Add other undo functions here

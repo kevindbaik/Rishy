@@ -1,0 +1,12 @@
+.allcomments-container {
+  display: flex;
+  flex-direction: column;
+  width: 550px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+}
+
+.onecomment-container {
+  border: 1px solid rgb(217, 217, 217);
+}

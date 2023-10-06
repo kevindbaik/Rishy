@@ -2,7 +2,7 @@ from flask import Blueprint, request, jsonify
 from flask_login import login_required, current_user
 from ..api.auth_routes import validation_errors_to_error_messages
 from app.api.AWS_helpers import upload_file_to_s3, remove_file_from_s3, get_unique_filename
-from ..models import db, Post, Song, Photo
+from ..models import db, Post, Song, Photo, Comment
 from ..forms import PostForm, UpdatePostForm
 
 post_routes = Blueprint("posts", __name__)
@@ -19,7 +19,7 @@ def get_posts():
     data = post.to_dict()
     all_posts_dict[str(post.id)] = data
 
-  return all_posts_dict
+  return jsonify(all_posts_dict), 200
 
 @post_routes.route("/<int:postId>", methods=["GET"])
 def get_post_details(postId):
@@ -30,7 +30,7 @@ def get_post_details(postId):
   if not one_post:
     return {'errors' : {'Post' : 'Post not found'}}, 404
 
-  return one_post.to_dict()
+  return jsonify(one_post.to_dict()), 200
 
 @post_routes.route("/check/<int:postId>", methods=["GET"])
 def check_post(postId):
@@ -76,7 +76,7 @@ def create_post():
     db.session.add(new_post)
     db.session.commit()
 
-    return new_post.to_dict(), 201
+    return jsonify(new_post.to_dict()), 201
 
   return {"errors": form.errors}, 400
 
@@ -145,4 +145,22 @@ def delete_post(postId):
     db.session.delete(post)
     db.session.commit()
 
-    return {'message' : 'Post successfully deleted'}
+    return {'message' : 'Post successfully deleted'}, 200
+
+@post_routes.route("/<int:postId>/comments", methods=["GET"])
+def get_comments(postId):
+   """
+   GET ALL COMMENTS FOR A POST
+   """
+   post = Post.query.get(postId)
+   if not post:
+      return {"errors": "Post not found"}, 404
+
+   comments = Comment.query.filter_by(post_id=postId).all()
+   comments_dict = {}
+   for comment in comments:
+      data = comment.to_dict()
+      data['User'] = comment.user.to_dict()
+      comments_dict[str(comment.id)] = data
+
+   return jsonify(comments_dict), 200

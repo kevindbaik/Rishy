@@ -6,17 +6,22 @@ import 'react-h5-audio-player/lib/styles.css';
 import { fetchOnePost, checkPostExists } from "../../../store/post";
 import './PostDetails.css';
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
+import CommentSection from "../../CommentSection";
+import { fetchLoadComments } from "../../../store/comment";
 
 function PostDetails() {
   const dispatch = useDispatch();
   const history = useHistory();
   const { postId } = useParams();
   const post = useSelector(state => state.posts.onePost);
+  const comments = useSelector(state => state.comments);
   const [hasPrevious, setHasPrevious] = useState(true);
   const [hasNext, setHasNext] = useState(true);
 
   useEffect(() => {
-    dispatch(fetchOnePost(postId))
+    console.log('postid', postId)
+    dispatch(fetchOnePost(postId));
+    dispatch(fetchLoadComments(postId))
   }, [dispatch, postId]);
 
   useEffect(() => {
@@ -41,7 +46,7 @@ function PostDetails() {
     .catch(() => history.push(`/posts`));
   }
 
-  if(!post) return null
+  if(!post || !comments) return null
 
   return(
     <div className="onepost-container">
@@ -63,6 +68,7 @@ function PostDetails() {
         <p>{post.creator?.username}</p>
         <p>{post.caption}</p>
       </div>
+      <CommentSection comments={comments}/>
     </div>
   )
 }
