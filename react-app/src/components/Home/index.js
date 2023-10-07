@@ -4,11 +4,9 @@ import { fetchAllPosts } from "../../store/post";
 import Post from "../Post";
 import "./Home.css"
 
-
-
 function Home() {
-  const dispatch = useDispatch()
-  const posts = useSelector(state => state.posts.allPosts)
+  const dispatch = useDispatch();
+  const posts = useSelector(state => state.posts.allPosts);
 
   useEffect(() => {
     dispatch(fetchAllPosts())

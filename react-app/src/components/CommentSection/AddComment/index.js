@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-function AddComment({ onSubmit }) {
-  const [ comment, setComment ] = useState("");
+function AddComment({ onSubmit, initialValue = "" }) {
+  const [ comment, setComment ] = useState(initialValue);
 
   const handleCommentChange = e => {
     setComment(e.target.value);

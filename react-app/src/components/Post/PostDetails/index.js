@@ -5,7 +5,6 @@ import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import { fetchOnePost, checkPostExists } from "../../../store/post";
 import './PostDetails.css';
-import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import CommentSection from "../../CommentSection";
 import { fetchCreateComment, fetchLoadComments } from "../../../store/comment";
 import AddComment from "../../CommentSection/AddComment";
@@ -54,7 +53,7 @@ function PostDetails() {
       hasCommented = true;
     };
     return hasCommented
-  }
+  };
 
   const handleAddComment = async (comment) => {
     const newComment = await dispatch(fetchCreateComment(comment, postId))
@@ -64,7 +63,6 @@ function PostDetails() {
   };
 
   if(!post || !comments || !user) return null
-  console.log('has commented', hasCommented)
 
   return(
     <div className="onepost-container">
@@ -78,7 +76,6 @@ function PostDetails() {
         showSkipControls={false}
         onEnded={handleNextSong}
         />
-        {/* <NavLink className='onepost-returnhome' exact to='/posts'>← return home</NavLink> */}
         {hasPrevious && <i class="fa-solid fa-chevron-left onespot-previous" onClick={() => handleNavigate(-1)}></i>}
         {hasNext && <i class="fa-solid fa-chevron-right onespot-next" onClick={() => handleNavigate(1)}></i>}
       </div>
@@ -89,7 +86,7 @@ function PostDetails() {
       <div className="addcomment-container">
       {!hasCommented() && post.userId !== user.id && <AddComment onSubmit={handleAddComment}/>}
       </div>
-      <CommentSection comments={comments} user={user}/>
+      <CommentSection comments={comments} user={user} post={post}/>
     </div>
   )
 }
