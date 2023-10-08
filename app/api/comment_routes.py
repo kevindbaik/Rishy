@@ -26,8 +26,12 @@ def update_comment(commentId):
   if form.validate_on_submit():
     comment.content = form.data['content']
 
+    new_comment = {}
+    copy = comment.to_dict()
+    copy['User'] = comment.user.to_dict()
+    new_comment[str(comment.id)] = copy
     db.session.commit()
-    return jsonify(comment.to_dict()), 200
+    return jsonify(new_comment), 200
 
   return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 

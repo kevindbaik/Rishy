@@ -2,9 +2,11 @@ import React, { useEffect, useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import '../Comment.css'
 import AddComment from "../AddComment";
-import { fetchLoadComments, fetchUpdateComment } from "../../../store/comment";
+import { fetchUpdateComment } from "../../../store/comment";
 import OpenModalDiv from "../../../OpenModalDiv";
 import CommentDelete from "../CommentDelete";
+import { fetchOnePost } from "../../../store/post";
+
 
 function Comment({ comment, user, post }) {
   const dispatch = useDispatch();
@@ -12,7 +14,6 @@ function Comment({ comment, user, post }) {
   const [ editMode, setEditMode ] = useState(false);
   const dropdownRef = useRef(null);
   const commentId = comment.id;
-  const postId = post.id;
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -29,7 +30,8 @@ function Comment({ comment, user, post }) {
   const handleEditComment = async (comment) => {
     const updatedComment = await dispatch(fetchUpdateComment(comment, commentId));
     if(updatedComment) {
-      dispatch(fetchLoadComments(postId));
+      toggleEditMode();
+      toggleDropdown()
     }
   };
 
@@ -38,7 +40,7 @@ function Comment({ comment, user, post }) {
   };
 
   const toggleEditMode = () => {
-    setEditMode(true);
+    setEditMode(prevState => !prevState);
   };
 
   return(

@@ -20,7 +20,7 @@ function CommentDelete({ comment }) {
 
   return (
     <div>
-      <h4>Confirm Comment Deletion</h4>
+      <h4>Confirm Deletion</h4>
       <button onClick={handleDeletion}>Confirm</button>
       <button onClick={handleCancel}>Cancel</button>
     </div>

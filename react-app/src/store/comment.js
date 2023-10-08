@@ -70,6 +70,7 @@ export const fetchUpdateComment = (comment, commentId) => async(dispatch) => {
 
   if(response.ok) {
     const data = await response.json();
+    console.log('DATA', data)
     dispatch(updateComment(data))
     return data;
   } else {
@@ -101,10 +102,10 @@ const commentReducer = (state = initialState, action) => {
     case CREATE_COMMENT:
     case UPDATE_COMMENT:
       console.log('sss', state)
-      newState = { ...state };
+      console.log('action', action)
+      newState = { ...state, ...action.comment };
       console.log('s22', newState)
-      newState[action.comment.id] = action.comment;
-      console.log('ns', newState)
+      // newState[action.comment.id] = action.comment;
       return newState
     case DELETE_COMMENT:
       newState = { ...state }
