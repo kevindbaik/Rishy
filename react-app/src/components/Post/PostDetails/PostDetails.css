@@ -1,25 +1,31 @@
 .rhap_container {
   background: rgba(255, 255, 255, 0.88);
-  border: 1px solid #2b2b2b54;
+  border: 1px solid #2b2b2b9c;
   border-radius: 4px;
-  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
   padding: 20px;
 }
 
 .rhap_main-controls-button svg {
   color: #212121be;
 }
-.rhap_progress-filled,
-.rhap_progress-indicator {
+.rhap_progress-filled {
   background-color: #2b2b2bbe;
+}
+
+.rhap_progress-indicator {
+  background-color: rgb(76, 76, 76);
 }
 
 .rhap_button-clear.rhap_volume-button {
   color: #2b2b2bbe;
 }
 
-.rhap_volume-bar, .rhap_volume-indicator {
-  background-color: #2b2b2bbe;
+.rhap_volume-bar {
+  background-color: #abababbe;
+}
+
+.rhap_volume-indicator {
+  background-color: rgb(76, 76, 76);
 }
 
 .rhap_repeat-button {
@@ -67,6 +73,7 @@
 .onespot-songinfo {
   margin: 0;
   font-weight: 500;
+  font-size: 15px;
 }
 
 #onepost-detailscontainer {
@@ -85,6 +92,7 @@
   display: flex;
   flex-direction: column;
   row-gap: 10px;
+  margin-top: 32px;
 }
 
 #onepost-creatorinfo p {
@@ -97,6 +105,16 @@
 
 #onepost-caption {
   font-size: 14px;
+}
+
+#creator-follow-container {
+  display: flex;
+  column-gap: 12px;
+}
+
+#onepost-caption-container {
+  width: 400px;
+  height: 60px;
 }
 
 .onespot-previous {
@@ -130,7 +148,7 @@
   height: 44px;
 }
 
-#onepost-poststats {
+#onepost-poststats-container {
   position: absolute;
   right: 0px;
   display: flex;
@@ -141,4 +159,32 @@
 .poststats-icons{
   display: flex;
   column-gap: 4px;
+}
+
+.poststats-commentcount {
+  font-weight: 500;
+}
+
+#onepost-postdate-container {
+  position: absolute;
+  right: 0px;
+  top: 50px;
+  font-size: 11px;
+}
+
+.onepost-postdate {
+  margin: 0px;
+  color: rgb(97, 97, 97)
+}
+
+#follow-button {
+  font-size: 11px;
+  background-color: #333333;
+  color: white;
+  border: 1px solid #333333;
+}
+
+#follow-button:hover {
+  cursor: pointer;
+  background-color: #464646;
 }

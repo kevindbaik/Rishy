@@ -62,6 +62,11 @@ function PostDetails() {
     }
   };
 
+  const handleFollow = (e) => {
+    e.preventDefault();
+    alert('Follow feature coming soon')
+  }
+
   if(!post || !comments) return null
 
   return(
@@ -83,18 +88,26 @@ function PostDetails() {
       <div id="onepost-detailscontainer">
         <img className="defaultuser-image" src="https://i.ibb.co/nRLSXSX/Default-pfp-svg.png" alt=""></img>
         <div id='onepost-creatorinfo'>
+          <div id='creator-follow-container'>
           <p id='onepost-creator'>{post.User?.username}</p>
+          <button id='follow-button' onClick={handleFollow}>follow</button>
+          </div>
+          <div id='onepost-caption-container'>
           <p id='onepost-caption'>{post.caption}</p>
-          <div id='onepost-poststats'>
-            <i class="fa-sharp fa-regular fa-eye poststats-icons">
+          </div>
+          <div id='onepost-poststats-container'>
+            <i className="fa-sharp fa-regular fa-eye poststats-icons">
               <p>{Math.floor(Math.random() * 500) + 1000}</p>
             </i>
-            <i class="fa-regular fa-heart poststats-icons">
+            <i className="fa-regular fa-heart poststats-icons">
               <p>{Math.floor(Math.random() * 500) + 100}</p>
             </i>
-            <i class="fa-sharp fa-regular fa-comment poststats-icons">
-              <p>{Object.values(comments).length}</p>
+            <i className={hasCommented() ? "fa-solid fa-comment poststats-icons" : "fa-sharp fa-regular fa-comment poststats-icons"}>
+              <p className="poststats-commentcount">{Object.values(comments).length}</p>
             </i>
+            </div>
+          <div id='onepost-postdate-container'>
+            <p className="onepost-postdate">Uploaded on {post.createdAt}</p>
           </div>
         </div>
       </div>

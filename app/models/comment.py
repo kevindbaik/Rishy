@@ -23,6 +23,6 @@ class Comment(db.Model):
       'postId': self.post_id,
       'userId': self.user_id,
       'content': self.content,
-      'createdAt': self.created_at,
-      'updatedAt': self.updated_at
+      'createdAt': self.created_at.strftime('%B %d, %Y'),
+      'updatedAt': self.updated_at.strftime('%B %d, %Y'),
     }

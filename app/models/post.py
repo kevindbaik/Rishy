@@ -27,11 +27,11 @@ class Post(db.Model):
             'songId': self.song_id,
             'photoId': self.photo_id,
             'caption': self.caption,
-            'createdAt': self.created_at,
-            'updatedAt': self.updated_at,
-            'songUrl': self.song.song_url if self.song else None,
-            'songTitle': self.song.title if self.song else None,
-            'songArtist': self.song.artist if self.song else None,
-            'photoUrl': self.photo.photo_url if self.photo else None,
-            'User' : self.user.to_dict() if self.user else None
+            'createdAt': self.created_at.strftime('%B %d, %Y'),
+            'updatedAt': self.updated_at.strftime('%B %d, %Y'),
+            'songUrl': self.song.song_url,
+            'songTitle': self.song.title,
+            'songArtist': self.song.artist,
+            'photoUrl': self.photo.photo_url,
+            'User' : self.user.to_dict()
         }
