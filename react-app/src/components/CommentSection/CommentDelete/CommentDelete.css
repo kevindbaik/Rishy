@@ -1,0 +1,6 @@
+#commentdelete-container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+  padding: 25px 36px;
+}
