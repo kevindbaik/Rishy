@@ -2,6 +2,7 @@ import React from "react"
 import { useDispatch } from 'react-redux';
 import { useModal } from "../../../context/Modal";
 import { fetchDeleteComment } from "../../../store/comment";
+import './CommentDelete.css'
 
 function CommentDelete({ comment }) {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ function CommentDelete({ comment }) {
   };
 
   return (
-    <div>
+    <div id='commentdelete-container'>
       <h4>Confirm Deletion</h4>
       <button onClick={handleDeletion}>Confirm</button>
       <button onClick={handleCancel}>Cancel</button>
