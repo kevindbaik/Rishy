@@ -3,6 +3,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 20px 24px;
+  width: 400px;
   border: 1px solid red
 }
 
@@ -10,4 +12,90 @@
   display: flex;
   flex-direction: column;
   margin: auto;
+}
+
+#postform-caption-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+#postform-songtitle-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+#postform-songartist-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* #postform-mp3-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid red;
+} */
+
+#postform-photo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  column-gap: 15px;
+}
+
+#photoUpload {
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+.uploadphoto-pseudobutton {
+  font-size: 12px;
+  padding: 10px 15px;
+  background-color: #f7f7f7;
+  border: 1px solid #9e9e9e;
+  cursor: pointer;
+}
+
+#showPhotoUpload {
+  width: 40px;
+  height: 40px;
+}
+
+#postform-mp3-container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#songUpload {
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+.uploadsong-pseudobutton {
+  font-size: 12px;
+  padding: 10px 15px;
+  background-color: #f7f7f7;
+  border: 1px solid #9e9e9e;
+  cursor: pointer;
+}
+
+#showSongUpload {
+  margin-top: 10px;
+  font-size: 12px;
 }

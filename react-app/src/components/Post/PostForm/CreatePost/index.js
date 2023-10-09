@@ -14,6 +14,8 @@ function CreatePostForm() {
   const [ artist, setArtist ] = useState('');
   const [ song, setSong ] = useState(null);
   const [ photo, setPhoto ] = useState(null);
+  const [ previewPhoto, setPreviewPhoto ] = useState(null);
+  const [errors, setErrors] = useState([])
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -25,47 +27,103 @@ function CreatePostForm() {
     formData.append('photo', photo);
 
     const newPost = await dispatch(fetchCreatePost(formData));
-    if(newPost) {
+    if(newPost.errors) {
+      setErrors(newPost.errors)
+      console.log('xx', newPost.errors)
+    };
+
+    if(newPost && !newPost.errors) {
+      console.log('nooooo')
       dispatch(fetchOnePost(newPost.id));
       closeModal();
       history.push(`/posts/${newPost.id}`);
     };
   };
 
+  const fileWrap = (e) => {
+    e.stopPropagation();
+
+    const tempFile = e.target.files[0];
+    setPhoto(tempFile);
+
+    const newImageURL = URL.createObjectURL(tempFile);
+    setPreviewPhoto(newImageURL);
+  };
+
   return (
     <div className="postform-container">
-      <h3>Create a Post</h3>
+      <h3>upload a post</h3>
       <form onSubmit={handleFormSubmit} encType="multipart/form-data">
-        <input
-          type='text'
-          value={caption}
-          onChange={e => setCaption(e.target.value)}
-          placeholder="caption"
-        />
-        <input
-          type='text'
-          value={title}
-          onChange={e => setTitle(e.target.value)}
-          placeholder="title"
-        />
-        <input
-          type='text'
-          value={artist}
-          onChange={e => setArtist(e.target.value)}
-          placeholder="artist"
-        />
-        <input
+        <div id='postform-photo-container'>
+          <label htmlFor="photoUpload" className="uploadphoto-pseudobutton">
+            upload a photo:
+          </label>
+          <img id='showPhotoUpload' src={previewPhoto}></img>
+          <input
+          id='photoUpload'
           type='file'
-          onChange={e => setSong(e.target.files[0])}
-          accept=".mp3"
-          required
-        />
-        <input
-          type='file'
-          onChange={e => setPhoto(e.target.files[0])}
+          onChange={fileWrap}
           accept=".png, .jpg, .jpeg, .gif"
           required
-        />
+          />
+        </div>
+        <div id='postform-caption-container'>
+          <label>
+            caption:
+          </label>
+          {errors && errors.caption &&
+          <p id='error-text'>{errors.caption}</p>
+          }
+          <input
+            type='text'
+            value={caption}
+            onChange={e => setCaption(e.target.value)}
+            placeholder="tell us about your post"
+          />
+        </div>
+        <div id='postform-songtitle-container'>
+          <label>
+            song title:
+          </label>
+          {errors && errors.title &&
+          <p id='error-text'>{errors.title}</p>
+          }
+          <input
+            type='text'
+            value={title}
+            onChange={e => setTitle(e.target.value)}
+            placeholder="title"
+          />
+        </div>
+        <div id='postform-songartist-container'>
+          <label>
+            song artist:
+          </label>
+          {errors && errors.artist &&
+          <p id='error-text'>{errors.artist}</p>
+          }
+          <input
+            type='text'
+            value={artist}
+            onChange={e => setArtist(e.target.value)}
+            placeholder="artist"
+          />
+        </div>
+        <div id='postform-mp3-container'>
+          <label htmlFor="songUpload" className="uploadsong-pseudobutton">
+            upload a song:
+          </label>
+          <input
+            id='songUpload'
+            type='file'
+            onChange={e => {
+              setSong(e.target.files[0]);
+              document.getElementById('showSongUpload').innerText = e.target.files[0]?.name || ''}}
+            accept=".mp3"
+            required
+          />
+          <span id="showSongUpload"></span>
+        </div>
         <button type='submit'>Create Post</button>
       </form>
     </div>

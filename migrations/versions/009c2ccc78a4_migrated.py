@@ -62,7 +62,7 @@ def upgrade():
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('song_id', sa.Integer(), nullable=False),
     sa.Column('photo_id', sa.Integer(), nullable=False),
-    sa.Column('caption', sa.String(length=300), nullable=False),
+    sa.Column('caption', sa.String(length=120), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=False),
     sa.Column('updated_at', sa.DateTime(), nullable=False),
     sa.ForeignKeyConstraint(['photo_id'], ['photos.id'], ),

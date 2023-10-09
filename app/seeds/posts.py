@@ -74,7 +74,7 @@ def seed_posts():
     user_id=3,
     song_id=5,
     photo_id=5,
-    caption="When you listen to a good song over and over again it’s gets old but when I listen to this over and over, it just gets better.",
+    caption="I've been in love with this song for the past few weeks. Life is treating me well right now.",
     created_at=current_date,
     updated_at=current_date
     ),
@@ -98,7 +98,7 @@ def seed_posts():
     user_id=3,
     song_id=23,
     photo_id=15,
-    caption="Taking another trip this weekend. Will update you guys when I arrive.",
+    caption="On my home from work and feeling a tad melancholy. Life is passing me by too fast it seems.",
     created_at=current_date,
     updated_at=current_date
     ),
@@ -146,7 +146,7 @@ def seed_posts():
     user_id=4,
     song_id=10,
     photo_id=10,
-    caption="Beach trip + friends + 3 nights = a good time",
+    caption="sunshine + beach trip + friends + 3 nights = a good time!!!!!",
     created_at=current_date,
     updated_at=current_date
     ),
