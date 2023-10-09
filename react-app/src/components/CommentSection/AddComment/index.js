@@ -23,7 +23,7 @@ function AddComment({ onSubmit, initialValue = "" }) {
   };
 
   return (
-    <div>
+    <div id="addcomment-bar">
       <form onSubmit={handleCommentSubmit}>
         <textarea className="addcomment-textarea"
         value={comment}

@@ -54,3 +54,18 @@ textarea {
   resize: none;
   width: 400px;
 }
+
+
+#addcomment-bar{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+#addcomment-bar form {
+  display: flex;
+  align-items: center;
+  column-gap: 14px;
+}
