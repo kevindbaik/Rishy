@@ -1,7 +1,36 @@
+.rhap_container {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid #2b2b2b54;
+  border-radius: 4px;
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
+  padding: 20px;
+}
+
+.rhap_main-controls-button svg {
+  color: #212121be;
+}
+.rhap_progress-filled,
+.rhap_progress-indicator {
+  background-color: #2b2b2bbe;
+}
+
+.rhap_button-clear.rhap_volume-button {
+  color: #2b2b2bbe;
+}
+
+.rhap_volume-bar, .rhap_volume-indicator {
+  background-color: #2b2b2bbe;
+}
+
+.rhap_repeat-button {
+  color: #2b2b2bbe;
+}
+
 #onepost-image {
-  width: 690px;
-  height: 560px;
-  object-fit: contain
+  width: 710px;
+  height: 540px;
+  object-fit: contain;
+  margin-top: 12px;
 }
 
 .rhap_button-clear.rhap_skip-button {
@@ -10,7 +39,6 @@
 
 .onepost-container {
   position: relative;
-  margin-top: 90px;
 }
 
 .onepost-mediacontainer {
@@ -21,29 +49,70 @@
   row-gap: 20px;
   width: 600px;
   margin: auto;
+  margin-bottom: 30px;
+}
+
+.onepost-mediacontainer::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  width: 100vw;
+  height: 77.4%;
+  background-color: #212124fc;
+  z-index: -1;
+  transform: translateX(-50%);
 }
 
 .onespot-songinfo {
   margin: 0;
+  font-weight: 500;
 }
 
-.onepost-detailscontainer {
+#onepost-detailscontainer {
   margin: auto;
-  width: 600px;
+  position: relative;
+  margin-top: 20px;
+  width: 680px;
+  display: flex;
+  align-items: center;
+  column-gap: 20px;
+  height: 100px;
+  border-top: 1px solid rgb(93, 93, 93);
+}
+
+#onepost-creatorinfo {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+#onepost-creatorinfo p {
+  margin: 0;
+}
+
+#onepost-creator {
+  font-weight: bold;
+}
+
+#onepost-caption {
+  font-size: 14px;
 }
 
 .onespot-previous {
   position: absolute;
   font-size: 30px;
-  top: 38%;
-  left: -96px;
+  top: 39%;
+  left: -105px;
+  color: rgba(233, 233, 233, 0.898);
 }
 
 .onespot-next {
   position: absolute;
   font-size: 30px;
-  top: 38%;
-  right: -96px;
+  top: 39%;
+  right: -105px;
+  color: rgba(233, 233, 233, 0.898);
 }
 
 .onespot-next:hover, .onespot-previous:hover {
@@ -54,4 +123,22 @@
   position: absolute;
   left: -150px;
   color: black;
+}
+
+.defaultuser-image {
+  width: 44px;
+  height: 44px;
+}
+
+#onepost-poststats {
+  position: absolute;
+  right: 0px;
+  display: flex;
+  column-gap: 16px;
+  font-size: 14px;
+}
+
+.poststats-icons{
+  display: flex;
+  column-gap: 4px;
 }

@@ -70,6 +70,7 @@ function PostDetails() {
         <img id='onepost-image' src={post?.photoUrl}></img>
         <h4 className="onespot-songinfo">{post.songArtist} - {post.songTitle}</h4>
         <AudioPlayer
+        id='onepost-audioplayer'
         src={post?.songUrl}
         autoPlay={true}
         volume={0.5}
@@ -79,9 +80,23 @@ function PostDetails() {
         {hasPrevious && <i class="fa-solid fa-chevron-left onespot-previous" onClick={() => handleNavigate(-1)}></i>}
         {hasNext && <i class="fa-solid fa-chevron-right onespot-next" onClick={() => handleNavigate(1)}></i>}
       </div>
-      <div className="onepost-detailscontainer">
-        <p>{post.creator?.username}</p>
-        <p>{post.caption}</p>
+      <div id="onepost-detailscontainer">
+        <img className="defaultuser-image" src="https://i.ibb.co/nRLSXSX/Default-pfp-svg.png" alt=""></img>
+        <div id='onepost-creatorinfo'>
+          <p id='onepost-creator'>{post.User?.username}</p>
+          <p id='onepost-caption'>{post.caption}</p>
+          <div id='onepost-poststats'>
+            <i class="fa-sharp fa-regular fa-eye poststats-icons">
+              <p>{Math.floor(Math.random() * 500) + 1000}</p>
+            </i>
+            <i class="fa-regular fa-heart poststats-icons">
+              <p>{Math.floor(Math.random() * 500) + 100}</p>
+            </i>
+            <i class="fa-sharp fa-regular fa-comment poststats-icons">
+              <p>{Object.values(comments).length}</p>
+            </i>
+          </div>
+        </div>
       </div>
       <div className="addcomment-container">
       {user && !hasCommented() && post.userId !== user.id && <AddComment onSubmit={handleAddComment}/>}

@@ -63,9 +63,10 @@ function Comment({ comment, user, post }) {
             }
         </div>
       }
+      <img className="defaultuser-image" src="https://i.ibb.co/nRLSXSX/Default-pfp-svg.png" alt=""></img>
+      <span>@{comment?.User?.username}</span>
       <p>{comment.content}</p>
       <p>{comment.createdAt}</p>
-      <span>@{comment?.User?.username}</span>
     </>
     }
   </div>

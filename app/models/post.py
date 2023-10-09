@@ -32,5 +32,6 @@ class Post(db.Model):
             'songUrl': self.song.song_url if self.song else None,
             'songTitle': self.song.title if self.song else None,
             'songArtist': self.song.artist if self.song else None,
-            'photoUrl': self.photo.photo_url if self.photo else None
+            'photoUrl': self.photo.photo_url if self.photo else None,
+            'User' : self.user.to_dict() if self.user else None
         }
