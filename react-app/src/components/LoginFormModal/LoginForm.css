@@ -1,0 +1,30 @@
+#login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 45px 40px;
+}
+
+#login-email-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+#login-password-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#login-button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  row-gap: 12px;
+}

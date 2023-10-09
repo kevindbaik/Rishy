@@ -1,57 +1,89 @@
 from app.models import db, User, environment, SCHEMA
 from sqlalchemy.sql import text
+from datetime import datetime
 from faker import Faker
 
 fake = Faker()
 
+current_date = datetime.now()
 # Adds a demo user, you can add other users here if you want
 def seed_users():
-  users = []
+  users = [
+    #1
+    User(username="DemoUser", password='password', email='demouser@aa.io', first_name='Demo', last_name='User', created_at=current_date, updated_at=current_date),
 
-  usernames = ["DemoUser", "StudioGhibliRadio", "HelloFascination", "LofiLia", "iansanluis", "kassidyr", "juusttin", "kevin444", "Somehow999", "pikapika1", "SOSOLOOPY", "Prisma323", "peaceofpie97", "nicholaspascual", "Munchely234", "Aimalai", "alyssarr", "reginaimpp", "kylemendoza66", "Kshu1996", "damienlcruz", "PuneetK2", "melonhead", "Hublots99"]
+    #2
+    User(username="SoundGarden", password='password', email='soundgarden@aa.io', first_name=fake.first_name(), last_name=fake.last_name(), created_at=current_date, updated_at=current_date),
 
+    #3
+    User(username="hellofascination", password='password', email='hellofasc@aa.io', first_name=fake.first_name(), last_name=fake.last_name(), created_at=current_date, updated_at=current_date),
 
-  emails = [
-    "demouser@appacademy.io",
-    "studioghibli@appacademy.io",
-    "hellofasc@appacademy.io",
-    "lofilia@appacademy.io",
-    "emonite@appacademy.io",
-    "iansanluis@appacademy.io",
-    "kassidyr@appacademy.io",
-    "juusttin@appacademy.io",
-    "kevin444@appacademy.io",
-    "somehow999@appacademy.io",
-    "pikapika1@appacademy.io",
-    "sosoloopy@appacademy.io",
-    "prisma323@appacademy.io",
-    "peaceofpie97@appacademy.io",
-    "nicholaspascual@appacademy.io",
-    "munchely234@appacademy.io",
-    "aimalai@appacademy.io",
-    "alyssarr@appacademy.io",
-    "reginaimpp@appacademy.io",
-    "kylemendoza66@appacademy.io",
-    "kshu1996@appacademy.io",
-    "damienlcruz@appacademy.io",
-    "puneetk2@appacademy.io",
-    "melonhead@appacademy.io",
-    "hublots99@appacademy.io"
-]
+    #4
+    User(username="holo-kitty", password='password', email='holokitty@aa.io', first_name=fake.first_name(), last_name=fake.last_name(), created_at=current_date, updated_at=current_date),
 
-  for i in range(24):
-    random_date_time = fake.date_time_between(start_date='-1y', end_date='now')
+    #5
+    User(username="5spice", password='password', email='5spice@aa.io', first_name=fake.first_name(), last_name=fake.last_name(), created_at=current_date, updated_at=current_date),
 
-    user = User(
-    username = usernames[i],
-    password = "password",
-    first_name = fake.first_name(),
-    last_name = fake.last_name(),
-    email = emails[i],
-    created_at = random_date_time,
-    updated_at = random_date_time
-    )
-    users.append(user)
+    #6
+    User(username="kevinbvik", password='password', email='kevinbvik@aa.io', first_name=fake.first_name(), last_name=fake.last_name(), created_at=current_date, updated_at=current_date),
+
+    #7
+    User(username="Aimalai", password='password', email='aimalai@aa.io', first_name=fake.first_name(), last_name=fake.last_name(), created_at=current_date, updated_at=current_date),
+
+    #8
+    User(username="peaceofpie97", password='password', email='peace@aa.io', first_name=fake.first_name(), last_name=fake.last_name(), created_at=current_date, updated_at=current_date),
+
+    #9
+    User(username="L00p3r", password='password', email='looper@aa.io', first_name=fake.first_name(), last_name=fake.last_name(), created_at=current_date, updated_at=current_date),
+
+    #10
+    User(username="nestorbee", password='password', email='nestorbee@aa.io', first_name=fake.first_name(), last_name=fake.last_name(), created_at=current_date, updated_at=current_date),
+
+    #11
+    User(username="bronze99", password='password', email='bronze@aa.io', first_name=fake.first_name(), last_name=fake.last_name(), created_at=current_date, updated_at=current_date),
+
+    #12
+    User(username="devin444", password='password', email='devin@aa.io', first_name=fake.first_name(), last_name=fake.last_name(), created_at=current_date, updated_at=current_date),
+
+    #13
+    User(username="Zaywop", password='password', email='zaywop@aa.io', first_name=fake.first_name(), last_name=fake.last_name(), created_at=current_date, updated_at=current_date),
+
+    #14
+    User(username="Hublots", password='password', email='hublots@aa.io', first_name=fake.first_name(), last_name=fake.last_name(), created_at=current_date, updated_at=current_date),
+
+    #15
+    User(username="pizza_reality", password='password', email='pizza@aa.io', first_name=fake.first_name(), last_name=fake.last_name(), created_at=current_date, updated_at=current_date),
+
+    #16
+    User(username="Prismo9092", password='password', email='prismo@aa.io', first_name=fake.first_name(), last_name=fake.last_name(), created_at=current_date, updated_at=current_date),
+
+    #17
+    User(username="Kaispirat", password='password', email='kaispirat@aa.io', first_name=fake.first_name(), last_name=fake.last_name(), created_at=current_date, updated_at=current_date),
+
+    #18
+    User(username="AndrewKim", password='password', email='andrewkim@aa.io', first_name=fake.first_name(), last_name=fake.last_name(), created_at=current_date, updated_at=current_date),
+
+    #19
+    User(username="savannamalk", password='password', email='savannamalk@aa.io', first_name=fake.first_name(), last_name=fake.last_name(), created_at=current_date, updated_at=current_date),
+
+    #20
+    User(username="Hibi", password='password', email='hibi@aa.io', first_name=fake.first_name(), last_name=fake.last_name(), created_at=current_date, updated_at=current_date),
+
+    #21
+    User(username="lovekelsie", password='password', email='lovekelsie@aa.io', first_name=fake.first_name(), last_name=fake.last_name(), created_at=current_date, updated_at=current_date),
+
+    #22
+    User(username="Miila", password='password', email='Miila@aa.io', first_name=fake.first_name(), last_name=fake.last_name(), created_at=current_date, updated_at=current_date),
+
+    #23
+    User(username="WootiBoy", password='password', email='wootiboy@aa.io', first_name=fake.first_name(), last_name=fake.last_name(), created_at=current_date, updated_at=current_date),
+
+    #24
+    User(username="Chosanny", password='password', email='chosanny@aa.io', first_name=fake.first_name(), last_name=fake.last_name(), created_at=current_date, updated_at=current_date),
+
+    #25
+    User(username="haejilo", password='password', email='haejilo@aa.io', first_name=fake.first_name(), last_name=fake.last_name(), created_at=current_date, updated_at=current_date),
+  ]
 
   db.session.add_all(users)
   db.session.commit()

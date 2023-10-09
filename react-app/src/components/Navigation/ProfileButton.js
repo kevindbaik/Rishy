@@ -1,14 +1,18 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
+import { NavLink, useHistory } from "react-router-dom";
 import { logout } from "../../store/session";
+import { useModal } from "../../context/Modal";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
+  const { closeModal } = useModal();
 
   const openMenu = () => {
     if (showMenu) return;
@@ -32,27 +36,33 @@ function ProfileButton({ user }) {
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
+    history.push('/posts');
   };
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
   const closeMenu = () => setShowMenu(false);
 
   return (
-    <>
+    <div id='nav-profiledropdown-container'>
       <button onClick={openMenu}>
-        <i class="fa-solid fa-bars"></i>
+        <i class="fa-regular fa-user"></i>
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li>{user.username}</li>
-            <li>{user.email}</li>
+            {/* <li>{user.username}</li>
+            <li>{user.email}</li> */}
+            <NavLink style={{ textDecoration: "none", color: "black" }}
+                onClick={closeMenu}
+                to={`/users/${user.id}/posts`}>
+            <li>My Profile</li>
+            </NavLink>
             <li>
               <button onClick={handleLogout}>Log Out</button>
             </li>
           </>
         ) : (
-          <>
+          <div id="nav-loginsignup-container">
             <OpenModalButton
               buttonText="Log In"
               onItemClick={closeMenu}
@@ -64,10 +74,10 @@ function ProfileButton({ user }) {
               onItemClick={closeMenu}
               modalComponent={<SignupFormModal />}
             />
-          </>
+          </div>
         )}
       </ul>
-    </>
+    </div>
   );
 }
 

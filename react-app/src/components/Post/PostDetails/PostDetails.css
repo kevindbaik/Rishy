@@ -1,7 +1,7 @@
 #onepost-image {
-  width: 580px;
-  height: 500px;
-  object-fit: cover;
+  width: 690px;
+  height: 560px;
+  object-fit: contain
 }
 
 .rhap_button-clear.rhap_skip-button {
@@ -36,14 +36,14 @@
   position: absolute;
   font-size: 30px;
   top: 38%;
-  left: -60px;
+  left: -96px;
 }
 
 .onespot-next {
   position: absolute;
   font-size: 30px;
   top: 38%;
-  right: -60px;
+  right: -96px;
 }
 
 .onespot-next:hover, .onespot-previous:hover {

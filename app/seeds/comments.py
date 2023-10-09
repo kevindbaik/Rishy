@@ -36,11 +36,42 @@ def seed_comments():
         "This is hands down one of my favourite songs ever.",
         "This song, this album is a work of fine art.",
         "Notice how there isn't a single negative comment about this song? This is how you make music.",
-        "2 years later and I've listened to this song every day since. Will forever mean something to me"
+        "2 years later and I've listened to this song every day since. Will forever mean something to me",
+        "I really appreciate you sharing this!",
+        "woah, it's been awhile since i heard this song."
+        "This song brings back soooo many memories. Thx for sharing this moment!",
+        "very beautiful song!",
+        "hey, hope you've been doing well! awesome post!",
+        "Love everyone reading this <3333333",
+        "Great picture! Saving this to my collections.",
+        "Listening to this changed my mood for the better, thank you",
+        "Hello! Randomly came across this post, but it's amazing.",
+        "Appreciate the followback, you have dope taste in music!",
+        "Love love love this song and post!!!",
+        "one of my absolute favorite songs as well!",
+        "the picture goes REALLY well with the song, fantastic post!",
+        "It's so strange how a picture can make the experience of listening to a song 10x better.",
+        "Song is a vibe honestly",
+        "Everything about this post is amazing, thank you for sharing it <3",
+        "I've been having a pretty bad day, but it feels like it's turning around now.",
+        "i feel like pictures can change the perception of a song so much",
+        "Yooooo fire song!!!",
+        "Adding this to my collections as well, ty!",
+        "hey it's been awhile! hope all is well <3",
+        "Thanks for sharing this. It made my day.",
+        "sending everyone hugs xoxo",
+        "great shot! song makes it sooo much better too!",
+        "Music is probably humanity's best creation.",
+        "A big hug to everyone who has been discouraged to create art at least once by the world.",
+        "This song really touched my heart. Thank you.",
+        "This is not just a song. This is an art",
+        "It's little songs like this that pick me up and keep me going no matter how hard things get. <3",
+        "This song means so much to a lot of people!!",
+        "Hey great seeing you're doing ok! Let's catch up soon!"
     ]
 
     all_users = User.query.all()
-    all_posts = Post.query.limit(10).all()
+    all_posts = Post.query.limit(24).all()
 
     comments = []
 

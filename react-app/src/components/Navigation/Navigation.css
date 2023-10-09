@@ -17,7 +17,7 @@ ul {
 }
 
 #nav-search {
-  margin-left: 180px;
+  margin-left: 122px;
 }
 
 #nav-logo {
@@ -26,7 +26,7 @@ ul {
 }
 
 .logo-rishy {
-  width: 100px;
+  width: 104px;
   height: 60px;
 }
 
@@ -35,4 +35,19 @@ ul {
   align-items: center;
   column-gap: 30px;
   margin-right: 200px;
+}
+
+#nav-profiledropdown-container {
+  position: relative;
+  z-index: 15;
+}
+
+#nav-loginsignup-container {
+  border: 1px solid rgb(153, 153, 153);
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  padding: 10px 14px;
+  position: absolute;
+  left: -80px;
 }

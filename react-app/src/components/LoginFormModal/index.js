@@ -21,36 +21,52 @@ function LoginFormModal() {
     }
   };
 
+  const handleDemoLogin = (e) => {
+    e.preventDefault();
+    setErrors([]);
+    return dispatch(login('demouser@aa.io', 'password'))
+    .then(closeModal);
+  };
+
+  console.log(errors)
   return (
-    <>
+    <div id='login-container'>
       <h1>Log In</h1>
+      {errors && errors.password &&
+        <p id='error-text'>{errors.password}</p>
+      }
+      {errors && errors.email &&
+        <p id='error-text'>{errors.email}</p>
+      }
       <form onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
-        <label>
-          Email
+        <div id='login-email-container'>
+          <label>
+            Email:
+          </label>
           <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Password
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+        </div>
+        <div id='login-password-container'>
+          <label>
+            Password:
+          </label>
           <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <button type="submit">Log In</button>
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+        </div>
+        <div id='login-button-container'>
+          <button id='login-submit-button' type="submit">Log In</button>
+          <button id='login-demo-button' onClick={handleDemoLogin}>Log In Demo User</button>
+        </div>
       </form>
-    </>
+    </div>
   );
 }
 

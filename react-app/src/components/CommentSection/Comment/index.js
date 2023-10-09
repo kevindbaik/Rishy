@@ -5,8 +5,6 @@ import AddComment from "../AddComment";
 import { fetchUpdateComment } from "../../../store/comment";
 import OpenModalDiv from "../../../OpenModalDiv";
 import CommentDelete from "../CommentDelete";
-import { fetchOnePost } from "../../../store/post";
-
 
 function Comment({ comment, user, post }) {
   const dispatch = useDispatch();
@@ -49,7 +47,7 @@ function Comment({ comment, user, post }) {
       <AddComment onSubmit={handleEditComment} initialValue={comment.content}/>
     :
     <>
-      {comment.userId === user.id &&
+      {user && comment.userId === user.id &&
         <div className="onecomment-manage-container">
           <i onClick={toggleDropdown} class="fa-solid fa-ellipsis-vertical"></i>
           {dropdownOpen &&

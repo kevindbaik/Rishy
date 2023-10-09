@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
@@ -8,13 +8,7 @@ import CreatePostForm from "../Post/PostForm/CreatePost";
 import logo from '../../images/rishy.-logo.svg'
 
 function Navigation({ isLoaded }){
-	const history = useHistory();
 	const sessionUser = useSelector(state => state.session.user);
-
-	const handleProfileClick = e => {
-		e.preventDefault();
-		history.push(`/users/${sessionUser.id}/posts`)
-	};
 
 	return (
 		<ul id='nav-container'>
@@ -28,12 +22,11 @@ function Navigation({ isLoaded }){
 			</li>
 			{isLoaded && (
 				<div id='nav-topright'>
-					<li>
-						<OpenModalButton modalComponent={<CreatePostForm />} buttonText={"+"}/>
-					</li>
-					<li>
-						<i onClick={handleProfileClick} class="fa-regular fa-user"></i>
-					</li>
+					{sessionUser &&
+						<li>
+							<OpenModalButton modalComponent={<CreatePostForm />} buttonText={"+"}/>
+						</li>
+					}
 					<li>
 						<ProfileButton user={sessionUser} />
 					</li>

@@ -50,8 +50,8 @@ function PostDetails() {
     let hasCommented = false;
     const userCommented = Object.values(comments).find(comment => comment.userId === user.id);
     if(userCommented) {
-      hasCommented = true;
-    };
+        hasCommented = true;
+    }
     return hasCommented
   };
 
@@ -62,7 +62,7 @@ function PostDetails() {
     }
   };
 
-  if(!post || !comments || !user) return null
+  if(!post || !comments) return null
 
   return(
     <div className="onepost-container">
@@ -84,7 +84,7 @@ function PostDetails() {
         <p>{post.caption}</p>
       </div>
       <div className="addcomment-container">
-      {!hasCommented() && post.userId !== user.id && <AddComment onSubmit={handleAddComment}/>}
+      {user && !hasCommented() && post.userId !== user.id && <AddComment onSubmit={handleAddComment}/>}
       </div>
       <CommentSection comments={comments} user={user} post={post}/>
     </div>
