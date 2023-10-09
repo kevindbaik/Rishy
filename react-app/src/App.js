@@ -5,6 +5,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
+import LandingPage from "./components/LandingPage";
 import Home from './components/Home'
 import PostDetails from "./components/Post/PostDetails";
 import UserProfile from "./components/UserProfile";
@@ -35,6 +36,9 @@ function App() {
           </Route>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route exact path='/'>
+            <LandingPage />
           </Route>
         </Switch>
       )}
