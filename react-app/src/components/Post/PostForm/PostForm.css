@@ -1,14 +1,20 @@
-.postform-container {
+#postform-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 20px 24px;
-  width: 400px;
+  width: 350px;
   border: 1px solid red
 }
 
-.postform-container input {
+#postform-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#postform-container input {
   display: flex;
   flex-direction: column;
   margin: auto;
@@ -97,5 +103,25 @@
 
 #showSongUpload {
   margin-top: 10px;
-  font-size: 12px;
+  font-size: 10px;
+}
+
+#postform-submit-button {
+  align-self: center;
+}
+
+/* .loading-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  background-color: rgba(233, 233, 233, 0.7);
+  padding: 10px;
+  border-radius: 5px;
+} */
+
+.loading-text {
+  margin: 0;
+  margin-bottom: 10px;
 }

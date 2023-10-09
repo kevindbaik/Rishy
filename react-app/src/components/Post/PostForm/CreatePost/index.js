@@ -15,10 +15,12 @@ function CreatePostForm() {
   const [ song, setSong ] = useState(null);
   const [ photo, setPhoto ] = useState(null);
   const [ previewPhoto, setPreviewPhoto ] = useState(null);
-  const [errors, setErrors] = useState([])
+  const [errors, setErrors] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const formData = new FormData();
     formData.append('caption', caption);
     formData.append('title', title);
@@ -28,35 +30,33 @@ function CreatePostForm() {
 
     const newPost = await dispatch(fetchCreatePost(formData));
     if(newPost.errors) {
-      setErrors(newPost.errors)
-      console.log('xx', newPost.errors)
+      setErrors(newPost.errors);
+      setLoading(false);
     };
 
     if(newPost && !newPost.errors) {
-      console.log('nooooo')
       dispatch(fetchOnePost(newPost.id));
       closeModal();
       history.push(`/posts/${newPost.id}`);
+      setLoading(false);
     };
   };
 
   const fileWrap = (e) => {
     e.stopPropagation();
-
     const tempFile = e.target.files[0];
     setPhoto(tempFile);
-
     const newImageURL = URL.createObjectURL(tempFile);
     setPreviewPhoto(newImageURL);
   };
 
   return (
-    <div className="postform-container">
-      <h3>upload a post</h3>
+    <div id="postform-container">
+      <h3>upload</h3>
       <form onSubmit={handleFormSubmit} encType="multipart/form-data">
         <div id='postform-photo-container'>
           <label htmlFor="photoUpload" className="uploadphoto-pseudobutton">
-            upload a photo:
+            upload photo:
           </label>
           <img id='showPhotoUpload' src={previewPhoto}></img>
           <input
@@ -68,7 +68,7 @@ function CreatePostForm() {
           />
         </div>
         <div id='postform-caption-container'>
-          <label>
+          <label className="postform-label">
             caption:
           </label>
           {errors && errors.caption &&
@@ -82,7 +82,7 @@ function CreatePostForm() {
           />
         </div>
         <div id='postform-songtitle-container'>
-          <label>
+          <label className="postform-label">
             song title:
           </label>
           {errors && errors.title &&
@@ -96,7 +96,7 @@ function CreatePostForm() {
           />
         </div>
         <div id='postform-songartist-container'>
-          <label>
+          <label className="postform-label">
             song artist:
           </label>
           {errors && errors.artist &&
@@ -111,7 +111,7 @@ function CreatePostForm() {
         </div>
         <div id='postform-mp3-container'>
           <label htmlFor="songUpload" className="uploadsong-pseudobutton">
-            upload a song:
+            upload song:
           </label>
           <input
             id='songUpload'
@@ -124,7 +124,8 @@ function CreatePostForm() {
           />
           <span id="showSongUpload"></span>
         </div>
-        <button type='submit'>Create Post</button>
+        {loading ? <div className="loading-text">
+        creating....</div> : <button id="postform-submit-button" type='submit'>Create Post</button>}
       </form>
     </div>
   )
