@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import '../Comment.css'
 import AddComment from "../AddComment";
 import { fetchUpdateComment } from "../../../store/comment";
-import OpenModalDiv from "../../../OpenModalDiv";
+import OpenModalDiv from '../OpenModalDiv'
 import CommentDelete from "../CommentDelete";
 
 function Comment({ comment, user, post }) {

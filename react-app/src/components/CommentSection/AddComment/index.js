@@ -29,7 +29,9 @@ function AddComment({ onSubmit, initialValue = "" }) {
         value={comment}
         onChange={handleCommentChange}
         onKeyPress={handleKeyPress}
-        placeholder="Add a comment..." />
+        placeholder="Add a comment..."
+        required
+        />
         <button type='submit'>Comment</button>
       </form>
     </div>
