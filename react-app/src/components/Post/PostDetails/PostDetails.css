@@ -33,10 +33,11 @@
 }
 
 #onepost-image {
-  width: 710px;
+  width: 750px;
   height: 540px;
   object-fit: contain;
-  margin-top: 12px;
+  margin-top: 21.8px;
+  margin-bottom: 26px;
 }
 
 .rhap_button-clear.rhap_skip-button {
@@ -54,6 +55,7 @@
   align-items: center;
   row-gap: 20px;
   width: 600px;
+  height: 760px;
   margin: auto;
   margin-bottom: 30px;
 }
@@ -120,16 +122,16 @@
 .onespot-previous {
   position: absolute;
   font-size: 30px;
-  top: 39%;
-  left: -105px;
+  top: 37.5%;
+  left: -130px;
   color: rgba(233, 233, 233, 0.898);
 }
 
 .onespot-next {
   position: absolute;
   font-size: 30px;
-  top: 39%;
-  right: -105px;
+  top: 37.5%;
+  right: -130px;
   color: rgba(233, 233, 233, 0.898);
 }
 

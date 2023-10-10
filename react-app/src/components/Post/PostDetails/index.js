@@ -90,7 +90,9 @@ function PostDetails() {
         <div id='onepost-creatorinfo'>
           <div id='creator-follow-container'>
           <p id='onepost-creator'>{post.User?.username}</p>
-          <button id='follow-button' onClick={handleFollow}>follow</button>
+          {user && user.id !== post.userId &&
+            <button id='follow-button' onClick={handleFollow}>follow</button>
+          }
           </div>
           <div id='onepost-caption-container'>
           <p id='onepost-caption'>{post.caption}</p>
@@ -107,11 +109,13 @@ function PostDetails() {
             </i>
             </div>
           <div id='onepost-postdate-container'>
-            <p className="onepost-postdate">Uploaded on {post.createdAt}</p>
+            <p className="onepost-postdate">Updated on {post.createdAt}</p>
           </div>
         </div>
       </div>
+      <h4 id='onepost-comment-header'>Comments</h4>
       <div className="addcomment-container">
+      {user && !hasCommented() && post.userId !== user.id && <img className="defaultuser-image-comment" src="https://i.ibb.co/nRLSXSX/Default-pfp-svg.png" alt=""></img>}
       {user && !hasCommented() && post.userId !== user.id && <AddComment onSubmit={handleAddComment}/>}
       </div>
       <CommentSection comments={comments} user={user} post={post}/>

@@ -41,6 +41,19 @@ function Comment({ comment, user, post }) {
     setEditMode(prevState => !prevState);
   };
 
+  const calculateDaysAgo = (commentDate) => {
+    const date = new Date(commentDate);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const timeDifference = today - date;
+    console.log('xxxx', timeDifference);
+
+    const dayDifference = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+    console.log('zzzz', dayDifference)
+    return dayDifference
+  }
+
   return(
   <div className="onecomment-container">
     {editMode ?
@@ -63,10 +76,16 @@ function Comment({ comment, user, post }) {
             }
         </div>
       }
-      <img className="defaultuser-image" src="https://i.ibb.co/nRLSXSX/Default-pfp-svg.png" alt=""></img>
-      <span>@{comment?.User?.username}</span>
-      <p>{comment.content}</p>
-      <p>{comment.createdAt}</p>
+      <div id='onecomment-info-container'>
+        <img className="defaultuser-image-comment" src="https://i.ibb.co/nRLSXSX/Default-pfp-svg.png" alt=""></img>
+        <div id='onecomment-userinfo'>
+          <div id='comment-user-date'>
+            <p id='comment-username'>@{comment?.User?.username}</p>
+            <p id='comment-date'>{calculateDaysAgo(comment.createdAt)}d</p>
+          </div>
+          <p id='comment-content'>{comment.content}</p>
+        </div>
+      </div>
     </>
     }
   </div>

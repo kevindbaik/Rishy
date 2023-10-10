@@ -32,7 +32,7 @@ function AddComment({ onSubmit, initialValue = "" }) {
         placeholder="Add a comment..."
         required
         />
-        <button type='submit'>Comment</button>
+        <button id='submit-comment-button' type='submit'>submit</button>
       </form>
     </div>
   )
