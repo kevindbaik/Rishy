@@ -33,5 +33,6 @@ class Post(db.Model):
             'songTitle': self.song.title,
             'songArtist': self.song.artist,
             'photoUrl': self.photo.photo_url,
-            'User' : self.user.to_dict()
+            'User' : self.user.to_dict(),
+            'commentCount' : len(self.comments)
         }

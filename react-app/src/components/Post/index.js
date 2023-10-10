@@ -19,6 +19,15 @@ function Post({ post, showManageButton = false }) {
   return (
     <div id='allpost-container'>
       <img className='allpost-image' src={post?.photoUrl} onClick={handleViewPostDetail}></img>
+
+      <div className="allpost-caption">
+        <p className="allpost-title">{post.songArtist} - {post.songTitle}</p>
+        <p className="allpost-creator">{post.User.username}</p>
+        <div className="allpost-commentcount">
+          <i class="fa-sharp fa-regular fa-comment"></i>
+          <p>{post.commentCount}</p>
+        </div>
+      </div>
       {showManageButton && user.id === post.userId &&
       <div className="user-managepost-buttons">
         <OpenModalButton modalComponent={<UpdatePostForm post={post}/>} buttonText={"+"}/>
