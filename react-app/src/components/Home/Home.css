@@ -1,4 +1,4 @@
-#home-container {
+/* #home-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-row-gap: 30px;
@@ -6,4 +6,11 @@
   margin-left: auto;
   margin-right: auto;
   margin-top: 100px;
+} */
+
+#home-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: masonry;
+  gap: 10px;
 }

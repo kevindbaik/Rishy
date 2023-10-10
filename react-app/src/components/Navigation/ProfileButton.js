@@ -49,7 +49,7 @@ function ProfileButton({ user }) {
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
-          <>
+          <div id='loggedin-dropdown'>
             {/* <li>{user.username}</li>
             <li>{user.email}</li> */}
             <NavLink style={{ textDecoration: "none", color: "black" }}
@@ -60,7 +60,7 @@ function ProfileButton({ user }) {
             <li>
               <button onClick={handleLogout}>Log Out</button>
             </li>
-          </>
+          </div>
         ) : (
           <div id="nav-loginsignup-container">
             <OpenModalButton
@@ -68,7 +68,6 @@ function ProfileButton({ user }) {
               onItemClick={closeMenu}
               modalComponent={<LoginFormModal />}
             />
-
             <OpenModalButton
               buttonText="Sign Up"
               onItemClick={closeMenu}

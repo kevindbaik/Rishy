@@ -3,9 +3,18 @@
 }
 
 .allpost-image {
-  width: 220px;
-  height: 220px;
+  max-width: 90%;
+  display: block;
+  /* max-height: 100%; */
   object-fit: cover;
+  grid-row: 1 / -1;
+  grid-column: 1;
+}
+
+.figure {
+  margin: 0;
+  display: grid;
+  grid-template-rows: 1fr auto;
 }
 
 .user-managepost-buttons {
