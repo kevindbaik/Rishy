@@ -18,9 +18,7 @@ function Post({ post, showManageButton = false }) {
 
   return (
     <div id='allpost-container'>
-      <div className="figure">
       <img className='allpost-image' src={post?.photoUrl} onClick={handleViewPostDetail}></img>
-      </div>
       {showManageButton && user.id === post.userId &&
       <div className="user-managepost-buttons">
         <OpenModalButton modalComponent={<UpdatePostForm post={post}/>} buttonText={"+"}/>

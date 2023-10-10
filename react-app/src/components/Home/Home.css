@@ -9,8 +9,24 @@
 } */
 
 #home-container {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: masonry;
-  gap: 10px;
+  box-sizing: border-box;
+  width: 1400px;
+  margin: 20px auto;
+  columns: 4;
+  column-gap: 10px;
+}
+
+#allpost-container {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.allpost-image {
+  max-width: 100%;
+}
+
+@media (max-width: 1400px) {
+  #home-container {
+    width: calc(100% - 40px);
+  }
 }
