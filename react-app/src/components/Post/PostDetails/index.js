@@ -104,7 +104,7 @@ function PostDetails() {
             <i className="fa-regular fa-heart poststats-icons">
               <p>{Math.floor(Math.random() * 500) + 100}</p>
             </i>
-            <i className={hasCommented() ? "fa-solid fa-comment poststats-icons" : "fa-sharp fa-regular fa-comment poststats-icons"}>
+            <i className={user && hasCommented() ? "fa-solid fa-comment poststats-icons" : "fa-sharp fa-regular fa-comment poststats-icons"}>
               <p className="poststats-commentcount">{Object.values(comments).length}</p>
             </i>
             </div>
