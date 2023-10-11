@@ -22,7 +22,7 @@ function Post({ post, showManageButton = false }) {
 
       <div className="allpost-caption">
         <p className="allpost-title">{post.songArtist} - {post.songTitle}</p>
-        <p className="allpost-creator">{post.User.username}</p>
+        <p className="allpost-creator">by {post.User.username}</p>
         <div className="allpost-commentcount">
           <i class="fa-sharp fa-regular fa-comment"></i>
           <p>{post.commentCount}</p>

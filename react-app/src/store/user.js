@@ -1,5 +1,13 @@
+export const LOAD_USER = '/users/LOAD_USER';
 export const LOAD_USER_POSTS = '/users/LOAD_USER_POSTS';
 export const DELETE_USER_POST = 'posts/DELETE_USER_POST';
+
+export const loadUser = (user) => {
+  return {
+    type: LOAD_USER,
+    user
+  }
+};
 
 export const loadUserPosts = (posts) => {
   return {
@@ -15,8 +23,22 @@ export const deleteUserPost = postId => {
   }
 };
 
+export const fetchUser = (userId) => async(dispatch) => {
+  const response = await fetch(`/api/users/${userId}`);
+
+  if(response.ok) {
+    const data = await response.json();
+    dispatch(loadUser(data));
+    return data;
+  } else {
+    const errors = await response.json();
+    return errors;
+  }
+}
+
 export const fetchUserPosts = (userId) => async(dispatch) => {
   const response = await fetch(`/api/users/${userId}/posts`);
+
   if(response.ok) {
     const data = await response.json();
     dispatch(loadUserPosts(data));
@@ -41,19 +63,22 @@ export const fetchDeleteUserPost = (postId) => async(dispatch) => {
   }
 };
 
-const initialState = {};
+const initialState = { User: {}, UserPosts: {}};
 const userReducer = (state = initialState, action) => {
   let newState;
   switch(action.type) {
+    case LOAD_USER:
+      newState = { ...state, User : {...action.user}};
+      return newState;
     case LOAD_USER_POSTS:
-      newState = { ...state, ...action.posts }
-      return newState
+      newState = { ...state, UserPosts : {...action.posts}};
+      return newState;
     case DELETE_USER_POST:
-      newState = { ...state }
-      delete newState[action.postId]
-      return newState
+      newState = { ...state };
+      delete newState[action.postId];
+      return newState;
     default:
-      return state
+      return state;
   }
 };
 

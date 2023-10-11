@@ -47,10 +47,8 @@ function Comment({ comment, user, post }) {
     today.setHours(0, 0, 0, 0);
 
     const timeDifference = today - date;
-    console.log('xxxx', timeDifference);
 
     const dayDifference = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
-    console.log('zzzz', dayDifference)
     return dayDifference
   }
 
