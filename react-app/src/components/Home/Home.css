@@ -28,6 +28,7 @@
 
 .allpost-image {
   max-width: 100%;
+  display: block;
 }
 
 .allpost-caption {

@@ -16,7 +16,6 @@ def users():
 
 
 @user_routes.route('/<int:id>')
-@login_required
 def user(id):
     """
     Query for a user by id and returns that user in a dictionary
@@ -25,7 +24,6 @@ def user(id):
     return user.to_dict()
 
 @user_routes.route('/<int:id>/posts')
-@login_required
 def get_user_posts(id):
     """
     GET ALL POSTS OF USER

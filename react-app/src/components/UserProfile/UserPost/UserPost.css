@@ -1,0 +1,58 @@
+#userpost-container {
+  width: 100%;
+  position: relative;
+}
+
+#userpost-container:hover {
+  cursor: pointer;
+}
+
+.userpost-image {
+  width: 330px;
+  height: 300px;
+  object-fit: cover;
+}
+
+.user-managepost-buttons {
+  position: absolute;
+  display: flex;
+  column-gap: 10px;
+  top: 10px;
+  right: 10px;
+}
+
+.userpost-edit-button {
+  font-size: 12px;
+  background-color: #fbfbfbec;
+  border-radius: 17px;
+  padding: 4px 10px;
+  border: 1px solid #e6e6e6ec;
+  color: rgb(39, 39, 39);
+}
+
+.userpost-remove-button {
+  font-size: 12px;
+  background-color: #333336ec;
+  border-radius: 17px;
+  padding: 4px 10px;
+  border: 1px solid #333336ec;
+  color: white;
+}
+
+.userpost-edit-button:hover {
+  cursor: pointer;
+  background-color: #e9e9e9ec;
+  border-color: #e9e9e9ec;
+}
+
+.userpost-remove-button:hover {
+  cursor: pointer;
+  background-color: #464649ec;
+  background-color: #464649ec;
+}
+
+@media (max-width: 1040px) {
+  .userpost-image {
+    width: 290px;
+  }
+}

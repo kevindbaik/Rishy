@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchUser, fetchUserPosts } from "../../store/user";
-import Post from "../Post";
+import UserPost from "./UserPost";
 import './UserProfile.css'
 
 function UserProfile() {
@@ -10,6 +10,7 @@ function UserProfile() {
   const { userId } = useParams();
   const user = useSelector(state => state.user.User);
   const userPosts = useSelector(state => state.user.UserPosts);
+  const sessionUser = useSelector((state) => state.session.user);
 
   useEffect(() => {
     dispatch(fetchUser(userId));
@@ -18,11 +19,10 @@ function UserProfile() {
 
   if(!user || !userPosts) return null;
 
-  console.log(userPosts)
-  console.log(user)
   return(
-    <div id='userprofile-container'>
-      <div id='userprofile-userinfo-container'>
+    <>
+      <div id='userprofile-container'>
+        <div id='userprofile-userinfo-container'>
         <img className="userprofile-profileimage" src="https://i.ibb.co/nRLSXSX/Default-pfp-svg.png" alt=""></img>
         <div className="userinfo-container">
           <p className="userinfo-fullname">{user.firstName} {user.lastName}</p>
@@ -38,8 +38,14 @@ function UserProfile() {
             </div>
           </div>
         </div>
+        </div>
       </div>
-    </div>
+      <div id='all-userpost-container'>
+        {Object.values(userPosts).map((userPost) => (
+          <UserPost userPost={userPost} sessionUser={sessionUser}/>
+        ))}
+      </div>
+    </>
   )
 }
 

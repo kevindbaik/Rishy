@@ -5,16 +5,13 @@
   justify-content: end;
   column-gap: 20px;
   position: relative;
-  border: 1px solid red;
-  height: 150px;
+  /* border: 1px solid red; */
+  height: 100px;
   padding-bottom: 10px;
 }
 
-
-
 #userprofile-userinfo-container {
   display: flex;
-  /* border: 1px solid blue; */
   width: 800px;
 }
 
@@ -65,4 +62,22 @@
   column-gap: 14px;
   font-size: 14px;
   width: 500px;
+}
+
+#all-userpost-container {
+  /* box-sizing: border-box;
+  width: 1000px;
+  margin: 35px auto;
+  columns: 2;
+  column-gap: 15px; */
+  margin: 45px auto;
+  display: grid;
+  width: 100%;
+  width: fit-content;
+  column-gap: 20px;
+  row-gap: 14px;
+  margin-left: auto;
+  margin-right: auto;
+  grid-template-columns: repeat(3, minmax(300px, 1fr));
+  grid-auto-rows: minmax(100px, auto);
 }

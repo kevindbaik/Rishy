@@ -74,8 +74,10 @@ const userReducer = (state = initialState, action) => {
       newState = { ...state, UserPosts : {...action.posts}};
       return newState;
     case DELETE_USER_POST:
-      newState = { ...state };
-      delete newState[action.postId];
+      console.log('state', state)
+      newState = { ...state, UserPosts: {...state.UserPosts} };
+      console.log('ns', newState)
+      delete newState.UserPosts[action.postId];
       return newState;
     default:
       return state;
