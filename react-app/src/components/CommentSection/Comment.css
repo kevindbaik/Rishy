@@ -78,6 +78,9 @@
   height: 34px;
 }
 
+.defaultuser-image-comment:hover {
+  cursor: pointer;
+}
 #onecomment-info-container {
   display: flex;
   align-items: center;
@@ -102,6 +105,10 @@
 #comment-username {
   font-weight: bold;
   font-size: 13.5px;
+}
+
+#comment-username:hover {
+  cursor: pointer;
 }
 
 #comment-content {

@@ -105,6 +105,10 @@
   font-weight: bold;
 }
 
+#onepost-creator:hover {
+  cursor: pointer;
+}
+
 #onepost-caption {
   font-size: 14px;
 }
@@ -148,6 +152,10 @@
 .defaultuser-image {
   width: 44px;
   height: 44px;
+}
+
+.defaultuser-image:hover {
+  cursor: pointer;
 }
 
 #onepost-poststats-container {

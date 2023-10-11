@@ -1,13 +1,15 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import '../Comment.css'
 import AddComment from "../AddComment";
 import { fetchUpdateComment } from "../../../store/comment";
 import OpenModalDiv from '../OpenModalDiv'
 import CommentDelete from "../CommentDelete";
 
-function Comment({ comment, user, post }) {
+function Comment({ comment, user }) {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [ dropdownOpen, setDropdownOpen ] = useState(false);
   const [ editMode, setEditMode ] = useState(false);
   const dropdownRef = useRef(null);
@@ -49,8 +51,13 @@ function Comment({ comment, user, post }) {
     const timeDifference = today - date;
 
     const dayDifference = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
-    return dayDifference
-  }
+    return dayDifference;
+  };
+
+  const handleProfileClick = (e, comment) => {
+    e.preventDefault();
+    history.push(`/users/${comment.userId}/posts`)
+  };
 
   return(
   <div className="onecomment-container">
@@ -75,10 +82,10 @@ function Comment({ comment, user, post }) {
         </div>
       }
       <div id='onecomment-info-container'>
-        <img className="defaultuser-image-comment" src="https://i.ibb.co/nRLSXSX/Default-pfp-svg.png" alt=""></img>
+        <img className="defaultuser-image-comment" src="https://i.ibb.co/nRLSXSX/Default-pfp-svg.png" alt="" onClick={(e) => handleProfileClick(e, comment)}></img>
         <div id='onecomment-userinfo'>
           <div id='comment-user-date'>
-            <p id='comment-username'>@{comment?.User?.username}</p>
+            <p id='comment-username' onClick={(e) => handleProfileClick(e, comment)}>@{comment?.User?.username}</p>
             <p id='comment-date'>{calculateDaysAgo(comment.createdAt)}d</p>
           </div>
           <p id='comment-content'>{comment.content}</p>

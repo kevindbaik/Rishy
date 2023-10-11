@@ -33,7 +33,7 @@
 
 .allpost-caption {
   position: absolute;
-  z-index: 12;
+  /* z-index: 6; */
   bottom: 0px;
   left: 0px;
   font-size: 13px;

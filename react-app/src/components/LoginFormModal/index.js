@@ -28,7 +28,6 @@ function LoginFormModal() {
     .then(closeModal);
   };
 
-  console.log(errors)
   return (
     <div id='login-container'>
       <h1>Log In</h1>

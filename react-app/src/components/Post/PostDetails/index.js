@@ -65,10 +65,15 @@ function PostDetails() {
   const handleFollow = (e) => {
     e.preventDefault();
     alert('Follow feature coming soon')
-  }
+  };
+
+  const handleProfileClick = (e, post) => {
+    e.preventDefault();
+    history.push(`/users/${post.userId}/posts`)
+  };
 
   if(!post || !comments) return null
-
+  console.log(post, post.userId)
   return(
     <div className="onepost-container">
       <div className='onepost-mediacontainer'>
@@ -86,10 +91,10 @@ function PostDetails() {
         {hasNext && <i class="fa-solid fa-chevron-right onespot-next" onClick={() => handleNavigate(1)}></i>}
       </div>
       <div id="onepost-detailscontainer">
-        <img className="defaultuser-image" src="https://i.ibb.co/nRLSXSX/Default-pfp-svg.png" alt=""></img>
+        <img className="defaultuser-image" onClick={(e) => handleProfileClick(e, post)} src="https://i.ibb.co/nRLSXSX/Default-pfp-svg.png" alt=""></img>
         <div id='onepost-creatorinfo'>
           <div id='creator-follow-container'>
-          <p id='onepost-creator'>{post.User?.username}</p>
+          <p id='onepost-creator' onClick={(e) => handleProfileClick(e, post)}>{post.User?.username}</p>
           {user && user.id !== post.userId &&
             <button id='follow-button' onClick={handleFollow}>follow</button>
           }
