@@ -25,17 +25,17 @@
   font-size: 12px;
   background-color: #fbfbfbec;
   border-radius: 17px;
-  padding: 4px 10px;
+  padding: 6px 12px;
   border: 1px solid #e6e6e6ec;
   color: rgb(39, 39, 39);
 }
 
 .userpost-remove-button {
   font-size: 12px;
-  background-color: #333336ec;
+  background-color: #333336ec;;
   border-radius: 17px;
-  padding: 4px 10px;
-  border: 1px solid #333336ec;
+  padding: 6px 12px;
+  border: 1px solid #333336ec;;
   color: white;
 }
 

@@ -2,22 +2,16 @@ import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 import { logout } from "../../store/session";
-import { useModal } from "../../context/Modal";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import CreatePostForm from "../Post/PostForm/CreatePost";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
-  const { closeModal } = useModal();
-
-  const openMenu = () => {
-    if (showMenu) return;
-    setShowMenu(true);
-  };
 
   useEffect(() => {
     if (!showMenu) return;
@@ -39,43 +33,38 @@ function ProfileButton({ user }) {
     history.push('/posts');
   };
 
-  const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
   const closeMenu = () => setShowMenu(false);
 
   return (
     <div id='nav-profiledropdown-container'>
-      <button onClick={openMenu}>
-        <i class="fa-regular fa-user"></i>
-      </button>
-      <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <div id='loggedin-dropdown'>
-            {/* <li>{user.username}</li>
-            <li>{user.email}</li> */}
+            <OpenModalButton styleClass="nav-create-button" modalComponent={<CreatePostForm />} buttonText={"+"}/>
             <NavLink style={{ textDecoration: "none", color: "black" }}
                 onClick={closeMenu}
                 to={`/users/${user.id}/posts`}>
-            <li>My Profile</li>
+             <img className="defaultuser-image-nav" src="https://i.ibb.co/nRLSXSX/Default-pfp-svg.png" alt=""></img>
             </NavLink>
-            <li>
-              <button onClick={handleLogout}>Log Out</button>
-            </li>
+            <button className="nav-logout-button" onClick={handleLogout}>Log Out</button>
           </div>
+
+
         ) : (
           <div id="nav-loginsignup-container">
             <OpenModalButton
-              buttonText="Log In"
-              onItemClick={closeMenu}
-              modalComponent={<LoginFormModal />}
-            />
-            <OpenModalButton
               buttonText="Sign Up"
+              styleClass="nav-signup-button"
               onItemClick={closeMenu}
               modalComponent={<SignupFormModal />}
             />
+            <OpenModalButton
+              buttonText="Log In"
+              styleClass="nav-login-button"
+              onItemClick={closeMenu}
+              modalComponent={<LoginFormModal />}
+            />
           </div>
         )}
-      </ul>
     </div>
   );
 }
