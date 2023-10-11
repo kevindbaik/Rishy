@@ -3,8 +3,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 24px 34px 34px;
   width: 400px;
+  padding: 20px 20px 50px 20px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 
 #signup-email-container {
@@ -56,7 +57,19 @@
 
 #signup-submit-button {
   margin-top: 25px;
+  font-size: 14px;
+  padding: 7px 20px;
+  background-color: #333336;;
+  border: 1px solid #333336;
+  color: white;
 }
+
+#signup-submit-button:hover {
+  cursor: pointer;
+  background-color: #58585c;
+  border: 1px solid #58585c;
+}
+
 
 #error-text {
   color: red;

@@ -3,7 +3,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px 24px;
+  padding: 20px 24px 40px 24px;
+  border: 3px solid rgb(40, 40, 40);
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
   width: 350px;
 }
 
@@ -67,8 +69,9 @@
 .uploadphoto-pseudobutton {
   font-size: 12px;
   padding: 10px 15px;
-  background-color: #f7f7f7;
-  border: 1px solid #9e9e9e;
+  background-color: #f2f2f2;
+  border: 1px solid #aea8a8;
+  color: #333336;
   cursor: pointer;
 }
 
@@ -95,8 +98,9 @@
 .uploadsong-pseudobutton {
   font-size: 12px;
   padding: 10px 15px;
-  background-color: #f7f7f7;
-  border: 1px solid #9e9e9e;
+  background-color: #f2f2f2;
+  border: 1px solid #aea8a8;
+  color: #333336;
   cursor: pointer;
 }
 
@@ -106,7 +110,20 @@
 }
 
 #postform-submit-button {
+  margin-top: 10px;
   align-self: center;
+  font-size: 13px;
+  background-color: #333336;
+  border-radius: 17px;
+  padding: 10px 20px;
+  border: 1px solid #333336;
+  color: white;
+}
+
+#postform-submit-button:hover {
+  cursor: pointer;
+  background-color: #454548;
+  border-color: #454548;
 }
 
 /* .loading-overlay {

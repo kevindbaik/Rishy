@@ -1,17 +1,19 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import logo from '../../images/rishy.-logo.svg'
 
 function Navigation({ isLoaded }){
+	// const location = useLocation();
 	const sessionUser = useSelector(state => state.session.user);
 
+	// let onHomePage = location.pathname === '/posts';
 	return (
 		<ul id='nav-container'>
 			<li>
-				<h3 id='nav-search'>SEARCH BAR</h3>
+			<input type="search" id="nav-search" placeholder="coming soon..." />
 			</li>
 			<li className='nav-logo-container'>
 				<NavLink id='nav-logo' exact to="/posts">
@@ -21,7 +23,7 @@ function Navigation({ isLoaded }){
 			{isLoaded && (
 				<div id='nav-topright'>
 					<li>
-						<ProfileButton user={sessionUser} />
+						<ProfileButton user={sessionUser}/>
 					</li>
 				</div>
 			)}

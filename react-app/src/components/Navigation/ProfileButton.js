@@ -7,7 +7,7 @@ import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import CreatePostForm from "../Post/PostForm/CreatePost";
 
-function ProfileButton({ user }) {
+function ProfileButton({ user, onHomePage }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const [showMenu, setShowMenu] = useState(false);
@@ -39,7 +39,7 @@ function ProfileButton({ user }) {
     <div id='nav-profiledropdown-container'>
         {user ? (
           <div id='loggedin-dropdown'>
-            <OpenModalButton styleClass="nav-create-button" modalComponent={<CreatePostForm />} buttonText={"+"}/>
+            <OpenModalButton onButtonClick={e => !onHomePage} styleClass="nav-create-button" modalComponent={<CreatePostForm />} buttonText={"+"}/>
             <NavLink style={{ textDecoration: "none", color: "black" }}
                 onClick={closeMenu}
                 to={`/users/${user.id}/posts`}>

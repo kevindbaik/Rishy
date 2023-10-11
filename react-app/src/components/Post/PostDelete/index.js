@@ -23,8 +23,8 @@ function PostDelete({ post, user }) {
   return (
     <div id='postdelete-container'>
       <h4>Confirm Post Deletion</h4>
-      <button onClick={handleDeletion}>Confirm</button>
-      <button onClick={handleCancel}>Cancel</button>
+      <button id='confirm-delete-button' onClick={handleDeletion}>Confirm</button>
+      <button id='cancel-delete-button' onClick={handleCancel}>Cancel</button>
     </div>
   )
 }

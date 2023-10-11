@@ -52,7 +52,7 @@ function CreatePostForm() {
 
   return (
     <div id="postform-container">
-      <h3>upload</h3>
+      <h3>upload post</h3>
       <form onSubmit={handleFormSubmit} encType="multipart/form-data">
         <div id='postform-photo-container'>
           <label htmlFor="photoUpload" className="uploadphoto-pseudobutton">
