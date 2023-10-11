@@ -13,7 +13,7 @@ function Navigation({ isLoaded }){
 	return (
 		<ul id='nav-container'>
 			<li>
-			<input type="search" id="nav-search" placeholder="coming soon..." />
+			<input type="search" id="nav-search" placeholder="search..." />
 			</li>
 			<li className='nav-logo-container'>
 				<NavLink id='nav-logo' exact to="/posts">
