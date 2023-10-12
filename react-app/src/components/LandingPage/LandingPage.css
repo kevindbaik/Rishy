@@ -1,8 +1,143 @@
-#landing-header {
-  margin-top: 300px;
-  text-align: center;
+.landing-bgimage-container {
+  position: relative;
+  width: 100%;
+  height: 95vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 0;
 }
 
-.landing-image {
-  width: 980px;
+#landing-header-container {
+  z-index: 1000;
+  margin-bottom: 15vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.landing-header-1,
+.landing-header-2,
+.landing-header-3 {
+  position: static;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  margin: 5px 0;
+}
+
+.landing-header-1 {
+  font-size: 35px;
+}
+
+.landing-header-2 {
+  font-weight: 500;
+  font-size: 22px;
+}
+
+.landing-header-3 {
+  font-weight: 500;
+  font-size: 22px;
+}
+
+.landing-bgimage1 {
+  z-index: 124;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-image:linear-gradient(rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.32)), url('https://i.ibb.co/fn1jfmj/tumblr-o0rv4xcco-F1t5l0c7o1-1280-1-fotor-2023101282432.png');
+}
+
+.landing-bgimage2 {
+  z-index: 100;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://i.ibb.co/Cn2DBxn/tumblr-o933rg-IW3-L1ql5zapo1-1280-fotor-2023101282350.png');
+}
+
+.landing-bgimage3 {
+  z-index: 100;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.23), rgba(0, 0, 0, 0.23)), url('https://i.ibb.co/wd1zWNh/tumblr-mxl0265-Gv51qet0epo1-1280-fotor-20231012105754.png');
+}
+
+.landing-bgimage4 {
+  z-index: 100;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.24), rgba(0, 0, 0, 0.22)), url('https://i.ibb.co/X2q1tk1/tumblr-mzmwv9d-RLS1qc1c6uo1-1280-fotor-2023101211042.png');
+}
+
+.landing-bgimage5 {
+  z-index: 116;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('https://i.ibb.co/s9QQr2F/tumblr-nk50w2pp-Uy1tvsklwo1-1280-fotor-20231012111628.png');
+}
+
+.landing-join-button {
+  margin-top: 2vh;
+  width: 155px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 17px;
+  background-color: rgba(246, 246, 246, 0.959);
+  border-radius: 3px;
+  font-weight: bold;
+  padding: 14px;
+  border: 1px solid #696969ec;
+  box-shadow: 0 3px 7px 0 rgba(0, 0, 0, .23), 0 1px 2px 0 rgba(0, 0, 0, .21);
+  color: #333336ec;
+}
+
+.landing-join-button:hover {
+  cursor: pointer;
+}
+
+.landing-demo-button {
+  margin-top: 1.5vh;
+  width: 194px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 17px;
+  background-color: #696969;
+  border-radius: 3px;
+  padding: 14px;
+  border: 1px solid #5d5d5dec;
+  box-shadow: 0 3px 7px 0 rgba(0, 0, 0, .23), 0 1px 2px 0 rgba(0, 0, 0, .21);
+  color: rgb(255, 255, 255);
+}
+
+.landing-demo-button:hover {
+  cursor: pointer;
 }
