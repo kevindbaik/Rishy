@@ -10,16 +10,16 @@
 
 #home-container {
   box-sizing: border-box;
-  width: 1260px;
+  max-width: 1250px;
   margin: 10px auto;
   columns: 4;
-  column-gap: 10px;
+  column-gap: 6px;
 }
 
 #allpost-container {
   width: 100%;
   position: relative;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 #allpost-container:hover {

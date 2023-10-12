@@ -14,9 +14,8 @@
   display: flex;
   align-content: center;
   justify-content: space-between;
-  max-width: 1230px;
+  max-width: 100%;
   margin: auto;
-  /* border: 1px solid red; */
 }
 
 .sticky-nav {
@@ -31,6 +30,7 @@ ul {
 }
 
 #nav-search {
+  display: none;
   margin-top: 8px;
   padding: 5px 10px;
   font-size: 14px;
@@ -54,6 +54,8 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: 280px;
+  width: 350px;
 }
 
 .logo-rishy {
@@ -64,9 +66,12 @@ ul {
 #nav-topright {
   display: flex;
   align-items: center;
+  justify-content: end;
   column-gap: 30px;
   height: 45px;
   margin-bottom: 5px;
+  width: 300px;
+  margin-right: 10px;
 }
 
 /* #nav-profiledropdown-container {
