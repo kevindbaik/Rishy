@@ -30,7 +30,7 @@ function ProfileButton({ user, onHomePage }) {
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
-    history.push('/posts');
+    history.push('/');
   };
 
   const closeMenu = () => setShowMenu(false);
