@@ -42,16 +42,28 @@ export const fetchOnePost = postId => async(dispatch) => {
   }
 };
 
-export const checkPostExists = postId => async(dispatch) => {
-  const response = await fetch(`/api/posts/check/${postId}`);
+export const checkPreviousPostExists = postId => async(dispatch) => {
+  const response = await fetch(`/api/posts/check/${postId}/previous`);
   const data = await response.json();
 
   if(response.ok) {
-    return data.exists
+    return data.previousPostId
   } else {
     throw data
   }
 };
+
+export const checkNextPostExists = postId => async(dispatch) => {
+  const response = await fetch(`/api/posts/check/${postId}/next`);
+  console.log('rrrr', response)
+  const data = await response.json();
+
+  if(response.ok) {
+    return data.nextPostId
+  } else {
+    throw data
+  }
+}
 
 export const fetchCreatePost = FormData => async(dispatch) => {
   const response = await fetch('/api/posts/new', {
