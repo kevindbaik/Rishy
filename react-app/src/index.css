@@ -1,1 +1,18 @@
-/* TODO Add site wide styles */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+* {
+  font-family: 'Inter', sans-serif;
+}
+
+#page-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column
+}
+
+#content-wrap {
+  flex: 1;
+}

@@ -9,6 +9,8 @@ import LandingPage from "./components/LandingPage";
 import Home from './components/Home'
 import PostDetails from "./components/Post/PostDetails";
 import UserProfile from "./components/UserProfile";
+import Footer from "./components/Footer";
+import './index.css';
 
 function App() {
   const dispatch = useDispatch();
@@ -18,7 +20,8 @@ function App() {
   }, [dispatch]);
 
   return (
-    <>
+    <div id='page-container'>
+      <div id='content-wrap'>
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
@@ -42,7 +45,9 @@ function App() {
           </Route>
         </Switch>
       )}
-    </>
+      </div>
+      <Footer isLoaded={isLoaded} />
+    </div>
   );
 }
 
