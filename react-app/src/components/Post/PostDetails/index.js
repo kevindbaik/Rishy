@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { Children, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from 'react-router-dom';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
-import { fetchOnePost, checkPostExists } from "../../../store/post";
+import { fetchOnePost, checkPreviousPostExists, checkNextPostExists } from "../../../store/post";
 import './PostDetails.css';
 import CommentSection from "../../CommentSection";
 import { fetchCreateComment, fetchLoadComments } from "../../../store/comment";
@@ -18,6 +18,8 @@ function PostDetails() {
   const comments = useSelector(state => state.comments);
   const [ hasPrevious, setHasPrevious ] = useState(true);
   const [ hasNext, setHasNext ] = useState(true);
+  const [ nextId, setNextId ] = useState(null);
+  const [ prevId, setPrevId ] = useState(null);
   const [ errors, setErrors ] = useState([]);
 
   useEffect(() => {
@@ -26,26 +28,37 @@ function PostDetails() {
   }, [dispatch, postId]);
 
   useEffect(() => {
-    dispatch(checkPostExists(Number(postId) - 1))
-    .then(() => setHasPrevious(true))
-    .catch(() => setHasPrevious(false));
+    const fetchSongs = async () => {
+        try {
+            const prevSong = await dispatch(checkPreviousPostExists(Number(postId)));
+            setPrevId(prevSong);
+            setHasPrevious(true);
+        } catch (error) {
+            setHasPrevious(false);
+        }
 
-    dispatch(checkPostExists(Number(postId) + 1))
-    .then(() => setHasNext(true))
-    .catch(() => setHasNext(false));
-  }, [dispatch, postId]);
+        try {
+            const nextSong = await dispatch(checkNextPostExists(Number(postId)));
+            setNextId(nextSong);
+            setHasNext(true);
+        } catch (error) {
+            setHasNext(false);
+        }
+    };
+    fetchSongs();
+}, [dispatch, postId]);
 
-  const handleNavigate = (num) => {
-    const newId = Number(postId) + num;
-    history.push(`/posts/${newId}`);
+  const handlePreviousNavigate = (prevId) => {
+    history.push(`/posts/${prevId}`);
   };
 
-  const handleNextSong = () => {
-    const nextId = Number(postId) + 1;
-    dispatch(checkPostExists(nextId))
-    .then(() => history.push(`/posts/${nextId}`))
-    .catch(() => history.push(`/posts`));
-  };
+  const handleNextNavigate = (nextId) => {
+    history.push(`/posts/${nextId}`);
+  }
+
+  const handleHomeNavigate = () => {
+    history.push(`/posts`);
+  }
 
   const hasCommented = () => {
     let hasCommented = false;
@@ -59,7 +72,6 @@ function PostDetails() {
   const handleAddComment = async (comment) => {
     const newComment = await dispatch(fetchCreateComment(comment, postId));
     if(newComment.errors) {
-      console.log('errrror', newComment.errors)
       setErrors(newComment.errors);
     };
     if(newComment && !newComment.errors) {
@@ -91,10 +103,10 @@ function PostDetails() {
         autoPlay={true}
         volume={0.5}
         showSkipControls={false}
-        onEnded={handleNextSong}
+        onEnded={hasNext ? () => handleNextNavigate(nextId) : handleHomeNavigate}
         />
-        {hasPrevious && <i class="fa-solid fa-chevron-left onespot-previous" onClick={() => handleNavigate(-1)}></i>}
-        {hasNext && <i class="fa-solid fa-chevron-right onespot-next" onClick={() => handleNavigate(1)}></i>}
+        {hasPrevious && <i class="fa-solid fa-chevron-left onespot-previous" onClick={() => handlePreviousNavigate(prevId)}></i>}
+        {hasNext && <i class="fa-solid fa-chevron-right onespot-next" onClick={() => handleNextNavigate(nextId)}></i>}
       </div>
       <div id="onepost-detailscontainer">
         <img className="defaultuser-image" onClick={(e) => handleProfileClick(e, post)} src="https://i.ibb.co/nRLSXSX/Default-pfp-svg.png" alt=""></img>
