@@ -19,7 +19,7 @@
 #onepost-comment-header {
   text-align: center;
   margin-top: 80px;
-  margin-bottom: 14px;
+  margin-bottom: 1.6vh;
 }
 
 
@@ -45,8 +45,8 @@
 }
 
 .fa-ellipsis-vertical {
-  font-size: 14px;
-  color: rgb(107, 107, 107);
+  font-size: 17px;
+  color: #a1a1a1;
 }
 
 .onecomment-dropdown-container {
@@ -90,10 +90,12 @@
 
 #onecomment-userinfo {
   display: flex;
+  width: 85%;
+  box-sizing: border-box;
+  word-wrap: break-word;
   flex-direction: column;
   justify-content: center;
   column-gap: 6px;
-  /* border: 1px solid blue; */
   height: 100%;
   /* margin-top: 8px; */
 }
@@ -112,7 +114,7 @@
 }
 
 #comment-content {
-  font-size: 13.5px;
+  font-size: 13px;
 }
 
 #comment-date {
@@ -125,7 +127,8 @@
   display: flex;
   align-items: center;
   column-gap: 6px;
-  margin-bottom: 3px;
+  margin-bottom: 0.5vh;
+  position: relative;
 }
 
 /* ADD COMMENT CSS */
@@ -137,12 +140,13 @@
   column-gap: 14px;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 textarea {
   resize: none;
   height: 42px;
-  width: 300px;
+  width: 360px;
   border: 1px solid rgba(231, 231, 231, 0.83);
 }
 
@@ -172,4 +176,18 @@ textarea {
   cursor: pointer;
   background-color: #4b4b50ec;
   border: 1px solid #4b4b50ec;
+}
+
+.newcomment-errors-text {
+  font-size: 9.5px;
+  color: rgb(220, 2, 2);
+  text-align: center;
+
+}
+
+.updatedcomment-errors-text {
+  position: absolute;
+  font-size: 9.5px;
+  color: rgb(220, 2, 2);
+  right: 80px;
 }

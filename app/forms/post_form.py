@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, FileField, SubmitField
-from wtforms.validators import DataRequired, Length, ValidationError
+from wtforms.validators import DataRequired, ValidationError
 from flask_wtf.file import FileAllowed, FileRequired
 
 def length_range(min=-1, max=-1):

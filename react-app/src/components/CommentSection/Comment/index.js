@@ -12,6 +12,7 @@ function Comment({ comment, user }) {
   const history = useHistory();
   const [ dropdownOpen, setDropdownOpen ] = useState(false);
   const [ editMode, setEditMode ] = useState(false);
+  const [ errors, setErrors ] = useState([]);
   const dropdownRef = useRef(null);
   const commentId = comment.id;
 
@@ -29,9 +30,15 @@ function Comment({ comment, user }) {
 
   const handleEditComment = async (comment) => {
     const updatedComment = await dispatch(fetchUpdateComment(comment, commentId));
-    if(updatedComment) {
+    if(updatedComment.errors) {
+      setErrors(updatedComment.errors);
       toggleEditMode();
-      toggleDropdown()
+    };
+
+    if(updatedComment && !updatedComment.errors) {
+      setErrors([]);
+      toggleEditMode();
+      toggleDropdown();
     }
   };
 
@@ -47,9 +54,7 @@ function Comment({ comment, user }) {
     const date = new Date(commentDate);
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-
     const timeDifference = today - date;
-
     const dayDifference = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
     return dayDifference;
   };
@@ -87,6 +92,7 @@ function Comment({ comment, user }) {
           <div id='comment-user-date'>
             <p id='comment-username' onClick={(e) => handleProfileClick(e, comment)}>@{comment?.User?.username}</p>
             <p id='comment-date'>{calculateDaysAgo(comment.createdAt)}d</p>
+            {errors && errors.content && <p className="updatedcomment-errors-text">{errors.content}</p>}
           </div>
           <p id='comment-content'>{comment.content}</p>
         </div>

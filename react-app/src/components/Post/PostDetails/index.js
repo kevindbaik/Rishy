@@ -16,8 +16,9 @@ function PostDetails() {
   const user = useSelector(state => state.session.user);
   const post = useSelector(state => state.posts.onePost);
   const comments = useSelector(state => state.comments);
-  const [hasPrevious, setHasPrevious] = useState(true);
-  const [hasNext, setHasNext] = useState(true);
+  const [ hasPrevious, setHasPrevious ] = useState(true);
+  const [ hasNext, setHasNext ] = useState(true);
+  const [ errors, setErrors ] = useState([]);
 
   useEffect(() => {
     dispatch(fetchOnePost(postId));
@@ -56,10 +57,15 @@ function PostDetails() {
   };
 
   const handleAddComment = async (comment) => {
-    const newComment = await dispatch(fetchCreateComment(comment, postId))
-    if(newComment) {
-      dispatch(fetchLoadComments(postId))
-    }
+    const newComment = await dispatch(fetchCreateComment(comment, postId));
+    if(newComment.errors) {
+      console.log('errrror', newComment.errors)
+      setErrors(newComment.errors);
+    };
+    if(newComment && !newComment.errors) {
+      setErrors([]);
+      dispatch(fetchLoadComments(postId));
+    };
   };
 
   const handleFollow = (e) => {
@@ -72,8 +78,8 @@ function PostDetails() {
     history.push(`/users/${post.userId}/posts`)
   };
 
-  if(!post || !comments) return null
-  console.log(post, post.userId)
+  if(!post || !comments) return null;
+
   return(
     <div className="onepost-container">
       <div className='onepost-mediacontainer'>
@@ -100,14 +106,14 @@ function PostDetails() {
           }
           </div>
           <div id='onepost-caption-container'>
-          <p id='onepost-caption'>{post.caption}</p>
+            <p id='onepost-caption'>{post.caption}</p>
           </div>
           <div id='onepost-poststats-container'>
             <i className="fa-sharp fa-regular fa-eye poststats-icons">
-              <p>{Math.floor(Math.random() * 500) + 1000}</p>
+              {/* <p>{Math.floor(Math.random() * 500) + 1000}</p> */}
             </i>
             <i className="fa-regular fa-heart poststats-icons">
-              <p>{Math.floor(Math.random() * 500) + 100}</p>
+              {/* <p>{Math.floor(Math.random() * 500) + 100}</p> */}
             </i>
             <i className={user && hasCommented() ? "fa-solid fa-comment poststats-icons" : "fa-sharp fa-regular fa-comment poststats-icons"}>
               <p className="poststats-commentcount">{Object.values(comments).length}</p>
@@ -119,9 +125,10 @@ function PostDetails() {
         </div>
       </div>
       <h4 id='onepost-comment-header'>Comments</h4>
+      {errors.content && <p className="newcomment-errors-text">{errors.content}</p>}
       <div className="addcomment-container">
-      {user && !hasCommented() && post.userId !== user.id && <img className="defaultuser-image-comment" src="https://i.ibb.co/nRLSXSX/Default-pfp-svg.png" alt=""></img>}
-      {user && !hasCommented() && post.userId !== user.id && <AddComment onSubmit={handleAddComment}/>}
+        {user && !hasCommented() && post.userId !== user.id && <img className="defaultuser-image-comment" src="https://i.ibb.co/nRLSXSX/Default-pfp-svg.png" alt=""></img>}
+        {user && !hasCommented() && post.userId !== user.id && <AddComment onSubmit={handleAddComment}/>}
       </div>
       <CommentSection comments={comments} user={user} post={post}/>
     </div>

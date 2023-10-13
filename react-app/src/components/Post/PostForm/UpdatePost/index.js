@@ -44,7 +44,8 @@ function UpdatePostForm({ post }) {
       setLoading(false);
     };
 
-    if(updatedPost) {
+    if(updatedPost && !updatedPost.errors) {
+      setErrors([]);
       dispatch(fetchOnePost(updatedPost.id));
       closeModal();
       history.push(`/posts/${updatedPost.id}`);
