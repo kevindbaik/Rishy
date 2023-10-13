@@ -12,6 +12,7 @@
   box-sizing: border-box;
   max-width: 1250px;
   margin: 10px auto;
+  margin-bottom: 28vh;
   columns: 4;
   column-gap: 6px;
 }

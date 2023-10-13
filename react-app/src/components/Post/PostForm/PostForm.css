@@ -105,12 +105,12 @@
 }
 
 #showSongUpload {
-  margin-top: 10px;
+  margin-top: 1.5vh;
   font-size: 10px;
 }
 
 #postform-submit-button {
-  margin-top: 10px;
+  margin-top: 0.4vh;
   align-self: center;
   font-size: 13px;
   background-color: #333336;
@@ -140,4 +140,16 @@
 .loading-text {
   margin: 0;
   margin-bottom: 10px;
+}
+
+.postform-mp3generator {
+  margin: 0;
+  margin-bottom: 1.2vh;
+  font-size: 12px;
+  text-decoration: none;
+  color: rgb(113, 113, 113);
+}
+
+.postform-mp3generator:hover {
+  text-decoration: underline;
 }

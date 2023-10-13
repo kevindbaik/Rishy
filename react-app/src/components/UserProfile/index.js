@@ -20,7 +20,7 @@ function UserProfile() {
   if(!user || !userPosts) return null;
 
   return(
-    <>
+    <div id="userprofile-wrap">
       <div id='userprofile-container'>
         <div id='userprofile-userinfo-container'>
         <img className="userprofile-profileimage" src="https://i.ibb.co/nRLSXSX/Default-pfp-svg.png" alt=""></img>
@@ -45,7 +45,7 @@ function UserProfile() {
           <UserPost userPost={userPost} sessionUser={sessionUser}/>
         ))}
       </div>
-    </>
+    </div>
   )
 }
 

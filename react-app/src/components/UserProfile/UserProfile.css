@@ -1,3 +1,7 @@
+#userprofile-wrap {
+  margin-bottom: 30vh;
+}
+
 #userprofile-container {
   display: flex;
   flex-direction: column;

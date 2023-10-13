@@ -46,6 +46,7 @@
 
 .onepost-container {
   position: relative;
+  margin-bottom: 25vh;
 }
 
 .onepost-mediacontainer {
@@ -121,6 +122,8 @@
 #onepost-caption-container {
   width: 400px;
   height: 60px;
+  box-sizing: border-box;
+  word-wrap: break-word;
 }
 
 .onespot-previous {
@@ -188,6 +191,7 @@
 }
 
 #follow-button {
+  display: none;
   font-size: 11px;
   background-color: #333333;
   color: white;
