@@ -12,13 +12,14 @@ class Post(db.Model):
   song_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('songs.id')), nullable=False)
   photo_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('photos.id')), nullable=False)
   caption = db.Column(db.String(120), nullable=False)
-  created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
-  updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
+  created_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
+  updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
 
   user = db.relationship("User", back_populates="posts")
   song = db.relationship("Song", back_populates="posts")
   photo = db.relationship("Photo", back_populates="posts")
   comments = db.relationship("Comment", back_populates="post", cascade='all, delete')
+  playlists = db.relationship("Playlist", secondary='playlist_posts', back_populates="posts")
 
   def to_dict(self):
         return {
