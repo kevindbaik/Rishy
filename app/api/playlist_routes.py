@@ -1,11 +1,26 @@
 from flask import Blueprint, request, jsonify
 from flask_login import login_required, current_user
 from ..api.auth_routes import validation_errors_to_error_messages
-from ..models import db, Post, Song, Photo, Comment, User, Playlist
+from ..models import db, Post, Playlist
+from ..forms import PlaylistForm
 
 playlist_routes = Blueprint("playlists", __name__)
 
-@playlist_routes.route("/<int:playlistId>", methods=["POST"])
+@playlist_routes.route("/<int:playlistId/new", method=["POST"])
+@login_required
+def create_playlist():
+  """
+  CREATE A NEW PLAYLIST
+  """
+  form = PlaylistForm()
+  form['csrf_token'].data = request.cookies['csrf_token']
+  if form.validate_on_submit():
+    new_playlist = Playlist(user_id=current_user.id, name=form.data['name'], private=form.data['private'])
+    db.session.add(new_playlist)
+    db.session.commit()
+    return jsonify(new_playlist.to_dict())
+
+@playlist_routes.route("/<int:playlistId>/add", methods=["POST"])
 @login_required
 def add_post_to_playlist(playlistId):
   """
