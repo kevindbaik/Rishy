@@ -1,6 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 
-playlist_post = db.Table(
+playlist_posts = db.Table(
   "playlist_posts",
 
   db.Column(
@@ -19,4 +19,4 @@ playlist_post = db.Table(
 )
 
 if environment == "production":
-  playlist_post.schema = SCHEMA
+  playlist_posts.schema = SCHEMA
