@@ -56,8 +56,7 @@ def delete_playlist(playlistId):
 
   db.session.delete(deleted_playlist)
   db.session.commit()
-
-  return {'message': 'playlist successfully deleted'}, 200
+  return {'success': 'playlist successfully deleted'}, 200
 
 @playlist_routes.route("/<int:playlistId>/add", methods=["POST"])
 @login_required
@@ -65,7 +64,10 @@ def add_post_to_playlist(playlistId):
   """
   ADD A POST TO A PLAYLIST
   """
+  if request.json is None or "postId" not in request.json:
+    return jsonify({'error': 'Invalid request format'}), 400
   post_id = request.json.get('postId')
+
   if not post_id:
     return jsonify({'error' : 'no post ID provided'}), 400
 
@@ -83,3 +85,25 @@ def add_post_to_playlist(playlistId):
     return jsonify({'success' : 'post added to playlist'}), 200
   else:
     return jsonify({'error' : 'post already in playlist'}), 400
+
+@playlist_routes.route("/<int:playlistId>/posts/<int:post_id>", methods=["DELETE"])
+@login_required
+def remove_post_from_playlist(playlistId, post_id):
+    """
+    REMOVE A POST FROM A PLAYLIST
+    """
+
+    playlist = Playlist.query.get(playlistId)
+    post = Post.query.get(post_id)
+    if not playlist or not post:
+        return jsonify({'error': 'invalid playlist or post ID'}), 404
+
+    if playlist.user_id != current_user.id:
+        return jsonify({'error': 'playlist does not belong to user'}), 403
+
+    if post in playlist.posts:
+        playlist.posts.remove(post)
+        db.session.commit()
+        return jsonify({'success': 'post removed from playlist'}), 200
+    else:
+        return jsonify({'error': 'post not found in playlist'}), 404
