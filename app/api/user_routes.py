@@ -50,7 +50,7 @@ def get_user_playlists(id):
     if not existing_user:
         return {'errors' : 'User not found.'}, 404
 
-    user_playlists = Playlist.query.filter_by(user_id=id).all()
+    user_playlists = existing_user.playlists
 
     user_playlists_dict = {}
     for playlist in user_playlists:
