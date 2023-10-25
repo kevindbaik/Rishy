@@ -10,6 +10,7 @@ import home from "../../images/home.svg"
 function Home() {
   const dispatch = useDispatch();
   const posts = useSelector(state => state.posts.allPosts);
+  const currUser = useSelector(state => state.session.user);
   const { currentView, setCurrentView } = useViewContext();
 
   useEffect(() => {
@@ -49,7 +50,7 @@ function Home() {
        ))}
      </div>}
       {currentView === 'playlist' && <div id='home-playlist-container'>
-      <PlaylistPage />
+      <PlaylistPage currUser={currUser} />
       </div>}
     </div>
   )

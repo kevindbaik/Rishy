@@ -25,4 +25,5 @@ class Playlist(db.Model):
         'private' : self.private,
         'createdAt': self.created_at.strftime('%B %d, %Y'),
         'updatedAt': self.updated_at.strftime('%B %d, %Y'),
+        "posts" : [post.to_dict() for post in self.posts]
     }

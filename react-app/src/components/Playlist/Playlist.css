@@ -1,0 +1,11 @@
+#allplaylist-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 20px;
+}
+
+.allplaylist-image {
+  width: 400px;
+  height: 350px;
+  object-fit: cover;
+}

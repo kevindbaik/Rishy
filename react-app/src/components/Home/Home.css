@@ -124,6 +124,13 @@
   margin-left: 7px;
 }
 
+#home-playlist-container {
+  /* border: 1px solid blue; */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
 @media (max-width: 1400px) {
   #home-container {
     width: calc(100% - 40px);

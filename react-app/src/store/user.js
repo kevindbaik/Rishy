@@ -1,6 +1,7 @@
 export const LOAD_USER = '/users/LOAD_USER';
 export const LOAD_USER_POSTS = '/users/LOAD_USER_POSTS';
 export const DELETE_USER_POST = 'posts/DELETE_USER_POST';
+export const LOAD_USER_PLAYLISTS = '/users/LOAD_USER_PLAYLISTS';
 
 export const loadUser = (user) => {
   return {
@@ -23,6 +24,14 @@ export const deleteUserPost = postId => {
   }
 };
 
+export const loadUserPlaylists = (playlists) => {
+  return {
+    type: LOAD_USER_PLAYLISTS,
+    playlists
+  }
+};
+
+
 export const fetchUser = (userId) => async(dispatch) => {
   const response = await fetch(`/api/users/${userId}`);
 
@@ -34,7 +43,7 @@ export const fetchUser = (userId) => async(dispatch) => {
     const errors = await response.json();
     return errors;
   }
-}
+};
 
 export const fetchUserPosts = (userId) => async(dispatch) => {
   const response = await fetch(`/api/users/${userId}/posts`);
@@ -63,7 +72,21 @@ export const fetchDeleteUserPost = (postId) => async(dispatch) => {
   }
 };
 
-const initialState = { User: {}, UserPosts: {}};
+export const fetchUserPlaylists = (userId) => async(dispatch) => {
+  const response = await fetch(`/api/users/${userId}/playlists`);
+
+  if(response.ok) {
+    const data = await response.json();
+    console.log('ddddd', data)
+    dispatch(loadUserPlaylists(data));
+    return data;
+  } else {
+    const errors = await response.json();
+    return errors;
+  };
+};
+
+const initialState = { User: {}, UserPosts: {}, UserPlaylists: {}};
 const userReducer = (state = initialState, action) => {
   let newState;
   switch(action.type) {
@@ -74,10 +97,11 @@ const userReducer = (state = initialState, action) => {
       newState = { ...state, UserPosts : {...action.posts}};
       return newState;
     case DELETE_USER_POST:
-      console.log('state', state)
       newState = { ...state, UserPosts: {...state.UserPosts} };
-      console.log('ns', newState)
       delete newState.UserPosts[action.postId];
+      return newState;
+    case LOAD_USER_PLAYLISTS:
+      newState = { ...state, UserPlaylists : {...action.playlists}};
       return newState;
     default:
       return state;
