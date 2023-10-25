@@ -1,3 +1,48 @@
+<!--!!START SILENT -->
+# Seedbnb
+<!--!!END -->
+<!--!!ADD -->
+<!-- # `<name of application here>` -->
+## Intro
+Rishy is a music sharing social media platform where users can post songs they're currently listening to, along with an image that encapsulates their present feelings. Currently, users can create, update, and delete posts for their own profile, they can also CRUD comments as well as create playlists for themselves to share to others.
+
+https://api-project-rxoj.onrender.com/
+
+## Technologies Used
+Backend: Flask, SQLAlchemy
+
+Frontend: React, Redux
+
+Database: PostgreSQL
+
+Deployment: Render
+
+## Landing Page
+![alt text](./react-app/src/images/landingpage.png)
+
+## Home Page
+![alt text](./react-app/src/images/homepage.png)
+
+## Post Page
+![alt text](./react-app/src/images/postpage.png)
+
+## Profile Page
+![alt text](./react-app/src/images/profilepage.png)
+
+## Next Features (In Progress)
+- Users will be able to follow other users and have a dedicated post feed for only their followings.
+- Users will be able to create tags on posts, and have a recommended feed based on preferences they set for themselves.
+<!--!!END_ADD -->
+
+## Database Schema Design
+
+<!--!!START SILENT -->
+<!--!!ADD -->
+<!-- `<insert database schema design here>` -->
+[db-schema]: ./react-app/src/images/schema.png
+<!--!!END_ADD -->
+
+
 # Flask React Project
 
 This is the starter for the Flask React project.
