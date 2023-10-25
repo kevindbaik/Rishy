@@ -10,7 +10,7 @@ def seed_posts():
     user_id=1,
     song_id=1,
     photo_id=1,
-    caption="I was searching for calm morning music, and this is what I found. Been listening to it all day now. Such a pleasant song!",
+    caption="I was searching for something chill, and I found this!",
     created_at=current_date,
     updated_at=current_date
     ),

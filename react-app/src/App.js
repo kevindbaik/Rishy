@@ -9,6 +9,7 @@ import LandingPage from "./components/LandingPage";
 import Home from './components/Home'
 import PostDetails from "./components/Post/PostDetails";
 import UserProfile from "./components/UserProfile";
+// import PlaylistPage from "./components/Playlist";
 import Footer from "./components/Footer";
 import './index.css';
 
@@ -34,6 +35,9 @@ function App() {
           <Route exact path='/users/:userId/posts'>
             <UserProfile />
           </Route>
+          {/* <Route exact path='/playlists'>
+            <PlaylistPage />
+          </Route> */}
           <Route path="/login" >
             <LoginFormPage />
           </Route>
