@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from 'react-router-dom';
 import { fetchAllPosts } from "../../store/post";
 import Post from "../Post";
 import PlaylistPage from "../Playlist/index.js";
@@ -12,6 +13,7 @@ function Home() {
   const posts = useSelector(state => state.posts.allPosts);
   const currUser = useSelector(state => state.session.user);
   const { currentView, setCurrentView } = useViewContext();
+
 
   useEffect(() => {
     dispatch(fetchAllPosts());
@@ -27,7 +29,7 @@ function Home() {
   };
 
   if(!posts || Object.values(posts).length === 0) return null
-
+  if (!currUser) return <Redirect to="/" />;
   return (
     <div id="home-wrap">
       <div id="home-sidebar">
