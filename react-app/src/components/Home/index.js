@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllPosts } from "../../store/post";
 import Post from "../Post";
-import PlaylistPage from "../Playlist/index.js"
-import "./Home.css"
+import PlaylistPage from "../Playlist/index.js";
+import { useViewContext } from '../../context/HomeView'
+import "./Home.css";
 import home from "../../images/home.svg"
 
 function Home() {
   const dispatch = useDispatch();
   const posts = useSelector(state => state.posts.allPosts);
-  const [currentView, setCurrentView] = useState('home');
+  const { currentView, setCurrentView } = useViewContext();
 
   useEffect(() => {
     dispatch(fetchAllPosts());
