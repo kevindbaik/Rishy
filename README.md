@@ -6,7 +6,7 @@
 ## Intro
 Rishy is a music sharing social media platform where users can post songs they're currently listening to, along with an image that encapsulates their present feelings. Currently, users can create, update, and delete posts for their own profile, they can also CRUD comments as well as create playlists for themselves to share to others.
 
-https://api-project-rxoj.onrender.com/
+https://rishy.onrender.com/
 
 ## Technologies Used
 Backend: Flask, SQLAlchemy
