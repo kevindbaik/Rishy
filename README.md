@@ -1,5 +1,5 @@
 <!--!!START SILENT -->
-# Seedbnb
+# Rishy
 <!--!!END -->
 <!--!!ADD -->
 <!-- # `<name of application here>` -->
