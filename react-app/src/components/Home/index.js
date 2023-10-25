@@ -35,10 +35,10 @@ function Home() {
           <img className="home-logo" src={home}></img>
           <p>home</p>
         </div>
-        <div div className="sidebar-tile">
+        {/* <div div className="sidebar-tile">
           <i className="fa-regular fa-user"></i>
           <p>following</p>
-        </div>
+        </div> */}
         <div div className="sidebar-tile" onClick={handlePlaylistNavigate}>
           <i className="fa-regular fa-circle-play"></i>
           <p>playlists</p>

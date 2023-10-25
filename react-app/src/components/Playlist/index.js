@@ -18,7 +18,7 @@ function PlaylistPage({ currUser }) {
   console.log('wwooooo', playlists)
   return (
     <>
-      <h3>Manage Your Playlists</h3>
+      <h3>Manage Your Playlists ({Object.values(playlists).length})</h3>
       <div id='allplaylist-container'>
         {Object.values(playlists).map((playlist) => (
           <OpenModalDiv
