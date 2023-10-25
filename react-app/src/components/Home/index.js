@@ -1,26 +1,55 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllPosts } from "../../store/post";
 import Post from "../Post";
+import PlaylistPage from "../Playlist/index.js"
 import "./Home.css"
+import home from "../../images/home.svg"
 
 function Home() {
   const dispatch = useDispatch();
   const posts = useSelector(state => state.posts.allPosts);
+  const [currentView, setCurrentView] = useState('home');
 
   useEffect(() => {
-    dispatch(fetchAllPosts())
+    dispatch(fetchAllPosts());
+    setCurrentView('home');
   }, [dispatch]);
+
+  const handleHomeNavigate = (e) => {
+    setCurrentView('home');
+  };
+
+  const handlePlaylistNavigate = (e) => {
+    setCurrentView('playlist');
+  };
 
   if(!posts || Object.values(posts).length === 0) return null
 
   return (
-    <div>
-      <div id="home-container">
-        {Object.values(posts).map((post) => (
-          <Post post={post} showManageButton={false}/>
-        ))}
+    <div id="home-wrap">
+      <div id="home-sidebar">
+        <div className="sidebar-tile" onClick={handleHomeNavigate}>
+          <img className="home-logo" src={home}></img>
+          <p>home</p>
+        </div>
+        <div div className="sidebar-tile">
+          <i className="fa-regular fa-user"></i>
+          <p>following</p>
+        </div>
+        <div div className="sidebar-tile" onClick={handlePlaylistNavigate}>
+          <i className="fa-regular fa-circle-play"></i>
+          <p>playlists</p>
+        </div>
       </div>
+      {currentView === 'home' && <div id="home-post-container">
+       {Object.values(posts).map((post) => (
+         <Post post={post} showManageButton={false}/>
+       ))}
+     </div>}
+      {currentView === 'playlist' && <div id='home-playlist-container'>
+      <PlaylistPage />
+      </div>}
     </div>
   )
 }
