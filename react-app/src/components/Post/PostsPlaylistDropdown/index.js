@@ -42,8 +42,11 @@ function PostPlaylistDropdown({ post, user, playlists }) {
     setOpen(false);
   };
 
-  if(!post) return null
   const checkPostInPlaylist = (post, playlistId) => {
+    if(!post || !post.playlist) {
+      return false
+    };
+
     const postPlaylistIds = Object.values(post?.playlists).map(postPlaylist => postPlaylist.id);
     return postPlaylistIds.includes(playlistId);
   };
