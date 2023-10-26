@@ -29,7 +29,7 @@ function Home() {
   };
 
   if(!posts || Object.values(posts).length === 0) return null
-  if (!currUser) return <Redirect to="/" />;
+
   return (
     <div id="home-wrap">
       <div id="home-sidebar">
