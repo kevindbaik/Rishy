@@ -102,6 +102,20 @@ export const fetchCreateUserPlaylist = (data, userId) => async(dispatch) => {
     const errors = await response.json();
     return errors;
   }
+};
+
+export const fetchDeleteUserPlaylist = (playlistId, userId) => async(dispatch) => {
+  const response = await fetch(`/api/playlists/${playlistId}`, {
+    method: "DELETE"
+  });
+
+  if(response.ok) {
+    const data = await response.json();
+    dispatch(fetchUserPlaylists(userId));
+  } else {
+    const errors = await response.json();
+    return errors;
+  }
 }
 
 const initialState = { User: {}, UserPosts: {}, UserPlaylists: {}};

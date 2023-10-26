@@ -6,6 +6,7 @@ import OpenModalDiv from './OpenModalDiv';
 import OpenModalButton from '../OpenModalButton';
 import { useModal } from '../../context/Modal';
 import PlaylistForm from './PlaylistForm';
+import PlaylistDelete from './PlaylistDelete';
 import './Playlist.css'
 
 function PlaylistPage({ currUser }) {
@@ -35,17 +36,21 @@ function PlaylistPage({ currUser }) {
       </div>
       <div id='allplaylist-container'>
         {Object.values(playlists).map((playlist) => (
-          <OpenModalDiv
-          modalComponent={<PlaylistModal playlist={playlist} />}
-          >
-            <div key={playlist.id}>
-              <img className='allplaylist-image' src={playlist.posts[0]?.photoUrl}></img>
-              <p>{playlist.name}</p>
-              {playlist.private ? <i class="fa-solid fa-lock"></i> : <i class="fa-solid fa-unlock"></i>}
-              <p>{playlist.posts.length} posts</p>
-              <p>{playlist.updatedAt}</p>
-            </div>
-          </OpenModalDiv>
+          <>
+            <OpenModalDiv
+            modalComponent={<PlaylistModal playlist={playlist} />}
+            >
+              <div key={playlist.id}>
+                <img className='allplaylist-image' src={playlist.posts[0]?.photoUrl}></img>
+                <p>{playlist.name}</p>
+                {playlist.private ? <i class="fa-solid fa-lock"></i> : <i class="fa-solid fa-unlock"></i>}
+                <p>{playlist.posts.length} posts</p>
+                <p>{playlist.updatedAt}</p>
+              </div>
+            </OpenModalDiv>
+            <OpenModalButton buttonText="Delete"
+            modalComponent={<PlaylistDelete playlist={playlist} currUser={currUser}/>}/>
+          </>
         ))}
       </div>
     </>
