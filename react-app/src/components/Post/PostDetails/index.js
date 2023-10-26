@@ -8,6 +8,9 @@ import './PostDetails.css';
 import CommentSection from "../../CommentSection";
 import { fetchCreateComment, fetchLoadComments } from "../../../store/comment";
 import AddComment from "../../CommentSection/AddComment";
+import OpenModalDiv from "../OpenModalDiv";
+import { fetchUserPlaylists } from "../../../store/user";
+import PostPlaylistDropdown from "../PostsPlaylistDropdown";
 
 function PostDetails() {
   const dispatch = useDispatch();
@@ -16,6 +19,7 @@ function PostDetails() {
   const user = useSelector(state => state.session.user);
   const post = useSelector(state => state.posts.onePost);
   const comments = useSelector(state => state.comments);
+  const playlists = useSelector(state => state.user.UserPlaylists);
   const [ hasPrevious, setHasPrevious ] = useState(true);
   const [ hasNext, setHasNext ] = useState(true);
   const [ nextId, setNextId ] = useState(null);
@@ -24,8 +28,12 @@ function PostDetails() {
 
   useEffect(() => {
     dispatch(fetchOnePost(postId));
-    dispatch(fetchLoadComments(postId))
+    dispatch(fetchLoadComments(postId));
   }, [dispatch, postId]);
+
+  useEffect(() => {
+    dispatch(fetchUserPlaylists(user.id))
+  }, [dispatch, user.id])
 
   useEffect(() => {
     const fetchSongs = async () => {
@@ -91,7 +99,8 @@ function PostDetails() {
   };
 
   if(!post || !comments) return null;
-
+  console.log('ppppp', post)
+  console.log('USSSSER_PLAYLISY!!!!', playlists)
   return(
     <div className="onepost-container">
       <div className='onepost-mediacontainer'>
@@ -133,6 +142,7 @@ function PostDetails() {
             </div>
           <div id='onepost-postdate-container'>
             <p className="onepost-postdate">Updated on {post.createdAt}</p>
+            <PostPlaylistDropdown post={post} user={user} playlists={playlists}/>
           </div>
         </div>
       </div>

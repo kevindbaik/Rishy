@@ -14,7 +14,7 @@ function PlaylistForm ({ onSubmit }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(formValues)
+    onSubmit(formValues);
   };
 
   return (

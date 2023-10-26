@@ -116,6 +116,44 @@ export const fetchDeleteUserPlaylist = (playlistId, userId) => async(dispatch) =
     const errors = await response.json();
     return errors;
   }
+};
+
+export const fetchAddPostToPlaylist = (playlistId, postId, userId) => async(dispatch) => {
+  const response = await fetch(`/api/playlists/${playlistId}/add`, {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      postId: postId
+    })
+  });
+
+  if(response.ok) {
+    const data = await response.json();
+    dispatch(fetchUserPlaylists(userId));
+    return data;
+  } else {
+    const errors = await response.json();
+    return errors;
+  };
+};
+
+export const fetchRemovePostFromPlaylist = (playlistId, postId, userId) => async(dispatch) => {
+  console.log('xxxxxx')
+  const response = await fetch(`/api/playlists/${playlistId}/posts/${postId}`, {
+    method: "DELETE"
+  });
+
+  console.log('rrrrr', response)
+  if(response.ok) {
+    const data = await response.json();
+    dispatch(fetchUserPlaylists(userId));
+    return data;
+  } else {
+    const errors = await response.json();
+    return errors;
+  }
 }
 
 const initialState = { User: {}, UserPosts: {}, UserPlaylists: {}};
