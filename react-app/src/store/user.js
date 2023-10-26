@@ -140,12 +140,10 @@ export const fetchAddPostToPlaylist = (playlistId, postId, userId) => async(disp
 };
 
 export const fetchRemovePostFromPlaylist = (playlistId, postId, userId) => async(dispatch) => {
-  console.log('xxxxxx')
   const response = await fetch(`/api/playlists/${playlistId}/posts/${postId}`, {
     method: "DELETE"
   });
 
-  console.log('rrrrr', response)
   if(response.ok) {
     const data = await response.json();
     dispatch(fetchUserPlaylists(userId));

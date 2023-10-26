@@ -38,7 +38,7 @@ function PlaylistPage({ currUser }) {
         {Object.values(playlists).map((playlist) => (
           <>
             <OpenModalDiv
-            modalComponent={<PlaylistModal playlist={playlist} />}
+            modalComponent={<PlaylistModal playlist={playlist} currUser={currUser}/>}
             >
               <div key={playlist.id}>
                 <img className='allplaylist-image' src={playlist.posts[0]?.photoUrl}></img>
