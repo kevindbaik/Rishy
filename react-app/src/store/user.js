@@ -77,7 +77,6 @@ export const fetchUserPlaylists = (userId) => async(dispatch) => {
 
   if(response.ok) {
     const data = await response.json();
-    console.log('ddddd', data)
     dispatch(loadUserPlaylists(data));
     return data;
   } else {
@@ -85,6 +84,25 @@ export const fetchUserPlaylists = (userId) => async(dispatch) => {
     return errors;
   };
 };
+
+export const fetchCreateUserPlaylist = (data, userId) => async(dispatch) => {
+  const response = await fetch(`/api/playlists/new`, {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  });
+
+  if(response.ok) {
+    const data = await response.json();
+    dispatch(fetchUserPlaylists(userId))
+    return data;
+  } else {
+    const errors = await response.json();
+    return errors;
+  }
+}
 
 const initialState = { User: {}, UserPosts: {}, UserPlaylists: {}};
 const userReducer = (state = initialState, action) => {
