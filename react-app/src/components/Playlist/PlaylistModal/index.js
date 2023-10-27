@@ -12,12 +12,6 @@ function PlaylistModal({ playlist, currUser, user }) {
   const [currentSong, setCurrentSong] = useState(playlist.posts[0]);
   const currPlaylist = useSelector(state => state.user.UserPlaylists[playlist.id]);
 
-  // useEffect(() => {
-  //   if (currPlaylist && currPlaylist.posts.length > 0) {
-  //     setCurrentSong(playlist.posts[0]);
-  //   }
-  // }, [playlist]);
-
   const handleSongChange = (post) => {
     setCurrentSong(post)
   };
@@ -29,18 +23,26 @@ function PlaylistModal({ playlist, currUser, user }) {
 
     await dispatch(fetchRemovePostFromPlaylist(playlist.id, postId, currUser.id));
   };
-  console.log('user', user)
+
+  const handleNextSong = () => {
+  const currentSongIndex = currPlaylist.posts.findIndex(post => post.id === currentSong.id);
+  const nextSongIndex = (currentSongIndex + 1) % currPlaylist.posts.length;
+  setCurrentSong(currPlaylist.posts[nextSongIndex]);
+  }
+
   return (
     <div id='playlistmodal-container'>
       <div id='playlistmodal-currentpost'>
         <img className="playlistmodal-songimage" src={currentSong.photoUrl}></img>
-        <h3>{currentSong.songTitle} - {currentSong.songArtist}</h3>
+        <p className="currentpost-song">{currentSong.songTitle} - {currentSong.songArtist}</p>
+        <p className="currentpost-creator">posted by: @{currentSong.User.username}</p>
         <AudioPlayer
         className='playlistmodal-audioplayer'
         src={currentSong.songUrl}
-        autoPlay={false}
+        autoPlay={true}
         volume={0.5}
         showSkipControls={false}
+        onEnded={handleNextSong}
         />
        </div>
 
@@ -64,7 +66,7 @@ function PlaylistModal({ playlist, currUser, user }) {
 
        <Box id='playlistmodal-postque' sx={{ maxHeight: 450, overflowY: 'auto' }}>
       {currPlaylist.posts.map((post) => (
-        <div className="playlistmodal-onepost" onClick={() => handleSongChange(post)}>
+        <div className={`playlistmodal-onepost ${currentSong.id === post.id ? 'playlistmodal-onepost-highlighted' : ''}`} onClick={() => handleSongChange(post)}>
           <div className="onepost-playinfo">
             <img className="onepost-previewimg" src={post.photoUrl}></img>
             <div className="preview-playinfo">
@@ -73,7 +75,7 @@ function PlaylistModal({ playlist, currUser, user }) {
             </div>
           </div>
           {currUser && currUser.id === playlist.userId &&
-            <CloseIcon onClick={(e) => handleRemoveFromPlaylist(post.id)} />
+            <CloseIcon style={{ cursor: 'pointer' }} onClick={(e) => handleRemoveFromPlaylist(post.id)} />
           }
         </div>
       ))}
