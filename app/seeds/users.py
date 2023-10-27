@@ -83,6 +83,15 @@ def seed_users():
 
     #25
     User(username="haejilo", password='password', email='haejilo@aa.io', first_name=fake.first_name(), last_name=fake.last_name(), created_at=current_date, updated_at=current_date),
+
+    #26
+    User(username="nick", password='password', email='nick@aa.io', first_name='Nicholas', last_name='Hosman', created_at=current_date, updated_at=current_date),
+
+    #27
+    User(username="huynh", password='password', email='huynh`@aa.io', first_name='Huynh', last_name='Lam', created_at=current_date, updated_at=current_date),
+
+    #28
+    User(username="yi", password='password', email='yi@aa.io', first_name='Yi', last_name='Chen', created_at=current_date, updated_at=current_date),
   ]
 
   db.session.add_all(users)
