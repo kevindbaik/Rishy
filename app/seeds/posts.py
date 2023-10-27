@@ -248,7 +248,7 @@ def seed_posts():
     ),
     Post(
     user_id=27,
-    song_id=27,
+    song_id=32,
     photo_id=32,
     caption="love listening to this at 4 am every night",
     created_at=current_date,
