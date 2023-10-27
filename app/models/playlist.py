@@ -15,7 +15,7 @@ class Playlist(db.Model):
   updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
 
   user = db.relationship("User", back_populates="playlists")
-  posts = db.relationship("Post", secondary="playlist_posts", back_populates='playlists', cascade='all, delete')
+  posts = db.relationship("Post", secondary="playlist_posts", back_populates='playlists')
 
   def to_dict(self):
     return {
@@ -23,7 +23,7 @@ class Playlist(db.Model):
         'userId' : self.user_id,
         'name' : self.name,
         'private' : self.private,
-        'createdAt': self.created_at.strftime('%B %d, %Y'),
-        'updatedAt': self.updated_at.strftime('%B %d, %Y'),
+        'createdAt': self.created_at.strftime('%m/%d/%y'),
+        'updatedAt': self.updated_at.strftime('%m/%d/%y'),
         "posts" : [post.to_dict() for post in self.posts]
     }

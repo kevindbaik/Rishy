@@ -55,7 +55,6 @@ export const checkPreviousPostExists = postId => async(dispatch) => {
 
 export const checkNextPostExists = postId => async(dispatch) => {
   const response = await fetch(`/api/posts/check/${postId}/next`);
-  console.log('rrrr', response)
   const data = await response.json();
 
   if(response.ok) {

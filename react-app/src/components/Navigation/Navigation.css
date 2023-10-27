@@ -12,7 +12,7 @@
   justify-content: space-between;
   max-width: 100%;
   margin: auto;
-  background-color: rgb(251, 251, 251);
+  /* background-color: rgb(251, 251, 251); */
 }
 
 .sticky-nav {

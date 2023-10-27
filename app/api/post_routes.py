@@ -30,7 +30,9 @@ def get_post_details(postId):
   if not one_post:
     return {'errors' : {'Post' : 'Post not found'}}, 404
 
-  return jsonify(one_post.to_dict()), 200
+  post_dict = one_post.to_dict()
+  post_dict['playlists'] = [playlist.to_dict() for playlist in one_post.playlists]
+  return jsonify(post_dict), 200
 
 @post_routes.route("/check/<int:postId>/previous", methods=["GET"])
 def check_prev_post(postId):

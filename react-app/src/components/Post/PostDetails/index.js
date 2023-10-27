@@ -1,4 +1,4 @@
-import React, { Children, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from 'react-router-dom';
 import AudioPlayer from 'react-h5-audio-player';
@@ -8,6 +8,8 @@ import './PostDetails.css';
 import CommentSection from "../../CommentSection";
 import { fetchCreateComment, fetchLoadComments } from "../../../store/comment";
 import AddComment from "../../CommentSection/AddComment";
+import { fetchUserPlaylists } from "../../../store/user";
+import PostPlaylistDropdown from "../PostsPlaylistDropdown";
 
 function PostDetails() {
   const dispatch = useDispatch();
@@ -16,6 +18,7 @@ function PostDetails() {
   const user = useSelector(state => state.session.user);
   const post = useSelector(state => state.posts.onePost);
   const comments = useSelector(state => state.comments);
+  const playlists = useSelector(state => state.user.UserPlaylists);
   const [ hasPrevious, setHasPrevious ] = useState(true);
   const [ hasNext, setHasNext ] = useState(true);
   const [ nextId, setNextId ] = useState(null);
@@ -24,8 +27,12 @@ function PostDetails() {
 
   useEffect(() => {
     dispatch(fetchOnePost(postId));
-    dispatch(fetchLoadComments(postId))
+    dispatch(fetchLoadComments(postId));
   }, [dispatch, postId]);
+
+  useEffect(() => {
+    dispatch(fetchUserPlaylists(user.id))
+  }, [dispatch, user.id])
 
   useEffect(() => {
     const fetchSongs = async () => {
@@ -130,6 +137,10 @@ function PostDetails() {
             <i className={user && hasCommented() ? "fa-solid fa-comment poststats-icons" : "fa-sharp fa-regular fa-comment poststats-icons"}>
               <p className="poststats-commentcount">{Object.values(comments).length}</p>
             </i>
+            {post &&
+            <div className="onepost-playlisticon">
+            <PostPlaylistDropdown post={post} user={user} playlists={playlists}/>
+            </div>}
             </div>
           <div id='onepost-postdate-container'>
             <p className="onepost-postdate">Updated on {post.createdAt}</p>
