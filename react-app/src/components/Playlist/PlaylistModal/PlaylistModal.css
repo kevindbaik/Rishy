@@ -29,6 +29,7 @@
   border-radius: 13px;
   width: 100%;
   padding: 15px 20px;
+
 }
 
 #playlistmodal-postque {
@@ -83,7 +84,7 @@
 .playlistmodal-songimage {
   width: 450px;
   height: 350px;
-  /* border: 1px solid rgb(52, 52, 53); */
+
   object-fit: contain;
   margin-top: 20px;
 }

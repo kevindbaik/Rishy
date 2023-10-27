@@ -25,7 +25,7 @@ def seed_users():
     User(username="5spice", password='password', email='5spice@aa.io', first_name=fake.first_name(), last_name=fake.last_name(), created_at=current_date, updated_at=current_date),
 
     #6
-    User(username="kevinbvik", password='password', email='kevinbvik@aa.io', first_name=fake.first_name(), last_name=fake.last_name(), created_at=current_date, updated_at=current_date),
+    User(username="kevinbvik", password='password', email='kevinbvik@aa.io', first_name='Kevin', last_name='Baik', created_at=current_date, updated_at=current_date),
 
     #7
     User(username="Aimalai", password='password', email='aimalai@aa.io', first_name=fake.first_name(), last_name=fake.last_name(), created_at=current_date, updated_at=current_date),
@@ -43,13 +43,13 @@ def seed_users():
     User(username="bronze99", password='password', email='bronze@aa.io', first_name=fake.first_name(), last_name=fake.last_name(), created_at=current_date, updated_at=current_date),
 
     #12
-    User(username="devin444", password='password', email='devin@aa.io', first_name=fake.first_name(), last_name=fake.last_name(), created_at=current_date, updated_at=current_date),
+    User(username="justin444", password='password', email='devin@aa.io', first_name=fake.first_name(), last_name=fake.last_name(), created_at=current_date, updated_at=current_date),
 
     #13
     User(username="Zaywop", password='password', email='zaywop@aa.io', first_name=fake.first_name(), last_name=fake.last_name(), created_at=current_date, updated_at=current_date),
 
     #14
-    User(username="Hublots", password='password', email='hublots@aa.io', first_name=fake.first_name(), last_name=fake.last_name(), created_at=current_date, updated_at=current_date),
+    User(username="hublots", password='password', email='hublots@aa.io', first_name=fake.first_name(), last_name=fake.last_name(), created_at=current_date, updated_at=current_date),
 
     #15
     User(username="pizza_reality", password='password', email='pizza@aa.io', first_name=fake.first_name(), last_name=fake.last_name(), created_at=current_date, updated_at=current_date),
@@ -67,7 +67,7 @@ def seed_users():
     User(username="savannamalk", password='password', email='savannamalk@aa.io', first_name=fake.first_name(), last_name=fake.last_name(), created_at=current_date, updated_at=current_date),
 
     #20
-    User(username="Hibi", password='password', email='hibi@aa.io', first_name=fake.first_name(), last_name=fake.last_name(), created_at=current_date, updated_at=current_date),
+    User(username="Hibito", password='password', email='hibi@aa.io', first_name=fake.first_name(), last_name=fake.last_name(), created_at=current_date, updated_at=current_date),
 
     #21
     User(username="lovekelsie", password='password', email='lovekelsie@aa.io', first_name=fake.first_name(), last_name=fake.last_name(), created_at=current_date, updated_at=current_date),
