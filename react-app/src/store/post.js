@@ -33,7 +33,6 @@ export const fetchOnePost = postId => async(dispatch) => {
 
   if(response.ok) {
     const data = await response.json();
-    console.log(data)
     dispatch(loadOnePost(data));
     return data
   } else {

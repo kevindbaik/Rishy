@@ -17,8 +17,6 @@ function PlaylistDelete({ playlist, currUser }) {
     e.preventDefault();
     closeModal();
   };
-
-  console.log(playlist.id)
   return (
     <div id='commentdelete-container'>
       <h4>Confirm Deletion</h4>
