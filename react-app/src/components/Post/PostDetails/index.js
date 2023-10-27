@@ -98,7 +98,7 @@ function PostDetails() {
   };
 
   if(!post || !comments) return null;
-  console.log('ppp', post)
+
   return(
     <div className="onepost-container">
       <div className='onepost-mediacontainer'>

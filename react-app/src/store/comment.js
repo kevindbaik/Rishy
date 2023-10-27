@@ -61,7 +61,6 @@ export const fetchCreateComment = (comment, postId) => async(dispatch) => {
 };
 
 export const fetchUpdateComment = (comment, commentId) => async(dispatch) => {
-  console.log('xxx', commentId)
   const response = await fetch(`/api/comments/${commentId}`, {
     method: "PUT",
     headers: { 'Content-Type': 'application/json' },
@@ -70,7 +69,6 @@ export const fetchUpdateComment = (comment, commentId) => async(dispatch) => {
 
   if(response.ok) {
     const data = await response.json();
-    console.log('DATA', data)
     dispatch(updateComment(data))
     return data;
   } else {
@@ -101,10 +99,7 @@ const commentReducer = (state = initialState, action) => {
       return newState
     case CREATE_COMMENT:
     case UPDATE_COMMENT:
-      console.log('sss', state)
-      console.log('action', action)
       newState = { ...state, ...action.comment };
-      console.log('s22', newState)
       // newState[action.comment.id] = action.comment;
       return newState
     case DELETE_COMMENT:
