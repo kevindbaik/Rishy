@@ -116,7 +116,7 @@ function PostDetails() {
         {hasNext && <i class="fa-solid fa-chevron-right onespot-next" onClick={() => handleNextNavigate(nextId)}></i>}
       </div>
       <div id="onepost-detailscontainer">
-        <img className="defaultuser-image onepost-creatorimage" onClick={(e) => handleProfileClick(e, post)} src={post && post.User.username === 'kevinbvik' ? "https://i.ibb.co/PjZk9dW/aaaaa.jpg" : "https://i.ibb.co/nRLSXSX/Default-pfp-svg.png"} alt=""></img>
+        <img className="defaultuser-image onepost-creatorimage" onClick={(e) => handleProfileClick(e, post)} src={post && post.User && post.User.username === 'kevinbvik' ? "https://i.ibb.co/PjZk9dW/aaaaa.jpg" : "https://i.ibb.co/nRLSXSX/Default-pfp-svg.png"} alt=""></img>
         <div id='onepost-creatorinfo'>
           <div id='creator-follow-container'>
           <p id='onepost-creator' onClick={(e) => handleProfileClick(e, post)}>{post.User?.username}</p>
