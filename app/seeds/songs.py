@@ -206,11 +206,67 @@ def seed_songs():
       created_at=current_date
     ),
 
-    #26 D
+    #26
     Song(
       song_url="https://rishy-images.s3.us-west-1.amazonaws.com/Songs/Vansire+-+Nice+to+See+You+(ft.+Floor+Cry).mp3",
       title="Nice to See You",
       artist="Vansire",
+      created_at=current_date
+    ),
+
+    #27
+    Song(
+      song_url="https://rishy-images.s3.us-west-1.amazonaws.com/Songs/Edward+40hands.mp3",
+      title="Edward 40hands",
+      artist="Moms Jeans.",
+      created_at=current_date
+    ),
+
+    #28
+    Song(
+      song_url="https://rishy-images.s3.us-west-1.amazonaws.com/Songs/YOKU+-+Eve+MV.mp3",
+      title="YOKU",
+      artist="Eve",
+      created_at=current_date
+    ),
+
+    #29
+    Song(
+      song_url="https://rishy-images.s3.us-west-1.amazonaws.com/Songs/Goth+Babe+-+Weekend+Friend+(Official+Music+Video).mp3",
+      title="Weekend Friend",
+      artist="Goth Babe",
+      created_at=current_date
+    ),
+
+    #30
+    Song(
+      song_url="https://rishy-images.s3.us-west-1.amazonaws.com/Songs/Baby+Keem+-+16+(Official+Audio).mp3",
+      title="16",
+      artist="Baby Keem",
+      created_at=current_date
+    ),
+
+    #31
+    Song(
+      song_url="https://rishy-images.s3.us-west-1.amazonaws.com/Songs/in+love+with+a+ghost++flowers+feat.+nori.mp3",
+      title="flowers ft. nori",
+      artist="in love with a ghost",
+      created_at=current_date
+    ),
+
+    #32
+    Song(
+      song_url="https://rishy-images.s3.us-west-1.amazonaws.com/Songs/Taylor+Swift+-+Enchanted.mp3",
+      title="Enchanted",
+      artist="Taylor Swift",
+      created_at=current_date
+    ),
+
+    #33
+    Song(
+      song_url="https://rishy-images.s3.us-west-1.amazonaws.com/Songs/SUPER+JUNIOR+(%EC%8A%88%ED%8D%BC%EC%A3%BC%EB%8B%88%EC%96%B4)+-+'BLACK+SUIT'+Lyrics+(Color+Coded+HanRomEng%EA%B0%80%EC%82%AC)++by+deu+cutae.mp3",
+      title="BLACK SUIT",
+      artist="SUPER JUNIOR (슈퍼주니어)",
       created_at=current_date
     ),
   ]

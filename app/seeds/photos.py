@@ -154,7 +154,56 @@ def seed_photos():
     Photo(
       photo_url="https://rishy-images.s3.us-west-1.amazonaws.com/Photos/unnamed+(2).jpg",
       created_at=current_date
-    )
+    ),
+
+    #26
+    Photo(
+      photo_url="https://rishy-images.s3.us-west-1.amazonaws.com/Photos/unnamed+(3).jpg",
+      created_at=current_date
+    ),
+
+    #27
+    Photo(
+      photo_url="https://rishy-images.s3.us-west-1.amazonaws.com/Photos/tumblr_94c9237b5acd616d4d13ba4032aa3870_c7d992fb_1280.jpg",
+      created_at=current_date
+    ),
+
+    #28
+    Photo(
+      photo_url="https://rishy-images.s3.us-west-1.amazonaws.com/Photos/tumblr_ncxw15lpZT1qa3pcgo1_1280.jpg",
+      created_at=current_date
+    ),
+
+    #29
+    Photo(
+      photo_url="https://rishy-images.s3.us-west-1.amazonaws.com/Photos/tumblr_oabs5xCRyF1v09wbko1_500.jpg",
+      created_at=current_date
+    ),
+
+    #30
+    Photo(
+      photo_url="https://rishy-images.s3.us-west-1.amazonaws.com/Photos/tumblr_nu6hkvxzpf1uxot01o1_1280.jpg",
+      created_at=current_date
+    ),
+
+    #31
+    Photo(
+      photo_url="https://rishy-images.s3.us-west-1.amazonaws.com/Photos/maxresdefault.jpg",
+      created_at=current_date
+    ),
+
+    #32
+    Photo(
+      photo_url="https://rishy-images.s3.us-west-1.amazonaws.com/Photos/hq720.png",
+      created_at=current_date
+    ),
+
+    #33
+    Photo(
+      photo_url="https://rishy-images.s3.us-west-1.amazonaws.com/Photos/super-junior-disney-plus%402000x1270.jpg",
+      created_at=current_date
+    ),
+
   ]
 
   db.session.add_all(photos)
