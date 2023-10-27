@@ -137,10 +137,13 @@ function PostDetails() {
             <i className={user && hasCommented() ? "fa-solid fa-comment poststats-icons" : "fa-sharp fa-regular fa-comment poststats-icons"}>
               <p className="poststats-commentcount">{Object.values(comments).length}</p>
             </i>
+            {post &&
+            <div className="onepost-playlisticon">
+            <PostPlaylistDropdown post={post} user={user} playlists={playlists}/>
+            </div>}
             </div>
           <div id='onepost-postdate-container'>
             <p className="onepost-postdate">Updated on {post.createdAt}</p>
-            {post && <PostPlaylistDropdown post={post} user={user} playlists={playlists}/>}
           </div>
         </div>
       </div>

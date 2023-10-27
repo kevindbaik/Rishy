@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { IconButton, Menu, MenuItem, Modal, Box } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import { fetchAddPostToPlaylist, fetchCreateUserPlaylist, fetchRemovePostFromPlaylist } from "../../../store/user";
 import { fetchOnePost } from "../../../store/post";
-import AddBoxIcon from '@mui/icons-material/AddBox';
+import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import RemoveCircleOutlinedIcon from '@mui/icons-material/RemoveCircleOutlined';
+import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import PlaylistForm from "../../Playlist/PlaylistForm";
 
 function PostPlaylistDropdown({ post, user, playlists }) {
@@ -61,6 +61,7 @@ function PostPlaylistDropdown({ post, user, playlists }) {
         aria-controls="playlists-menu"
         aria-haspopup="true"
         onClick={handleClick}
+        style={{ 'color' : 'rgb(93, 93, 93)'}}
       >
         <PlaylistAddIcon />
       </IconButton>
@@ -70,18 +71,20 @@ function PostPlaylistDropdown({ post, user, playlists }) {
           keepMounted
           open={Boolean(anchorEl)}
           onClose={handleClose}
+          sx={{
+            '.MuiPaper-root': { boxShadow: '6' }
+          }}
         >
           {Object.values(playlists).map((playlist) => (
-            <MenuItem key={playlist.id} onClick={(e) => handlePostPlaylist(playlist)}>
-          {playlist.name} {checkPostInPlaylist(post, playlist?.id) ? <RemoveIcon /> : <AddIcon />}
+            <MenuItem key={playlist.id} style={{ fontSize: '14px' }} onClick={(e) => handlePostPlaylist(playlist)}>
+          {playlist.name} {checkPostInPlaylist(post, playlist?.id) ? < RemoveCircleOutlinedIcon style={{ fontSize: '15px', marginLeft:'6px' }}/> : <AddCircleOutlineOutlinedIcon style={{ fontSize: '15px', marginLeft:'6px' }}/>}
             </MenuItem>
           ))}
-            <MenuItem onClick={handleCreateOpen}>
-            <IconButton size="small">
-              <AddBoxIcon />
-            </IconButton>
-            Create New Playlist
-          </MenuItem>
+            <MenuItem style={{ fontSize: '14px' }} onClick={handleCreateOpen}>
+              <IconButton size="small">
+                <AddCircleOutlineOutlinedIcon style={{ color:'black', fontSize: '15px' }}/>
+              </IconButton>
+            </MenuItem>
           <Modal
           open={open}
           onClose={handleCreateClose}
@@ -95,8 +98,9 @@ function PostPlaylistDropdown({ post, user, playlists }) {
                 width: 240,
                 maxHeight: '90vh',
                 bgcolor: 'background.paper',
-                boxShadow: 20,
-                p: 4 }}>
+                boxShadow: 2,
+                p: 4,
+                borderRadius: '10px' }}>
               <PlaylistForm onSubmit={onSubmit} />
             </Box>
           </Modal>

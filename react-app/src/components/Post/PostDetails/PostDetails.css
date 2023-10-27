@@ -202,3 +202,9 @@
   cursor: pointer;
   background-color: #464646;
 }
+
+.onepost-playlisticon {
+  position: absolute;
+  top: -12px;
+  right: 94px;
+}

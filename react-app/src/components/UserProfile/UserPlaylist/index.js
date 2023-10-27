@@ -1,14 +1,26 @@
-import React from "react";
+import React, {useState} from "react";
 import OpenModalDiv from "../../Playlist/OpenModalDiv";
 import PlaylistModal from "../../Playlist/PlaylistModal";
 
 function UserPlaylist({ userPlaylist, currUser, user }) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedPlaylist, setSelectedPlaylist] = useState(null);
+
+  const handleOpenPlaylist = (playlist) => {
+    setSelectedPlaylist(playlist);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedPlaylist(null);
+  };
 
   if(userPlaylist.private) return null;
 
   return (
     <OpenModalDiv
-    modalComponent={<PlaylistModal playlist={userPlaylist} currUser={currUser} user={user}/>}
+    modalComponent={<PlaylistModal playlist={userPlaylist} currUser={currUser} user={user} handleClose={handleCloseModal}/>}
     >
       <div id='userplaylist-playlistcont'>
         <img className="userplaylist-playlistphoto" src={userPlaylist.posts[0].photoUrl}></img>

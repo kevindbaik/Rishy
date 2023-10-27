@@ -18,22 +18,42 @@ function PlaylistForm ({ onSubmit }) {
   };
 
   return (
-    <Box component="form" onSubmit={handleSubmit} sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+    <Box component="form" onSubmit={handleSubmit} sx={{ display: 'flex', flexDirection: 'column', gap: 2}}>
       <TextField
-        label="Playlist Name"
+        label="Collection Name"
         variant="outlined"
         name="name"
         value={formValues.name}
         onChange={handleChange}
         required
+        sx={{
+          '& label.Mui-focused': {
+            color: 'black',
+          },
+          '& .MuiInput-underline:after': {
+            borderBottomColor: 'black',
+          },
+          '& .MuiOutlinedInput-root': {
+            '& fieldset': {
+              borderColor: 'black',
+            },
+            '&:hover fieldset': {
+              borderColor: 'black',
+            },
+            '&.Mui-focused fieldset': {
+              borderColor: 'black',
+            },
+          },
+        }}
       />
-      <FormControlLabel
-        control={<Switch checked={formValues.private} onChange={handleChange} name="private" />}
-        label="Private"
-      />
-      <Button type="submit" variant="contained">
-        Create Playlist
-      </Button>
+    <FormControlLabel
+      control={<Switch checked={formValues.private} onChange={handleChange} name="private" color="default" sx={{ '& .MuiSwitch-switchBase.Mui-checked': { color: 'black', '& + .MuiSwitch-track': { backgroundColor: 'black' } } }} />}
+      label="Private"
+      sx={{ color: 'black' }}
+    />
+  <Button type="submit" variant="contained" sx={{ backgroundColor: 'gray', '&:hover': { backgroundColor: 'black' } }}>
+  Create Collection
+  </Button>
     </Box>
   );
 }

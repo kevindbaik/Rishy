@@ -27,18 +27,18 @@ function PlaylistPage({ currUser }) {
 
   return (
     <>
-      <div>
-      <h3>Manage Your Playlists ({Object.values(playlists).length})</h3>
+      <div className='playlistpage-manage'>
+      <p>Manage Your Collections (<strong>{Object.values(playlists).length}</strong>)</p>
       <OpenModalButton
-      buttonText="Create Playlist"
+      buttonText="Create Collection"
       modalComponent={<PlaylistForm onSubmit={onSubmit}/>}
       />
       </div>
       <div id='allplaylist-container'>
         {Object.values(playlists).map((playlist) => (
-          <>
+          <div id='allplaylist-oneplaylist'>
             <OpenModalDiv
-            modalComponent={<PlaylistModal playlist={playlist} currUser={currUser}/>}
+            modalComponent={<PlaylistModal playlist={playlist} currUser={currUser} user={currUser}/>}
             >
               <div key={playlist.id}>
                 <img className='allplaylist-image' src={playlist.posts[0]?.photoUrl}></img>
@@ -48,9 +48,9 @@ function PlaylistPage({ currUser }) {
                 <p>{playlist.updatedAt}</p>
               </div>
             </OpenModalDiv>
-            <OpenModalButton buttonText="Delete"
+            <OpenModalButton styleClass="userpost-remove-button remove-playlist" buttonText="Delete"
             modalComponent={<PlaylistDelete playlist={playlist} currUser={currUser}/>}/>
-          </>
+          </div>
         ))}
       </div>
     </>

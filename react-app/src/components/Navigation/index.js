@@ -21,7 +21,7 @@ function Navigation({ isLoaded }){
 			<input type="search" id="nav-search" placeholder="search..." />
 			</li>
 			<li className='nav-logo-container' onClick={handleLogoClick}>
-				<NavLink id='nav-logo' exact to="/posts">
+				<NavLink id='nav-logo' exact to={sessionUser ? "/posts" : "/"}>
 					<img className='logo-rishy' src={logo}></img>
 				</NavLink>
 			</li>
