@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import './PlaylistModal.css'
-import DeleteIcon from '@mui/icons-material/Delete';
+import Box from '@mui/material/Box';
+import CloseIcon from '@mui/icons-material/Close';
 import { fetchRemovePostFromPlaylist } from "../../../store/user";
 
-function PlaylistModal({ playlist, currUser }) {
+function PlaylistModal({ playlist, currUser, user }) {
   const dispatch = useDispatch();
   const [currentSong, setCurrentSong] = useState(playlist.posts[0]);
   const currPlaylist = useSelector(state => state.user.UserPlaylists[playlist.id]);
@@ -28,27 +29,56 @@ function PlaylistModal({ playlist, currUser }) {
 
     await dispatch(fetchRemovePostFromPlaylist(playlist.id, postId, currUser.id));
   };
-
+  console.log('user', user)
   return (
-    <div>
+    <div id='playlistmodal-container'>
+      <div id='playlistmodal-currentpost'>
         <img className="playlistmodal-songimage" src={currentSong.photoUrl}></img>
+        <h3>{currentSong.songTitle} - {currentSong.songArtist}</h3>
         <AudioPlayer
-        id='onepost-audioplayer'
+        className='playlistmodal-audioplayer'
         src={currentSong.songUrl}
         autoPlay={false}
         volume={0.5}
         showSkipControls={false}
         />
-       <h3>{currentSong.songTitle} - {currentSong.songArtist}</h3>
+       </div>
 
-      {currPlaylist.posts.map((post) => (
+      <div id='playlistmodal-sidebar'>
         <div>
-          <div onClick={() => handleSongChange(post)}>
-          <p>{post.songTitle}</p>
+          <p className="playlistmodal-title">{playlist.name}</p>
+          <div id='sidebar-info'>
+            {playlist.private ?
+            <div className="playlistmodal-privacy">
+            <i class="fa-solid fa-lock"></i>
+            <p>Private</p>
+            </div> :
+            <div className="playlistmodal-privacy">
+            <i class="fa-solid fa-unlock"></i>
+            <p>Public</p>
+            </div>}
+            <p>{user.username}</p>
+            <p>{currPlaylist.posts.length} posts</p>
           </div>
-        <DeleteIcon onClick={(e) => handleRemoveFromPlaylist(post.id)} />
+        </div>
+
+       <Box id='playlistmodal-postque' sx={{ maxHeight: 450, overflowY: 'auto' }}>
+      {currPlaylist.posts.map((post) => (
+        <div className="playlistmodal-onepost" onClick={() => handleSongChange(post)}>
+          <div className="onepost-playinfo">
+            <img className="onepost-previewimg" src={post.photoUrl}></img>
+            <div className="preview-playinfo">
+              <p>{post.songTitle}</p>
+              <p>{post.songArtist}</p>
+            </div>
+          </div>
+          {currUser && currUser.id === playlist.userId &&
+            <CloseIcon onClick={(e) => handleRemoveFromPlaylist(post.id)} />
+          }
         </div>
       ))}
+      </Box>
+    </div>
     </div>
   )
 };

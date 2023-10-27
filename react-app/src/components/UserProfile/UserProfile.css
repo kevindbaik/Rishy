@@ -1,5 +1,6 @@
 #userprofile-wrap {
   margin-bottom: 30vh;
+  margin-top: 100px;
 }
 
 #userprofile-container {
@@ -9,7 +10,6 @@
   justify-content: end;
   column-gap: 20px;
   position: relative;
-  /* border: 1px solid red; */
   height: 100px;
   padding-bottom: 10px;
 }
@@ -17,6 +17,7 @@
 #userprofile-userinfo-container {
   display: flex;
   width: 800px;
+  margin-bottom: 20px;
 }
 
 .userprofile-profileimage {
@@ -84,4 +85,84 @@
   margin-right: auto;
   grid-template-columns: repeat(3, minmax(300px, 1fr));
   grid-auto-rows: minmax(100px, auto);
+  /* border: 1px solid red; */
+}
+
+#all-userplaylist-container.grid {
+  margin: 45px auto;
+  display: grid;
+  width: fit-content;
+  column-gap: 50px;
+  row-gap: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  grid-template-columns: repeat(2, minmax(50%, 1fr));
+  grid-auto-rows: minmax(100px, auto);
+  align-items: center;
+  justify-content: center;
+}
+
+#all-userplaylist-container.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 45px;
+}
+
+.all-noplaylist {
+  margin: auto;
+  color: rgb(127, 127, 127);
+}
+
+#userplaylist-playlistcont {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid rgb(176, 176, 176);
+  /* border-radius: 14px; */
+  padding: 15px 10px 25px 10px;
+  box-shadow: rgba(0, 0, 0, 0.10) 0px 3px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: border 0.5s ease-in-out;
+}
+
+#userplaylist-playlistcont:hover {
+  cursor: pointer;
+  box-shadow: rgba(94, 94, 94, 0.34) 0px 3px 14px;
+}
+
+.userplaylist-playlistphoto {
+  width: 100%;
+  max-width: 340px;
+  height: 290px;
+  object-fit: cover;
+  /* border-radius: 14px; */
+}
+
+.userplaylist-pname {
+  margin-top: 2vh;
+  margin-bottom: .6vh;
+  font-weight: bold;
+  font-size: 14.4px;
+}
+
+.userplaylist-rname {
+  margin-top: 0;
+  margin-bottom: 2vh;
+  color: rgb(127, 127, 127);
+  font-size: 12.5px;
+}
+
+.userplaylist-date {
+  margin: 0;
+  font-size: 13px;
+  margin-bottom: 1vh;
+}
+
+.userplaylist-pcount {
+  font-size: 12px;
+  margin: 0;
+  color: rgb(166, 166, 166)
 }

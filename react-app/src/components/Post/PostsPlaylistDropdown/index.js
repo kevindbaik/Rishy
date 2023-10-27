@@ -24,7 +24,6 @@ function PostPlaylistDropdown({ post, user, playlists }) {
 
   const handlePostPlaylist = async (playlist) => {
     if(checkPostInPlaylist(post, playlist.id)){
-      console.log('reeemoving....')
       await dispatch(fetchRemovePostFromPlaylist(playlist.id, post.id, user.id));
       await dispatch(fetchOnePost(post.id));
     }
@@ -43,8 +42,8 @@ function PostPlaylistDropdown({ post, user, playlists }) {
   };
 
   const checkPostInPlaylist = (post, playlistId) => {
-    if(!post || !post.playlist) {
-      return false
+    if (!post || typeof post.playlists !== 'object') {
+      return false;
     };
 
     const postPlaylistIds = Object.values(post?.playlists).map(postPlaylist => postPlaylist.id);
@@ -74,7 +73,7 @@ function PostPlaylistDropdown({ post, user, playlists }) {
         >
           {Object.values(playlists).map((playlist) => (
             <MenuItem key={playlist.id} onClick={(e) => handlePostPlaylist(playlist)}>
-          {playlist.name} {checkPostInPlaylist(post, playlist.id) ? <RemoveIcon /> : <AddIcon />}
+          {playlist.name} {checkPostInPlaylist(post, playlist?.id) ? <RemoveIcon /> : <AddIcon />}
             </MenuItem>
           ))}
             <MenuItem onClick={handleCreateOpen}>

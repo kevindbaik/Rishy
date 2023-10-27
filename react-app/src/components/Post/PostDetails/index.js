@@ -1,4 +1,4 @@
-import React, { Children, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from 'react-router-dom';
 import AudioPlayer from 'react-h5-audio-player';
@@ -8,7 +8,6 @@ import './PostDetails.css';
 import CommentSection from "../../CommentSection";
 import { fetchCreateComment, fetchLoadComments } from "../../../store/comment";
 import AddComment from "../../CommentSection/AddComment";
-import OpenModalDiv from "../OpenModalDiv";
 import { fetchUserPlaylists } from "../../../store/user";
 import PostPlaylistDropdown from "../PostsPlaylistDropdown";
 
@@ -99,8 +98,7 @@ function PostDetails() {
   };
 
   if(!post || !comments) return null;
-  console.log('ppppp', post)
-  console.log('USSSSER_PLAYLISY!!!!', playlists)
+
   return(
     <div className="onepost-container">
       <div className='onepost-mediacontainer'>
@@ -142,7 +140,7 @@ function PostDetails() {
             </div>
           <div id='onepost-postdate-container'>
             <p className="onepost-postdate">Updated on {post.createdAt}</p>
-            <PostPlaylistDropdown post={post} user={user} playlists={playlists}/>
+            {post && <PostPlaylistDropdown post={post} user={user} playlists={playlists}/>}
           </div>
         </div>
       </div>
