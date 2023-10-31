@@ -101,7 +101,7 @@ function Home() {
       </div>
     <div id="home-post-container">
       {Object.values(posts).map((post) => (
-        <Post post={post} showManageButton={false}/>
+        <Post post={post}/>
       ))}
     </div>
        {isModalOpen && selectedPlaylist && (

@@ -153,7 +153,7 @@ function PostDetails() {
         {user && !hasCommented() && post.userId !== user.id && <img className="defaultuser-image-comment" src="https://i.ibb.co/nRLSXSX/Default-pfp-svg.png" alt=""></img>}
         {user && !hasCommented() && post.userId !== user.id && <AddComment onSubmit={handleAddComment}/>}
       </div>
-      <CommentSection comments={comments} user={user} post={post}/>
+      <CommentSection comments={comments} user={user} isProfile={false}/>
     </div>
   )
 }

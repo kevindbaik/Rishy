@@ -77,7 +77,6 @@ function UserProfile() {
       </Box>
       </div>
 
-
         <TabPanel value={profileTab} index={0}>
           <div id='all-userpost-container'>
             {Object.values(userPosts).map((userPost) => (

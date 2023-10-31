@@ -15,6 +15,9 @@
   position: relative;
 }
 
+.onecomment-profile {
+  color: white;
+}
 
 #onepost-comment-header {
   text-align: center;

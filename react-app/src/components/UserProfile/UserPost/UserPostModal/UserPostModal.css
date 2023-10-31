@@ -1,0 +1,122 @@
+#userpostmodal-container {
+  width: 620px;
+  height: 740px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  column-gap: 30px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  background-color: rgb(242, 241, 241);
+  /* border-radius: 20px; */
+  /* border: 2px solid rgb(242, 241, 241); */
+  overflow-y: auto;
+}
+
+#userpostmodal-container:hover {
+  cursor: default;
+}
+
+#userpostmodal-media-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userpostmodal-photo {
+  width: 430px;
+  height: 360px;
+  object-fit: contain;
+  margin-top: .7vh;
+}
+
+.userpostmodal-song {
+  margin-bottom: 12px;
+}
+
+.userpostmodal-header {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+  background-color: #212124fc;
+  margin-bottom: 2vh;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  position: relative;
+}
+
+.userpostmodal-header p {
+  font-size: 14px;
+  color: white;
+}
+
+.userpostmodal-ppic {
+  width: 26px;
+  margin-left: 20px;
+}
+#userpostmodal-redirect {
+  color: white;
+  background-color: #212124fc;
+  border: none;
+  position: absolute;
+  padding: 4px 8px;
+  right: 40px;
+  border-radius: 20px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+#userpostmodal-redirect:hover {
+  cursor: pointer;
+  background-color: rgb(148, 148, 149);
+}
+
+
+#userpostmodal-container::-webkit-scrollbar {
+  width: 5px;
+}
+
+#userpostmodal-container::-webkit-scrollbar-thumb {
+  background-color: #373737;
+  border-radius: 5px;
+}
+
+#userpostmodal-container::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+#userpostmodal-container::-webkit-scrollbar-track {
+  background-color: #555;
+  border-radius: 5px;
+}
+
+.userpostmodal-info-container {
+  margin-top: 4vh;
+  background-color: #212124fc;
+  height: 100%;
+}
+
+.userpostmodal-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  font-size: 12px;
+}
+
+.userpostmodal-caption {
+  font-size: 12.5px;
+  /* margin-left: 88px; */
+}
+
+#caption-showcomments {
+  text-align: center;
+  transition: color 0.2s ease-in-out;
+}
+
+#caption-showcomments:hover {
+  cursor: pointer;
+  color: rgb(199, 197, 197);
+}
