@@ -17,7 +17,7 @@ function Home() {
   const posts = useSelector(state => state.posts.allPosts);
   const currUser = useSelector(state => state.session.user);
   const playlists = useSelector(state => state.user.UserPlaylists);
-  const { currentView, setCurrentView } = useViewContext();
+  // const { currentView, setCurrentView } = useViewContext();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPlaylist, setSelectedPlaylist] = useState(null);
   const [createPlaylistModalOpen, setCreatePlaylistModalOpen] = useState(false);
@@ -33,7 +33,7 @@ function Home() {
 
   useEffect(() => {
     dispatch(fetchAllPosts());
-    setCurrentView('home');
+    // setCurrentView('home');
   }, [dispatch]);
 
   useEffect(() => {
@@ -43,9 +43,9 @@ function Home() {
   }, [dispatch, currUser]);
 
 
-  const handleHomeNavigate = (e) => {
-    setCurrentView('home');
-  };
+  // const handleHomeNavigate = (e) => {
+  //   setCurrentView('home');
+  // };
 
   const handleOpenPlaylist = (playlist) => {
     setSelectedPlaylist(playlist);
@@ -57,29 +57,25 @@ function Home() {
     setSelectedPlaylist(null);
   };
 
-
   if(!posts || Object.values(posts).length === 0) return null
 
   return (
     <div id="home-wrap">
       <div id="home-sidebar">
-        <div className="sidebar-tile" onClick={handleHomeNavigate}>
-          <HomeOutlinedIcon style={{ color:'black', fontSize: '18px' }}/>
-          <p>home</p>
+        <div className="sidebar-tile">
+          <p>hello {currUser.firstName}.</p>
         </div>
         <div className="sidebar-tile sidebar-collections">
         <div>
         <div className="sidebar-tile">
-        <p style={{ fontWeight: 'bold'}}>collections:</p>
+        <p style={{ fontWeight: 'bold'}}>your playlists:</p>
         </div>
         </div>
           {Object.values(playlists).map(playlist => (
             <div key={playlist.id} className="sidebar-onecollection" onClick={(e) => handleOpenPlaylist(playlist)}>
               <p>{playlist.name}</p>
-        </div>
-      ))}
-            <button className="sidebar-create-collection" onClick={handleCreatePlaylistOpen}>create + </button>
-
+            </div>))}
+            <button className="sidebar-create-collection" onClick={handleCreatePlaylistOpen}> + </button>
     </div>
     <Modal
         open={createPlaylistModalOpen}
@@ -103,11 +99,11 @@ function Home() {
         </Box>
       </Modal>
       </div>
-      {currentView === 'home' && <div id="home-post-container">
-       {Object.values(posts).map((post) => (
-         <Post post={post} showManageButton={false}/>
-       ))}
-     </div>}
+    <div id="home-post-container">
+      {Object.values(posts).map((post) => (
+        <Post post={post} showManageButton={false}/>
+      ))}
+    </div>
        {isModalOpen && selectedPlaylist && (
         <>
         <div className="modal-backdrop" onClick={handleCloseModal}></div>

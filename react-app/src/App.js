@@ -11,6 +11,7 @@ import PostDetails from "./components/Post/PostDetails";
 import UserProfile from "./components/UserProfile";
 // import PlaylistPage from "./components/Playlist";
 import Footer from "./components/Footer";
+import Sidebar from "./components/Sidebar";
 import './index.css';
 
 function App() {

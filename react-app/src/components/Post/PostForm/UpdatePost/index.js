@@ -63,11 +63,11 @@ function UpdatePostForm({ post }) {
 
   return (
     <div id="postform-container">
-    <h3>update post</h3>
+    <h3>update your post</h3>
     <form onSubmit={handleFormSubmit} encType="multipart/form-data">
       <div id='postform-photo-container'>
         <label htmlFor="photoUpload" className="uploadphoto-pseudobutton">
-          upload photo:
+          change photo (optional):
         </label>
         <img id='showPhotoUpload' src={previewPhoto}></img>
         <input
@@ -121,7 +121,7 @@ function UpdatePostForm({ post }) {
       </div>
       <div id='postform-mp3-container'>
         <label htmlFor="songUpload" className="uploadsong-pseudobutton">
-          upload song:
+          change song (optional):
         </label>
         <input
           id='songUpload'
@@ -134,7 +134,7 @@ function UpdatePostForm({ post }) {
         <span id="showSongUpload"></span>
       </div>
       {loading ? <div className="loading-text">
-      updating...</div> : <button id="postform-submit-button" type='submit'>Update Post</button>}
+      updating...</div> : <button id="postform-submit-button" type='submit'>update</button>}
     </form>
   </div>
 )}

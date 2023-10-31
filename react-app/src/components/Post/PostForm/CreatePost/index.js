@@ -52,7 +52,7 @@ function CreatePostForm() {
 
   return (
     <div id="postform-container">
-      <h3>upload post</h3>
+      <h3>share a post</h3>
       <form onSubmit={handleFormSubmit} encType="multipart/form-data">
         <div id='postform-photo-container'>
           <label htmlFor="photoUpload" className="uploadphoto-pseudobutton">
@@ -126,7 +126,7 @@ function CreatePostForm() {
           <span id="showSongUpload"></span>
         </div>
         {loading ? <div className="loading-text">
-        creating....</div> : <button id="postform-submit-button" type='submit'>Create Post</button>}
+        uploading....</div> : <button id="postform-submit-button" type='submit'>upload</button>}
       </form>
     </div>
   )

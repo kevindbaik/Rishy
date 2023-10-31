@@ -71,8 +71,8 @@ function UserProfile() {
         </div>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <StyledTabs value={profileTab} onChange={handleChange} aria-label="user profile tabs">
-        <StyledTab label="Posts" />
-        <StyledTab label="Collections" />
+        <StyledTab label="posts" />
+        <StyledTab label="playlists" />
       </StyledTabs>
       </Box>
       </div>
