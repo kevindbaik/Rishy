@@ -33,11 +33,11 @@ function PlaylistModal({ playlist, currUser, user, handleClose }) {
   if (!currPlaylist || currPlaylist.posts.length === 0) {
     return (
       <div id='playlistmodal-container' ref={modalRef}>
-        <p className="playlistempty-text">This collection is empty.</p>
+        <p className="playlistempty-text">your playlist is empty.</p>
         <OpenModalButton styleClass="userpost-remove-button remove-playlist"
-             onButtonClick={handleClose}
-             buttonText="Delete"
-             modalComponent={<PlaylistDelete playlist={playlist} currUser={currUser}/>}/>
+            onButtonClick={handleClose}
+            buttonText="delete"
+            modalComponent={<PlaylistDelete playlist={playlist} currUser={currUser}/>}/>
       </div>
     );
   }
@@ -48,11 +48,10 @@ function PlaylistModal({ playlist, currUser, user, handleClose }) {
 
   const handleRemoveFromPlaylist = async (postId) => {
     setIsPlaying(false);
-    if(postId === currPlaylist.posts[0].id) {
+    await dispatch(fetchRemovePostFromPlaylist(playlist.id, postId, currUser.id));
+    if(postId === currPlaylist.posts[0].id || currentSong.id === postId) {
       handleNextSong()
     };
-    await dispatch(fetchRemovePostFromPlaylist(playlist.id, postId, currUser.id));
-    handleNextSong()
   };
 
   const handleNextSong = () => {
@@ -60,7 +59,6 @@ function PlaylistModal({ playlist, currUser, user, handleClose }) {
   const nextSongIndex = (currentSongIndex + 1) % currPlaylist.posts.length;
   setCurrentSong(currPlaylist.posts[nextSongIndex]);
   }
-
 
   return (
     <div id='playlistmodal-container' ref={modalRef}>
@@ -76,8 +74,7 @@ function PlaylistModal({ playlist, currUser, user, handleClose }) {
         showSkipControls={false}
         onEnded={handleNextSong}
         />
-       </div>
-
+      </div>
       <div id='playlistmodal-sidebar'>
         <div>
           <p className="playlistmodal-title">{playlist.name}</p>
@@ -94,15 +91,15 @@ function PlaylistModal({ playlist, currUser, user, handleClose }) {
             <p>{user.username}</p>
             <p>{currPlaylist.posts.length} posts</p>
             {currUser.id === playlist.userId &&
-             <OpenModalButton styleClass="userpost-remove-button remove-playlist"
-             onButtonClick={handleClose}
-             buttonText="Delete"
-             modalComponent={<PlaylistDelete playlist={playlist} currUser={currUser}/>}/>
+            <OpenModalButton styleClass="userpost-remove-button remove-playlist"
+            onButtonClick={handleClose}
+            buttonText="delete"
+            modalComponent={<PlaylistDelete playlist={playlist} currUser={currUser}/>}/>
             }
           </div>
         </div>
 
-       <Box id='playlistmodal-postque' sx={{ maxHeight: 450, overflowY: 'auto' }}>
+      <Box id='playlistmodal-postque' sx={{ maxHeight: 450, overflowY: 'auto' }}>
       {currPlaylist.posts.map((post) => (
         <div className={`playlistmodal-onepost ${currentSong.id === post.id ? 'playlistmodal-onepost-highlighted' : ''}`} onClick={() => handleSongChange(post)}>
           <div className="onepost-playinfo">
@@ -113,7 +110,10 @@ function PlaylistModal({ playlist, currUser, user, handleClose }) {
             </div>
           </div>
           {currUser && currUser.id === playlist.userId &&
-            <CloseIcon style={{ cursor: 'pointer' }} onClick={(e) => handleRemoveFromPlaylist(post.id)} />
+            <CloseIcon style={{ cursor: 'pointer', zIndex: '9999' }}
+            onClick={(e) => {
+              e.stopPropagation();
+              handleRemoveFromPlaylist(post.id)}} />
           }
         </div>
       ))}

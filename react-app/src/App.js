@@ -22,9 +22,7 @@ function App() {
   return (
     <div id='page-container'>
       <div id='content-wrap'>
-
         <Navigation isLoaded={isLoaded} />
-
       {isLoaded && (
           <Switch>
             <Route exact path='/posts/:postId'>
