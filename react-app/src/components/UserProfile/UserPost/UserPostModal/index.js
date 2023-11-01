@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
@@ -19,6 +20,7 @@ function UserPostModal({ userPost, sessionUser, pageUser, handleClose}) {
   const playlists = useSelector(state => state.user.UserPlaylists);
   const [showComments, setShowComments] = useState(false);
   const postPlaylist = useSelector(state => state.posts.onePost);
+  const { userId } = useParams();
 
   useEffect(() => {
     dispatch(fetchOnePost(userPost.id))
@@ -27,6 +29,9 @@ function UserPostModal({ userPost, sessionUser, pageUser, handleClose}) {
 
   useEffect(() => {
     dispatch(fetchUserPlaylists(sessionUser.id))
+    return () => {
+      dispatch(fetchUserPlaylists(userId));
+    };
   }, [dispatch, sessionUser.id]);
 
   const handleNavigatePostDetails = (e) => {
