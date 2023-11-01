@@ -37,6 +37,7 @@ def get_user_posts(id):
     all_user_posts = {}
     for post in user_owned_posts:
         data = post.to_dict()
+        data['playlists'] = [playlist.to_dict() for playlist in post.playlists]
         all_user_posts[str(post.id)] = data
 
     return all_user_posts

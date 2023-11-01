@@ -7,7 +7,7 @@ import { fetchUpdateComment } from "../../../store/comment";
 import OpenModalDiv from '../OpenModalDiv'
 import CommentDelete from "../CommentDelete";
 
-function Comment({ comment, user }) {
+function Comment({ comment, user, isProfile, handleClose }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const [ dropdownOpen, setDropdownOpen ] = useState(false);
@@ -61,16 +61,18 @@ function Comment({ comment, user }) {
 
   const handleProfileClick = (e, comment) => {
     e.preventDefault();
-    history.push(`/users/${comment.userId}/posts`)
+    history.push(`/users/${comment.userId}/posts`);
+
+    if(isProfile) handleClose();
   };
 
   return(
-  <div className="onecomment-container">
+    <div className={`onecomment-container ${isProfile ? 'onecomment-profile' : ''}`}>
     {editMode ?
       <AddComment onSubmit={handleEditComment} initialValue={comment.content}/>
     :
     <>
-      {user && comment.userId === user.id &&
+      {user && comment.userId === user.id && !isProfile &&
         <div className="onecomment-manage-container">
           <i onClick={toggleDropdown} class="fa-solid fa-ellipsis-vertical"></i>
           {dropdownOpen &&
@@ -79,7 +81,7 @@ function Comment({ comment, user }) {
                 <i class="fa-sharp fa-regular fa-pen-to-square"></i>
                 <p>edit</p>
               </div>
-              <div className="dropdown-individual-container onecomment-delete-container">
+              <div className="dropdown-individual-container onecomment-delete-container" onClick={toggleDropdown}>
               <OpenModalDiv modalComponent={<CommentDelete comment={comment}/>}/>
               </div>
             </div>

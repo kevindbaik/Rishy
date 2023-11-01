@@ -11,29 +11,30 @@
 #home-wrap {
   /* border: 1px solid green; */
   display: flex;
-  position: relative;
+  /* position: relative; */
+  /* width: 100%; */
 }
 
 #home-sidebar {
-  /* position: absolute; */
   /* margin-top: 10px; */
   /* background-color: rgb(251, 251, 251); */
-  position: absolute;
+  /* position: absolute; */
   margin-bottom: 10px;
+  width: 180px;
   top: 10px;
-  /* border: 1px solid blue; */
   display: flex;
   flex-direction: column;
-  align-items: center;
   font-size: 13px;
   margin-left: 30px;
+}
+
+.fa-circle-play {
+  font-size: 13px;
 }
 
 .sidebar-tile {
   display: flex;
   column-gap: 10px;
-  align-items: center;
-  justify-content: center;
   margin-top: 40px;
   row-gap: 9px;
 }
@@ -55,8 +56,8 @@
 #home-post-container {
   /* border:1px solid red; */
   box-sizing: border-box;
-  max-width: 1450px;
-  margin: 0px auto;
+  max-width: 1320px;
+  margin: 0px 115px auto;
   margin-bottom: 28vh;
   columns: 4;
   column-gap: 6px;
@@ -140,6 +141,7 @@
 
 .sidebar-onecollection {
   transition: color 0.2s ease-in-out;
+  color: rgb(99, 107, 113);
 }
 
 .sidebar-onecollection:hover {
@@ -149,10 +151,12 @@
 
 .sidebar-create-collection {
   border: none;
+  font-size: 19px;
   background-color: white;
   transition: color 0.2s ease-in-out;
   margin-top: 0px;
-  margin-left: 30px;
+  text-align: start;
+  color: rgb(99, 107, 113);
 }
 
 .sidebar-create-collection:hover {
@@ -160,8 +164,36 @@
   color: rgb(197, 197, 197);
 }
 
-@media (max-width: 1400px) {
-  #home-container {
-    width: calc(100% - 40px);
+/* @media (max-width: 1600px) {
+  #home-post-container {
+    box-sizing: border-box;
+    max-width: 1450px;
+    margin-bottom: 28vh;
+    columns: 4;
+    column-gap: 6px;
   }
+} */
+
+@media (min-width: 2100px) {
+  #home-post-container {
+    box-sizing: border-box;
+    max-width: 1850px;
+    margin: 0px 170px auto;
+    margin-bottom: 28vh;
+    columns: 5;
+    column-gap: 6px;
+  }
+}
+
+@media (max-width: 1300px) {
+  #home-post-container {
+
+    box-sizing: border-box;
+    max-width: 1000px;
+    margin: 0px 20px auto;
+    margin-bottom: 28vh;
+    columns: 3;
+    column-gap: 6px;
+  }
+
 }

@@ -10,6 +10,7 @@ import { fetchCreateComment, fetchLoadComments } from "../../../store/comment";
 import AddComment from "../../CommentSection/AddComment";
 import { fetchUserPlaylists } from "../../../store/user";
 import PostPlaylistDropdown from "../PostsPlaylistDropdown";
+import Loading from "../../Loader";
 
 function PostDetails() {
   const dispatch = useDispatch();
@@ -24,10 +25,21 @@ function PostDetails() {
   const [ nextId, setNextId ] = useState(null);
   const [ prevId, setPrevId ] = useState(null);
   const [ errors, setErrors ] = useState([]);
+  const [ loading, setLoading ] = useState(true);
 
   useEffect(() => {
-    dispatch(fetchOnePost(postId));
-    dispatch(fetchLoadComments(postId));
+    const fetchData = async() => {
+      setLoading(true);
+      try {
+        await dispatch(fetchOnePost(postId));
+        await dispatch(fetchLoadComments(postId));
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchData();
   }, [dispatch, postId]);
 
   useEffect(() => {
@@ -97,6 +109,9 @@ function PostDetails() {
     history.push(`/users/${post.userId}/posts`)
   };
 
+  if (loading) return <Loading />;
+
+
   if(!post || !comments) return null;
 
   return(
@@ -153,7 +168,7 @@ function PostDetails() {
         {user && !hasCommented() && post.userId !== user.id && <img className="defaultuser-image-comment" src="https://i.ibb.co/nRLSXSX/Default-pfp-svg.png" alt=""></img>}
         {user && !hasCommented() && post.userId !== user.id && <AddComment onSubmit={handleAddComment}/>}
       </div>
-      <CommentSection comments={comments} user={user} post={post}/>
+      <CommentSection comments={comments} user={user} isProfile={false}/>
     </div>
   )
 }

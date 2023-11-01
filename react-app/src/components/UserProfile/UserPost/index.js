@@ -1,26 +1,38 @@
-import React, { Children } from "react";
-import { useHistory } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 import OpenModalButton from "../../OpenModalButton";
 import UpdatePostForm from "../../Post/PostForm/UpdatePost";
 import PostDelete from "../../Post/PostDelete";
+import UserPostModal from "./UserPostModal";
 import './UserPost.css'
 
-function UserPost({userPost, sessionUser}) {
-  const history = useHistory();
+function UserPost({userPost, sessionUser, pageUser}) {
+  const dispatch = useDispatch();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleViewPostDetail = e => {
-    e.preventDefault()
-    history.push(`/posts/${userPost.id}`)
+
+  const handleOpenModal = (e) => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = (e) => {
+    setIsModalOpen(false);
   };
 
   return (
     <div id='userpost-container'>
-      <img className='userpost-image' src={userPost?.photoUrl} onClick={handleViewPostDetail}></img>
+      <img className='userpost-image' src={userPost?.photoUrl} onClick={handleOpenModal}></img>
       {sessionUser && sessionUser.id === userPost.userId &&
       <div className="user-managepost-buttons">
         <OpenModalButton styleClass="userpost-edit-button" modalComponent={<UpdatePostForm post={userPost}/>} buttonText={"edit"}/>
         <OpenModalButton styleClass="userpost-remove-button" modalComponent={<PostDelete post={userPost} user={sessionUser}/>} buttonText={"remove"}/>
       </div>
+      }
+      {isModalOpen &&
+           <>
+           <div className="modal-backdrop" onClick={handleCloseModal}></div>
+            <UserPostModal userPost={userPost} sessionUser={sessionUser} pageUser={pageUser} handleClose={handleCloseModal}/>
+          </>
       }
     </div>
   )

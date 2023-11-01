@@ -15,6 +15,9 @@
   position: relative;
 }
 
+.onecomment-profile {
+  color: white;
+}
 
 #onepost-comment-header {
   text-align: center;
@@ -190,4 +193,14 @@ textarea {
   font-size: 9.5px;
   color: rgb(220, 2, 2);
   right: 80px;
+}
+
+#userprofile-addcomment-text {
+  margin-bottom: 20px;
+  width: 200px;
+  border: 2px solid rgba(102, 98, 98, 0.782);
+}
+
+.profile-errors {
+  margin-top: 0;
 }

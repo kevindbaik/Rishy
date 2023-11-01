@@ -16,7 +16,8 @@ function UserPlaylist({ userPlaylist, currUser, user }) {
     setSelectedPlaylist(null);
   };
 
-  if(userPlaylist.private) return null;
+  console.log('playlists', userPlaylist)
+  if(userPlaylist.private || userPlaylist.posts.length === 0) return null;
 
   return (
     <OpenModalDiv
@@ -27,7 +28,6 @@ function UserPlaylist({ userPlaylist, currUser, user }) {
         <p className="userplaylist-pname">{userPlaylist.name}</p>
         <p className="userplaylist-rname">by {user.firstName} {user.lastName}</p>
         <p className="userplaylist-date">{userPlaylist.createdAt}</p>
-        {/* <p className="userplaylist-pcount">{userPlaylist.posts.length} posts</p> */}
       </div>
     </OpenModalDiv>
   )

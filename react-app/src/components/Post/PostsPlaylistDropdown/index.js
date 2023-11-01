@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { IconButton, Menu, MenuItem, Modal, Box } from '@mui/material';
+import { IconButton, Menu, MenuItem, Modal, Box, chipClasses } from '@mui/material';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
-import { fetchAddPostToPlaylist, fetchCreateUserPlaylist, fetchRemovePostFromPlaylist } from "../../../store/user";
+import { fetchAddPostToPlaylist, fetchCreateUserPlaylist, fetchRemovePostFromPlaylist,  fetchUserPosts} from "../../../store/user";
 import { fetchOnePost } from "../../../store/post";
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import RemoveCircleOutlinedIcon from '@mui/icons-material/RemoveCircleOutlined';
-import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import PlaylistForm from "../../Playlist/PlaylistForm";
 
 function PostPlaylistDropdown({ post, user, playlists }) {
@@ -21,6 +20,7 @@ function PostPlaylistDropdown({ post, user, playlists }) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
 
   const handlePostPlaylist = async (playlist) => {
     if(checkPostInPlaylist(post, playlist.id)){
@@ -53,7 +53,7 @@ function PostPlaylistDropdown({ post, user, playlists }) {
   const onSubmit = async(data) => {
     await dispatch(fetchCreateUserPlaylist(data, user.id));
     handleCreateClose();
-  }
+  };
 
   return (
     <div>

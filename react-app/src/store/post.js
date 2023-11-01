@@ -30,7 +30,6 @@ export const fetchAllPosts = () => async(dispatch) => {
 
 export const fetchOnePost = postId => async(dispatch) => {
   const response = await fetch(`/api/posts/${postId}`);
-
   if(response.ok) {
     const data = await response.json();
     dispatch(loadOnePost(data));

@@ -9,7 +9,6 @@ import LandingPage from "./components/LandingPage";
 import Home from './components/Home'
 import PostDetails from "./components/Post/PostDetails";
 import UserProfile from "./components/UserProfile";
-// import PlaylistPage from "./components/Playlist";
 import Footer from "./components/Footer";
 import './index.css';
 
@@ -25,33 +24,31 @@ function App() {
       <div id='content-wrap'>
         <Navigation isLoaded={isLoaded} />
       {isLoaded && (
-        <Switch>
-          <Route exact path='/posts/:postId'>
-            <PostDetails />
-          </Route>
-          <Route exact path='/posts'>
-            <Home />
-          </Route>
-          <Route exact path='/users/:userId/posts'>
-            <UserProfile />
-          </Route>
-          {/* <Route exact path='/playlists'>
-            <PlaylistPage />
-          </Route> */}
-          <Route path="/login" >
-            <LoginFormPage />
-          </Route>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
-          <Route exact path='/'>
-            <LandingPage />
-          </Route>
-        </Switch>
+          <Switch>
+            <Route exact path='/posts/:postId'>
+              <PostDetails />
+            </Route>
+            <Route exact path='/posts'>
+              <Home />
+            </Route>
+            <Route exact path='/users/:userId/posts'>
+              <UserProfile />
+            </Route>
+            <Route path="/login" >
+              <LoginFormPage />
+            </Route>
+            <Route path="/signup">
+              <SignupFormPage />
+            </Route>
+            <Route exact path='/'>
+              <LandingPage />
+            </Route>
+          </Switch>
       )}
       </div>
       <Footer isLoaded={isLoaded} />
     </div>
+
   );
 }
 

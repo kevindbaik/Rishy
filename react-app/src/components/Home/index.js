@@ -1,15 +1,14 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllPosts } from "../../store/post";
 import { fetchUserPlaylists } from "../../store/user";
 import Post from "../Post";
-import { useViewContext } from '../../context/HomeView'
 import "./Home.css";
 import PlaylistModal from "../Playlist/PlaylistModal";
 import { fetchCreateUserPlaylist } from "../../store/user";import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import PlaylistForm from "../Playlist/PlaylistForm";
-import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import Loading from "../Loader";
 
 
 function Home() {
@@ -17,10 +16,10 @@ function Home() {
   const posts = useSelector(state => state.posts.allPosts);
   const currUser = useSelector(state => state.session.user);
   const playlists = useSelector(state => state.user.UserPlaylists);
-  const { currentView, setCurrentView } = useViewContext();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPlaylist, setSelectedPlaylist] = useState(null);
   const [createPlaylistModalOpen, setCreatePlaylistModalOpen] = useState(false);
+  const [ loading, setLoading ] = useState(true);
 
   const handleCreatePlaylistOpen = () => setCreatePlaylistModalOpen(true);
   const handleCreatePlaylistClose = () => setCreatePlaylistModalOpen(false);
@@ -32,8 +31,17 @@ function Home() {
   };
 
   useEffect(() => {
-    dispatch(fetchAllPosts());
-    setCurrentView('home');
+    const fetchData = async() => {
+      setLoading(true);
+      try {
+        await dispatch(fetchAllPosts());
+      } catch (error) {
+        console.error(error)
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchData();
   }, [dispatch]);
 
   useEffect(() => {
@@ -42,10 +50,6 @@ function Home() {
     }
   }, [dispatch, currUser]);
 
-
-  const handleHomeNavigate = (e) => {
-    setCurrentView('home');
-  };
 
   const handleOpenPlaylist = (playlist) => {
     setSelectedPlaylist(playlist);
@@ -57,29 +61,26 @@ function Home() {
     setSelectedPlaylist(null);
   };
 
+  if (loading) return <Loading />;
 
   if(!posts || Object.values(posts).length === 0) return null
-
   return (
     <div id="home-wrap">
       <div id="home-sidebar">
-        <div className="sidebar-tile" onClick={handleHomeNavigate}>
-          <HomeOutlinedIcon style={{ color:'black', fontSize: '18px' }}/>
-          <p>home</p>
+        <div className="sidebar-tile">
+          <p>hello {currUser.firstName}.</p>
         </div>
         <div className="sidebar-tile sidebar-collections">
         <div>
         <div className="sidebar-tile">
-        <p style={{ fontWeight: 'bold'}}>collections:</p>
+        <p style={{ fontWeight: 'bold'}}>your playlists:</p>
         </div>
         </div>
           {Object.values(playlists).map(playlist => (
             <div key={playlist.id} className="sidebar-onecollection" onClick={(e) => handleOpenPlaylist(playlist)}>
               <p>{playlist.name}</p>
-        </div>
-      ))}
-            <button className="sidebar-create-collection" onClick={handleCreatePlaylistOpen}>create + </button>
-
+            </div>))}
+            <button className="sidebar-create-collection" onClick={handleCreatePlaylistOpen}> + </button>
     </div>
     <Modal
         open={createPlaylistModalOpen}
@@ -103,11 +104,11 @@ function Home() {
         </Box>
       </Modal>
       </div>
-      {currentView === 'home' && <div id="home-post-container">
-       {Object.values(posts).map((post) => (
-         <Post post={post} showManageButton={false}/>
-       ))}
-     </div>}
+    <div id="home-post-container">
+      {Object.values(posts).map((post) => (
+        <Post post={post}/>
+      ))}
+    </div>
        {isModalOpen && selectedPlaylist && (
         <>
         <div className="modal-backdrop" onClick={handleCloseModal}></div>
