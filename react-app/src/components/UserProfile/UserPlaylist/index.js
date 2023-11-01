@@ -16,7 +16,6 @@ function UserPlaylist({ userPlaylist, currUser, user }) {
     setSelectedPlaylist(null);
   };
 
-  console.log('playlists', userPlaylist)
   if(userPlaylist.private || userPlaylist.posts.length === 0) return null;
 
   return (

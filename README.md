@@ -4,7 +4,7 @@
 <!--!!ADD -->
 <!-- # `<name of application here>` -->
 ## Intro
-Rishy is a music sharing social media platform where users can post songs they're currently listening to, along with an image that encapsulates their present feelings. Currently, users can create, update, and delete posts for their own profile, they can also CRUD comments as well as create playlists for themselves to share to others.
+Rishy is a music sharing social media platform where users can post songs they're currently listening to, along with an image that encapsulates their present feelings. Currently, users can create, update, and delete posts for their own profile, they can also create, update, comments as well as create playlists for themselves to share with others.
 
 https://rishy.onrender.com/
 
@@ -15,7 +15,7 @@ Frontend: React, Redux
 
 Database: PostgreSQL
 
-Deployment: Render
+Hosting: Render
 
 ## Landing Page
 ![alt text](./react-app/src/images/landingpage.png)
@@ -23,27 +23,60 @@ Deployment: Render
 ## Home Page
 ![alt text](./react-app/src/images/homepage.png)
 
+## Playlist Modal
+![alt text](./react-app/src/images/playlist.png)
+
 ## Post Page
 ![alt text](./react-app/src/images/postpage.png)
+
+## Comment Section
+![alt text](./react-app/src/images/comments.png)
 
 ## Profile Page
 ![alt text](./react-app/src/images/profilepage.png)
 
+## Profile Posts
+![alt text](./react-app/src/images/profilepost.png)
+
+## Profile Playlists
+![alt text](./react-app/src/images/profileplaylists.png)
+
 ## Next Features (In Progress)
-- Users will be able to follow other users and have a dedicated post feed for only their followings.
+- Users will be able to follow other users and have a dedicated post feed customized for only their followings.
 - Users will be able to create tags on posts, and have a recommended feed based on preferences they set for themselves.
 <!--!!END_ADD -->
 
-## Database Schema Design
+
 
 <!--!!START SILENT -->
 <!--!!ADD -->
 <!-- `<insert database schema design here>` -->
-[db-schema]: ./react-app/src/images/schema.png
+## Wiki Pages
+
+### Home (About):
+
+https://github.com/kevindbaik/Rishy/wiki
+
+### Database Schema:
+
+https://github.com/kevindbaik/Rishy/wiki/Schema
+
+### Wireframe:
+
+https://github.com/kevindbaik/Rishy/wiki/Wireframes
+
+### Future Implementations:
+
+https://github.com/kevindbaik/Rishy/wiki/Future-Implementations
+
+### User Stories:
+
+https://github.com/kevindbaik/Rishy/wiki/User-Stories
+
 <!--!!END_ADD -->
 
 
-# Flask React Project
+<!-- # Flask React Project
 
 This is the starter for the Flask React project.
 
@@ -190,4 +223,4 @@ successfully deployed your Flask application to Render! You can find the URL for
 your site just below the name of the Web Service at the top of the page.
 
 [Render.com]: https://render.com/
-[Dashboard]: https://dashboard.render.com/
+[Dashboard]: https://dashboard.render.com/ -->
