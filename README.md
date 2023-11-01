@@ -23,22 +23,56 @@ Hosting: Render
 ## Home Page
 ![alt text](./react-app/src/images/homepage.png)
 
+## Playlist Modal
+![alt text](./react-app/src/images/playlist.png)
+
 ## Post Page
 ![alt text](./react-app/src/images/postpage.png)
+
+## Comment Section
+![alt text](./react-app/src/images/comments.png)
 
 ## Profile Page
 ![alt text](./react-app/src/images/profilepage.png)
 
+## Profile Posts
+![alt text](./react-app/src/images/profilepost.png)
+
+## Profile Playlists
+![alt text](./react-app/src/images/profileplaylists.png)
+
 ## Next Features (In Progress)
-- Users will be able to follow other users and have a dedicated post feed for only their followings.
+- Users will be able to follow other users and have a dedicated post feed customized for only their followings.
 - Users will be able to create tags on posts, and have a recommended feed based on preferences they set for themselves.
 <!--!!END_ADD -->
 
-## Database Schema Design
+
 
 <!--!!START SILENT -->
 <!--!!ADD -->
 <!-- `<insert database schema design here>` -->
+## Wiki Pages
+
+### Home (About):
+
+https://github.com/kevindbaik/Rishy/wiki
+
+### Database Schema:
+
+https://github.com/kevindbaik/Rishy/wiki/Schema
+
+### Wireframe:
+
+https://github.com/kevindbaik/Rishy/wiki/Wireframes
+
+### Future Implementations:
+
+https://github.com/kevindbaik/Rishy/wiki/Future-Implementations
+
+### User Stories:
+
+https://github.com/kevindbaik/Rishy/wiki/User-Stories
+
 <!--!!END_ADD -->
 
 
