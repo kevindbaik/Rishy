@@ -10,6 +10,7 @@ import { fetchCreateComment, fetchLoadComments } from "../../../store/comment";
 import AddComment from "../../CommentSection/AddComment";
 import { fetchUserPlaylists } from "../../../store/user";
 import PostPlaylistDropdown from "../PostsPlaylistDropdown";
+import Loading from "../../Loader";
 
 function PostDetails() {
   const dispatch = useDispatch();
@@ -24,10 +25,21 @@ function PostDetails() {
   const [ nextId, setNextId ] = useState(null);
   const [ prevId, setPrevId ] = useState(null);
   const [ errors, setErrors ] = useState([]);
+  const [ loading, setLoading ] = useState(true);
 
   useEffect(() => {
-    dispatch(fetchOnePost(postId));
-    dispatch(fetchLoadComments(postId));
+    const fetchData = async() => {
+      setLoading(true);
+      try {
+        await dispatch(fetchOnePost(postId));
+        await dispatch(fetchLoadComments(postId));
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchData();
   }, [dispatch, postId]);
 
   useEffect(() => {
@@ -96,6 +108,9 @@ function PostDetails() {
     e.preventDefault();
     history.push(`/users/${post.userId}/posts`)
   };
+
+  if (loading) return <Loading />;
+
 
   if(!post || !comments) return null;
 

@@ -8,6 +8,7 @@ import UserPlaylist from "./UserPlaylist";
 import { Tabs, Tab, Box } from '@mui/material';
 import { styled } from '@mui/system';
 import TabPanel from '../TabPanel/'
+import Loading from "../Loader";
 
 function UserProfile() {
   const dispatch = useDispatch();
@@ -17,11 +18,22 @@ function UserProfile() {
   const userPosts = useSelector(state => state.user.UserPosts);
   const userPlaylists = useSelector(state => state.user.UserPlaylists)
   const [ profileTab, setProfileTab ] = useState(0);
+  const [ loading, setLoading ] = useState(true);
 
   useEffect(() => {
-    dispatch(fetchUser(userId));
-    dispatch(fetchUserPosts(userId));
-    dispatch(fetchUserPlaylists(userId));
+    const fetchData = async() => {
+      setLoading(true);
+      try {
+        await dispatch(fetchUser(userId));
+        await dispatch(fetchUserPosts(userId));
+        await dispatch(fetchUserPlaylists(userId));
+      } catch(error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
   }, [dispatch, userId]);
 
   const handleChange = (e, value) => {
@@ -47,6 +59,7 @@ function UserProfile() {
     },
   }));
 
+  if (loading) return <Loading />;
   if(!user || !userPosts) return null;
 
   return(
