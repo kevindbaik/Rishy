@@ -16,8 +16,8 @@ function UserPost({userPost, sessionUser, pageUser}) {
   };
 
   const handleCloseModal = async(e) => {
-    await dispatch(fetchUserPlaylists(pageUser.id))
     setIsModalOpen(false);
+    await dispatch(fetchUserPlaylists(pageUser.id))
   };
 
   return (
