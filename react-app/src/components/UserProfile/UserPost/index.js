@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 import OpenModalButton from "../../OpenModalButton";
 import UpdatePostForm from "../../Post/PostForm/UpdatePost";
 import PostDelete from "../../Post/PostDelete";
@@ -6,7 +7,9 @@ import UserPostModal from "./UserPostModal";
 import './UserPost.css'
 
 function UserPost({userPost, sessionUser, pageUser}) {
+  const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
+
 
   const handleOpenModal = (e) => {
     setIsModalOpen(true);

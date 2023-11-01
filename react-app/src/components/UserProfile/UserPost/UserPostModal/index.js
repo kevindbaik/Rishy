@@ -9,6 +9,7 @@ import { fetchUserPlaylists } from "../../../../store/user";
 import CommentSection from "../../../CommentSection";
 import PostPlaylistDropdown from "../../../Post/PostsPlaylistDropdown";
 import AddToCommentModal from "../../../CommentSection/AddComment/AddCommentModal";
+import { fetchOnePost } from "../../../../store/post";
 
 function UserPostModal({ userPost, sessionUser, pageUser, handleClose}) {
   const dispatch = useDispatch();
@@ -17,10 +18,12 @@ function UserPostModal({ userPost, sessionUser, pageUser, handleClose}) {
   const comments = useSelector(state => state.comments);
   const playlists = useSelector(state => state.user.UserPlaylists);
   const [showComments, setShowComments] = useState(false);
+  const postPlaylist = useSelector(state => state.posts.onePost);
 
   useEffect(() => {
+    dispatch(fetchOnePost(userPost.id))
     dispatch(fetchLoadComments(userPost.id))
-  }, [dispatch]);
+  }, [dispatch, userPost.id]);
 
   useEffect(() => {
     dispatch(fetchUserPlaylists(sessionUser.id))
@@ -65,7 +68,7 @@ function UserPostModal({ userPost, sessionUser, pageUser, handleClose}) {
           showSkipControls={false}
           />
           <div className="userpostmodal-playlist">
-          <PostPlaylistDropdown post={userPost} user={sessionUser} playlists={playlists}/>
+          <PostPlaylistDropdown post={postPlaylist} user={sessionUser} playlists={playlists}/>
           {sessionUser.id !== userPost.userId && !hasCommented() ?
           <AddToCommentModal postId={userPost.id} user={sessionUser} pageUser={pageUser} handleClose={handleClose}/>
           : <div className="comment-modal-placeholder"></div>}

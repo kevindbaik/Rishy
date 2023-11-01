@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { IconButton, Menu, MenuItem, Modal, Box, chipClasses } from '@mui/material';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
-import { fetchAddPostToPlaylist, fetchCreateUserPlaylist, fetchRemovePostFromPlaylist, fetchUserPosts } from "../../../store/user";
+import { fetchAddPostToPlaylist, fetchCreateUserPlaylist, fetchRemovePostFromPlaylist,  fetchUserPosts} from "../../../store/user";
 import { fetchOnePost } from "../../../store/post";
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import RemoveCircleOutlinedIcon from '@mui/icons-material/RemoveCircleOutlined';
@@ -21,16 +21,15 @@ function PostPlaylistDropdown({ post, user, playlists }) {
     setAnchorEl(null);
   };
 
+
   const handlePostPlaylist = async (playlist) => {
     if(checkPostInPlaylist(post, playlist.id)){
       await dispatch(fetchRemovePostFromPlaylist(playlist.id, post.id, user.id));
       await dispatch(fetchOnePost(post.id));
-      await dispatch(fetchUserPosts(user.id));
     }
     else {
       await dispatch(fetchAddPostToPlaylist(playlist.id, post.id, user.id));
       await dispatch(fetchOnePost(post.id));
-      await dispatch(fetchUserPosts(user.id));
     };
   };
 

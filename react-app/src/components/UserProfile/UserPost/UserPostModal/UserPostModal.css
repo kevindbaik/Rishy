@@ -35,7 +35,7 @@
   left: 50%;
   width: 100%;
   height: 57.4%;
-  background: linear-gradient(to bottom, #d4d4d8fc, #d2d2d4);
+  background: linear-gradient(to bottom, #eeeeed, #e3e3e3);
   z-index: -1;
   transform: translateX(-50%);
 }
