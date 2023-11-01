@@ -8,8 +8,9 @@ import { fetchLoadComments } from "../../../../store/comment"
 import { fetchUserPlaylists } from "../../../../store/user";
 import CommentSection from "../../../CommentSection";
 import PostPlaylistDropdown from "../../../Post/PostsPlaylistDropdown";
+import AddToCommentModal from "../../../CommentSection/AddComment/AddCommentModal";
 
-function UserPostModal({ userPost, sessionUser, handleClose}) {
+function UserPostModal({ userPost, sessionUser, pageUser, handleClose}) {
   const dispatch = useDispatch();
   const modalRef = useRef();
   const history = useHistory();
@@ -25,18 +26,6 @@ function UserPostModal({ userPost, sessionUser, handleClose}) {
     dispatch(fetchUserPlaylists(sessionUser.id))
   }, [dispatch, sessionUser.id]);
 
-  // useEffect(() => {
-  //   const handleClickOutside = (event) => {
-  //     if (modalRef.current && !modalRef.current.contains(event.target)) {
-  //       handleClose();
-  //     }
-  //   };
-  //   document.addEventListener("mousedown", handleClickOutside);
-  //   return () => {
-  //     document.removeEventListener("mousedown", handleClickOutside);
-  //   };
-  // }, [handleClose]);
-
   const handleNavigatePostDetails = (e) => {
     e.preventDefault()
     history.push(`/posts/${userPost.id}`)
@@ -48,12 +37,15 @@ function UserPostModal({ userPost, sessionUser, handleClose}) {
 
   const handleHideComments = (e) => {
     setShowComments(false);
-  }
+  };
 
-  console.log('comments', comments)
-  console.log('uuuserpost', userPost)
-  console.log('xxxx', sessionUser)
-  console.log('pppp', playlists)
+  const hasCommented = () => {
+    let hasCommented = false;
+    const userCommented = Object.values(comments).find(comment => comment.userId === sessionUser.id);
+    if(userCommented) hasCommented = true;
+    return hasCommented;
+  };
+
   return(
     <div id='userpostmodal-container' ref={modalRef}>
       <div className="userpostmodal-header">
@@ -73,14 +65,17 @@ function UserPostModal({ userPost, sessionUser, handleClose}) {
           showSkipControls={false}
           />
           <div className="userpostmodal-playlist">
-            <PostPlaylistDropdown post={userPost} user={sessionUser} playlists={playlists}/>
-            </div>
+          <PostPlaylistDropdown post={userPost} user={sessionUser} playlists={playlists}/>
+          {sessionUser.id !== userPost.userId && !hasCommented() ?
+          <AddToCommentModal postId={userPost.id} user={sessionUser} pageUser={pageUser} handleClose={handleClose}/>
+          : <div className="comment-modal-placeholder"></div>}
+          </div>
+          <p className="userpostmodal-caption"> <strong>@{userPost.User.username}</strong>: {userPost.caption}</p>
       </div>
 
       <div className="userpostmodal-info-container">
         <div className="userpostmodal-info">
-          <p className="userpostmodal-caption"> <strong>@{userPost.User.username}</strong>: {userPost.caption}</p>
-          {showComments ? <p id="caption-showcomments" onClick={handleHideComments}>hide comments</p> : <p id="caption-showcomments" onClick={handleShowComments}>show comments</p>}
+          {showComments ? <p id="caption-showcomments" onClick={handleHideComments}>hide comments</p> : <p id="caption-showcomments" onClick={handleShowComments}>show comments ({userPost.commentCount})</p>}
         </div>
 
         {showComments && <CommentSection comments={comments} user={sessionUser} isProfile={true} handleClose={handleClose}/>}

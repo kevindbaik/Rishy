@@ -72,7 +72,7 @@ function Comment({ comment, user, isProfile, handleClose }) {
       <AddComment onSubmit={handleEditComment} initialValue={comment.content}/>
     :
     <>
-      {user && comment.userId === user.id &&
+      {user && comment.userId === user.id && !isProfile &&
         <div className="onecomment-manage-container">
           <i onClick={toggleDropdown} class="fa-solid fa-ellipsis-vertical"></i>
           {dropdownOpen &&
@@ -81,7 +81,7 @@ function Comment({ comment, user, isProfile, handleClose }) {
                 <i class="fa-sharp fa-regular fa-pen-to-square"></i>
                 <p>edit</p>
               </div>
-              <div className="dropdown-individual-container onecomment-delete-container">
+              <div className="dropdown-individual-container onecomment-delete-container" onClick={toggleDropdown}>
               <OpenModalDiv modalComponent={<CommentDelete comment={comment}/>}/>
               </div>
             </div>

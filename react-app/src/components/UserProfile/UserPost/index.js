@@ -5,7 +5,7 @@ import PostDelete from "../../Post/PostDelete";
 import UserPostModal from "./UserPostModal";
 import './UserPost.css'
 
-function UserPost({userPost, sessionUser}) {
+function UserPost({userPost, sessionUser, pageUser}) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOpenModal = (e) => {
@@ -28,7 +28,7 @@ function UserPost({userPost, sessionUser}) {
       {isModalOpen &&
            <>
            <div className="modal-backdrop" onClick={handleCloseModal}></div>
-            <UserPostModal userPost={userPost} sessionUser={sessionUser} handleClose={handleCloseModal}/>
+            <UserPostModal userPost={userPost} sessionUser={sessionUser} pageUser={pageUser} handleClose={handleCloseModal}/>
           </>
       }
     </div>

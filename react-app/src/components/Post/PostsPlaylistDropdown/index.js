@@ -43,20 +43,18 @@ function PostPlaylistDropdown({ post, user, playlists }) {
   };
 
   const checkPostInPlaylist = (post, playlistId) => {
-    console.log('POOOOST', post)
     if (!post || typeof post.playlists !== 'object') {
       return false;
     };
 
     const postPlaylistIds = Object.values(post?.playlists).map(postPlaylist => postPlaylist.id);
-    console.log(postPlaylistIds.includes(playlistId))
     return postPlaylistIds.includes(playlistId);
   };
 
   const onSubmit = async(data) => {
     await dispatch(fetchCreateUserPlaylist(data, user.id));
     handleCreateClose();
-  }
+  };
 
   return (
     <div>

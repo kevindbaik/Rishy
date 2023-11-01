@@ -80,7 +80,7 @@ function UserProfile() {
         <TabPanel value={profileTab} index={0}>
           <div id='all-userpost-container'>
             {Object.values(userPosts).map((userPost) => (
-              <UserPost userPost={userPost} sessionUser={sessionUser}/>
+              <UserPost userPost={userPost} sessionUser={sessionUser} pageUser={user}/>
             ))}
           </div>
         </TabPanel>
