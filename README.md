@@ -4,7 +4,7 @@
 <!--!!ADD -->
 <!-- # `<name of application here>` -->
 ## Intro
-Rishy is a music sharing social media platform where users can post songs they're currently listening to, along with an image that encapsulates their present feelings. Currently, users can create, update, and delete posts for their own profile, they can also CRUD comments as well as create playlists for themselves to share to others.
+Rishy is a music sharing social media platform where users can post songs they're currently listening to, along with an image that encapsulates their present feelings. Currently, users can create, update, and delete posts for their own profile, they can also create, update, comments as well as create playlists for themselves to share with others.
 
 https://rishy.onrender.com/
 
@@ -15,7 +15,7 @@ Frontend: React, Redux
 
 Database: PostgreSQL
 
-Deployment: Render
+Hosting: Render
 
 ## Landing Page
 ![alt text](./react-app/src/images/landingpage.png)
@@ -39,11 +39,10 @@ Deployment: Render
 <!--!!START SILENT -->
 <!--!!ADD -->
 <!-- `<insert database schema design here>` -->
-[db-schema]: ./react-app/src/images/schema.png
 <!--!!END_ADD -->
 
 
-# Flask React Project
+<!-- # Flask React Project
 
 This is the starter for the Flask React project.
 
@@ -190,4 +189,4 @@ successfully deployed your Flask application to Render! You can find the URL for
 your site just below the name of the Web Service at the top of the page.
 
 [Render.com]: https://render.com/
-[Dashboard]: https://dashboard.render.com/
+[Dashboard]: https://dashboard.render.com/ -->
