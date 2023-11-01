@@ -36,17 +36,15 @@
   column-gap: 10px;
 }
 
-.footer-contact:hover {
-  cursor: pointer;
-}
-
-.footer-github {
+.footer-icon {
   color: rgb(226, 226, 226);
   font-size: 16px;
+  transition: color 0.2s ease-in-out;
 }
 
-.footer-github:hover {
+.footer-icon:hover {
   cursor: pointer;
+  color: rgb(126, 120, 120);
 }
 
 .footer-copyright {
@@ -65,4 +63,10 @@
   width: 400px;
   padding: 20px 30px;
   border-radius: 10px;
+}
+
+.footer-dev-icons {
+  display: flex;
+  align-items: center;
+  column-gap: 16px;
 }
