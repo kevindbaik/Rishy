@@ -61,7 +61,7 @@ function UserProfile() {
 
   if (loading) return <Loading />;
   if(!user || !userPosts) return null;
-  console.log('uuuu', userPlaylists)
+
   return(
     <div id="userprofile-wrap">
       <div id='userprofile-container'>
