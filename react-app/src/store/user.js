@@ -100,7 +100,7 @@ export const fetchCreateUserPlaylist = (data, userId) => async(dispatch) => {
     return data;
   } else {
     const errors = await response.json();
-    return errors;
+    throw new Error('error')
   }
 };
 

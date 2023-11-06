@@ -12,6 +12,7 @@ function PostPlaylistDropdown({ post, user, playlists }) {
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [open, setOpen] = useState(false);
+  const [errors, setErrors] = useState([]);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -51,8 +52,15 @@ function PostPlaylistDropdown({ post, user, playlists }) {
   };
 
   const onSubmit = async(data) => {
-    await dispatch(fetchCreateUserPlaylist(data, user.id));
-    handleCreateClose();
+    try {
+      await dispatch(fetchCreateUserPlaylist(data, user.id));
+      setErrors([])
+    }
+    catch(error) {
+      setErrors(error)
+    } finally {
+      handleCreateClose();
+    }
   };
 
   return (
@@ -83,6 +91,7 @@ function PostPlaylistDropdown({ post, user, playlists }) {
             </div>
           ))}
             <MenuItem style={{ fontSize: '14px' }} onClick={handleCreateOpen}>
+            {errors && errors.name && <p style={{ color: 'red' }}>playlist name too long</p>}
               <IconButton size="small">
                 <AddCircleOutlineOutlinedIcon style={{ color:'black', fontSize: '15px' }}/>
               </IconButton>
@@ -91,8 +100,7 @@ function PostPlaylistDropdown({ post, user, playlists }) {
           open={open}
           onClose={handleCreateClose}
           aria-labelledby="create-playlist-modal"
-          aria-describedby="create-playlist-form"
-        >
+          aria-describedby="create-playlist-form">
             <Box sx={{   position: 'absolute',
                 top: '50%',
                 left: '50%',
