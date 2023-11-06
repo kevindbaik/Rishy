@@ -76,9 +76,11 @@ function PostPlaylistDropdown({ post, user, playlists }) {
           }}
         >
           {Object.values(playlists).map((playlist) => (
-            <MenuItem key={playlist.id} style={{ fontSize: '14px' }} onClick={(e) => handlePostPlaylist(playlist)}>
+            <div className="testing-play" style={{ width: '250px', overflow: 'hidden' }}>
+            <MenuItem key={playlist.id} style={{ fontSize: '14px', width: '250px', wordBreak: 'break-word', overflowWrap: 'break-word',  whiteSpace: 'normal'}} onClick={(e) => handlePostPlaylist(playlist)}>
           {playlist.name} {checkPostInPlaylist(post, playlist?.id) ? < RemoveCircleOutlinedIcon style={{ fontSize: '15px', marginLeft:'6px' }}/> : <AddCircleOutlineOutlinedIcon style={{ fontSize: '15px', marginLeft:'6px' }}/>}
             </MenuItem>
+            </div>
           ))}
             <MenuItem style={{ fontSize: '14px' }} onClick={handleCreateOpen}>
               <IconButton size="small">

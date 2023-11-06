@@ -76,7 +76,7 @@ function PlaylistModal({ playlist, currUser, user, handleClose }) {
         />
       </div>
       <div id='playlistmodal-sidebar'>
-        <div>
+        <div className="sidebar-subcontainer">
           <p className="playlistmodal-title">{playlist.name}</p>
           <div id='sidebar-info'>
             {playlist.private ?
