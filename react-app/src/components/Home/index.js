@@ -20,14 +20,22 @@ function Home() {
   const [selectedPlaylist, setSelectedPlaylist] = useState(null);
   const [createPlaylistModalOpen, setCreatePlaylistModalOpen] = useState(false);
   const [ loading, setLoading ] = useState(true);
+  const [errors, setErrors] = useState([]);
 
   const handleCreatePlaylistOpen = () => setCreatePlaylistModalOpen(true);
   const handleCreatePlaylistClose = () => setCreatePlaylistModalOpen(false);
 
   const handleCreatePlaylistSubmit = async (playlistData) => {
-    await dispatch(fetchCreateUserPlaylist(playlistData, currUser.id));
-    handleCreatePlaylistClose();
-    dispatch(fetchUserPlaylists(currUser.id));
+    try {
+      await dispatch(fetchCreateUserPlaylist(playlistData, currUser.id));
+      setErrors([])
+    } catch(error) {
+      setErrors(error)
+    }
+    finally {
+      handleCreatePlaylistClose();
+      dispatch(fetchUserPlaylists(currUser.id));
+    }
   };
 
   useEffect(() => {
@@ -80,6 +88,7 @@ function Home() {
             <div key={playlist.id} className="sidebar-onecollection" onClick={(e) => handleOpenPlaylist(playlist)}>
               <p>{playlist.name}</p>
             </div>))}
+            {errors && errors.name && <p style={{ color: 'red' }}>playlist name too long</p>}
             <button className="sidebar-create-collection" onClick={handleCreatePlaylistOpen}> + </button>
     </div>
     <Modal
