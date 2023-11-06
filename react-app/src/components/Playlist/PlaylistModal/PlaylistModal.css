@@ -71,9 +71,9 @@
 
 .playlistmodal-title {
   font-weight: bold;
-  font-size: 20px;
+  font-size: 18.4px;
   margin: 0;
-  margin-bottom: 0.4vh;
+  margin-bottom: 1vh;
 }
 
 .playlistmodal-audioplayer {
@@ -172,4 +172,15 @@
 .playlistempty-text {
   text-align: center;
   margin: auto;
+}
+
+.sidebar-subcontainer {
+  width: 540px;
+  word-wrap: break-word;
+}
+
+.testing-play {
+  width: 250px;
+  word-break: break-all;
+  overflow-wrap: break-word;
 }

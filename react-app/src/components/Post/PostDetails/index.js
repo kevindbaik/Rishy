@@ -143,12 +143,8 @@ function PostDetails() {
             <p id='onepost-caption'>{post.caption}</p>
           </div>
           <div id='onepost-poststats-container'>
-            <i className="fa-sharp fa-regular fa-eye poststats-icons">
-              {/* <p>{Math.floor(Math.random() * 500) + 1000}</p> */}
-            </i>
-            <i className="fa-regular fa-heart poststats-icons">
-              {/* <p>{Math.floor(Math.random() * 500) + 100}</p> */}
-            </i>
+            {/* <i className="fa-sharp fa-regular fa-eye poststats-icons"></i> */}
+            {/* <i className="fa-regular fa-heart poststats-icons"></i> */}
             <i className={user && hasCommented() ? "fa-solid fa-comment poststats-icons" : "fa-sharp fa-regular fa-comment poststats-icons"}>
               <p className="poststats-commentcount">{Object.values(comments).length}</p>
             </i>
@@ -158,7 +154,7 @@ function PostDetails() {
             </div>}
             </div>
           <div id='onepost-postdate-container'>
-            <p className="onepost-postdate">Updated on {post.createdAt}</p>
+            <p className="onepost-postdate">Posted on {post.createdAt}</p>
           </div>
         </div>
       </div>

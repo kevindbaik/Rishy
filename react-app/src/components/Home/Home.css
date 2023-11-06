@@ -142,6 +142,8 @@
 .sidebar-onecollection {
   transition: color 0.2s ease-in-out;
   color: rgb(99, 107, 113);
+  box-sizing: border-box;
+  word-wrap: break-word;
 }
 
 .sidebar-onecollection:hover {
