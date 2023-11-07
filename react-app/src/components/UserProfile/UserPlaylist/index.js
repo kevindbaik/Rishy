@@ -24,7 +24,9 @@ function UserPlaylist({ userPlaylist, currUser, user }) {
     >
       <div id='userplaylist-playlistcont'>
         <img className="userplaylist-playlistphoto" src={userPlaylist.posts[0].photoUrl}></img>
-        <p className="userplaylist-pname">{userPlaylist.name}</p>
+        <div className="userplayplaylist-pname-cont">
+          <p className="userplaylist-pname">{userPlaylist.name}</p>
+        </div>
         <p className="userplaylist-rname">by {user.firstName} {user.lastName}</p>
         <p className="userplaylist-date">{userPlaylist.createdAt}</p>
       </div>

@@ -4,6 +4,7 @@ import { TextField, Switch, FormControlLabel, Button, Box } from '@mui/material'
 function PlaylistForm ({ onSubmit }) {
   const [formValues, setFormValues] = useState({ name: '', private: false});
 
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormValues({
