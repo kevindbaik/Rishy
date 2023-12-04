@@ -66,7 +66,7 @@ function UserProfile() {
     <div id="userprofile-wrap">
       <div id='userprofile-container'>
         <div id='userprofile-userinfo-container'>
-        <img className="userprofile-profileimage" src="https://i.ibb.co/nRLSXSX/Default-pfp-svg.png" alt=""></img>
+        <img className="userprofile-profileimage" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png" alt=""></img>
           <div className="userinfo-container">
             <p className="userinfo-fullname">{user.firstName} {user.lastName}</p>
             <div id="userinfo-bottomrow-container">

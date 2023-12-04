@@ -131,7 +131,7 @@ function PostDetails() {
         {hasNext && <i class="fa-solid fa-chevron-right onespot-next" onClick={() => handleNextNavigate(nextId)}></i>}
       </div>
       <div id="onepost-detailscontainer">
-        <img className="defaultuser-image onepost-creatorimage" onClick={(e) => handleProfileClick(e, post)} src="https://i.ibb.co/nRLSXSX/Default-pfp-svg.png" alt=""></img>
+        <img className="defaultuser-image onepost-creatorimage" onClick={(e) => handleProfileClick(e, post)} src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png" alt=""></img>
         <div id='onepost-creatorinfo'>
           <div id='creator-follow-container'>
           <p id='onepost-creator' onClick={(e) => handleProfileClick(e, post)}>{post.User?.username}</p>
@@ -161,7 +161,7 @@ function PostDetails() {
       <h4 id='onepost-comment-header'>Comments</h4>
       {errors.content && <p className="newcomment-errors-text">{errors.content}</p>}
       <div className="addcomment-container">
-        {user && !hasCommented() && post.userId !== user.id && <img className="defaultuser-image-comment" src="https://i.ibb.co/nRLSXSX/Default-pfp-svg.png" alt=""></img>}
+        {user && !hasCommented() && post.userId !== user.id && <img className="defaultuser-image-comment" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png" alt=""></img>}
         {user && !hasCommented() && post.userId !== user.id && <AddComment onSubmit={handleAddComment}/>}
       </div>
       <CommentSection comments={comments} user={user} isProfile={false}/>
