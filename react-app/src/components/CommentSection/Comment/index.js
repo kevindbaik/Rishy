@@ -89,7 +89,7 @@ function Comment({ comment, user, isProfile, handleClose }) {
         </div>
       }
       <div id='onecomment-info-container'>
-        <img className="defaultuser-image-comment" src="https://i.ibb.co/nRLSXSX/Default-pfp-svg.png" alt="" onClick={(e) => handleProfileClick(e, comment)}></img>
+        <img className="defaultuser-image-comment" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png" alt="" onClick={(e) => handleProfileClick(e, comment)}></img>
         <div id='onecomment-userinfo'>
           <div id='comment-user-date'>
             <p id='comment-username' onClick={(e) => handleProfileClick(e, comment)}>@{comment?.User?.username}</p>

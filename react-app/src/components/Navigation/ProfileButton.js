@@ -43,7 +43,7 @@ function ProfileButton({ user, onHomePage }) {
             <NavLink style={{ textDecoration: "none", color: "black" }}
                 onClick={closeMenu}
                 to={`/users/${user.id}/posts`}>
-             <img className="defaultuser-image-nav" src="https://i.ibb.co/nRLSXSX/Default-pfp-svg.png" alt=""></img>
+             <img className="defaultuser-image-nav" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png" alt=""></img>
             </NavLink>
             <button className="nav-logout-button" onClick={handleLogout}>Log Out</button>
           </div>
